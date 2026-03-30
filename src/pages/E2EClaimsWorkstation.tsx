@@ -1246,21 +1246,24 @@ interface ParrillaCase {
   tipoSiniestro: string;
   montoReservado: number;
   claimTypeId: ClaimTypeId;
+  deadlineMs: number; // absolute deadline timestamp in ms
 }
 
+// Each case has an individual deadline: fechaAviso + random hours (1h to 4h from now for demo)
+const NOW_MS = Date.now();
 const PARRILLA_CASES: ParrillaCase[] = [
-  { id: 'c1', folioId: 'SIN-2026-00481', fechaAviso: '2026-03-28', asegurado: 'Roberto García Méndez', numPoliza: 'POL-4821093', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 520000, claimTypeId: 'case-management' },
-  { id: 'c2', folioId: 'SIN-2026-00483', fechaAviso: '2026-03-27', asegurado: 'María Elena Torres Vega', numPoliza: 'POL-3917254', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 485000, claimTypeId: 'case-management' },
-  { id: 'c3', folioId: 'SIN-2026-00479', fechaAviso: '2026-03-29', asegurado: 'Javier Hernández López', numPoliza: 'POL-5528410', canal: 'Urgencias', tipoSiniestro: 'Intervención cardiovascular', montoReservado: 310000, claimTypeId: 'proactiva' },
-  { id: 'c4', folioId: 'SIN-2026-00485', fechaAviso: '2026-03-30', asegurado: 'Ana Sofía Ramírez Cruz', numPoliza: 'POL-6104837', canal: 'Hospital directo', tipoSiniestro: 'Hospitalización', montoReservado: 195000, claimTypeId: 'proactiva' },
-  { id: 'c5', folioId: 'SIN-2026-00472', fechaAviso: '2026-03-26', asegurado: 'Carlos Pérez Domínguez', numPoliza: 'POL-2293015', canal: 'Call center', tipoSiniestro: 'Hospitalización', montoReservado: 185000, claimTypeId: 'proactiva' },
-  { id: 'c6', folioId: 'SIN-2026-00488', fechaAviso: '2026-03-28', asegurado: 'Laura Martínez Sánchez', numPoliza: 'POL-7741562', canal: 'App móvil', tipoSiniestro: 'Cirugía programada', montoReservado: 125000, claimTypeId: 'reactiva' },
-  { id: 'c7', folioId: 'SIN-2026-00490', fechaAviso: '2026-03-29', asegurado: 'Fernando Ríos Gutiérrez', numPoliza: 'POL-8356201', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 98000, claimTypeId: 'reactiva' },
-  { id: 'c8', folioId: 'SIN-2026-00493', fechaAviso: '2026-03-27', asegurado: 'Diana Flores Castillo', numPoliza: 'POL-1489320', canal: 'Reembolso', tipoSiniestro: 'Reembolso rehabilitación', montoReservado: 78000, claimTypeId: 'detallado' },
-  { id: 'c9', folioId: 'SIN-2026-00495', fechaAviso: '2026-03-30', asegurado: 'Eduardo Vargas Núñez', numPoliza: 'POL-9072148', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 65000, claimTypeId: 'reactiva' },
-  { id: 'c10', folioId: 'SIN-2026-00498', fechaAviso: '2026-03-29', asegurado: 'Patricia Morales Ruiz', numPoliza: 'POL-3350917', canal: 'App móvil', tipoSiniestro: 'Consulta médica', montoReservado: 450, claimTypeId: 'automatica' },
-  { id: 'c11', folioId: 'SIN-2026-00500', fechaAviso: '2026-03-30', asegurado: 'Miguel Ángel Soto Reyes', numPoliza: 'POL-4467283', canal: 'App móvil', tipoSiniestro: 'Estudios de laboratorio', montoReservado: 1200, claimTypeId: 'automatica' },
-  { id: 'c12', folioId: 'SIN-2026-00502', fechaAviso: '2026-03-28', asegurado: 'Gabriela Jiménez Ortiz', numPoliza: 'POL-5584619', canal: 'Call center', tipoSiniestro: 'Consulta especialista', montoReservado: 3500, claimTypeId: 'automatica' },
+  { id: 'c1', folioId: 'SIN-2026-00481', fechaAviso: '2026-03-28', asegurado: 'Roberto García Méndez', numPoliza: 'POL-4821093', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 520000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 0.4 * 3600000 },
+  { id: 'c2', folioId: 'SIN-2026-00483', fechaAviso: '2026-03-27', asegurado: 'María Elena Torres Vega', numPoliza: 'POL-3917254', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 485000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 1.2 * 3600000 },
+  { id: 'c3', folioId: 'SIN-2026-00479', fechaAviso: '2026-03-29', asegurado: 'Javier Hernández López', numPoliza: 'POL-5528410', canal: 'Urgencias', tipoSiniestro: 'Intervención cardiovascular', montoReservado: 310000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 0.7 * 3600000 },
+  { id: 'c4', folioId: 'SIN-2026-00485', fechaAviso: '2026-03-30', asegurado: 'Ana Sofía Ramírez Cruz', numPoliza: 'POL-6104837', canal: 'Hospital directo', tipoSiniestro: 'Hospitalización', montoReservado: 195000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 2.5 * 3600000 },
+  { id: 'c5', folioId: 'SIN-2026-00472', fechaAviso: '2026-03-26', asegurado: 'Carlos Pérez Domínguez', numPoliza: 'POL-2293015', canal: 'Call center', tipoSiniestro: 'Hospitalización', montoReservado: 185000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 1.8 * 3600000 },
+  { id: 'c6', folioId: 'SIN-2026-00488', fechaAviso: '2026-03-28', asegurado: 'Laura Martínez Sánchez', numPoliza: 'POL-7741562', canal: 'App móvil', tipoSiniestro: 'Cirugía programada', montoReservado: 125000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 3.1 * 3600000 },
+  { id: 'c7', folioId: 'SIN-2026-00490', fechaAviso: '2026-03-29', asegurado: 'Fernando Ríos Gutiérrez', numPoliza: 'POL-8356201', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 98000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 0.3 * 3600000 },
+  { id: 'c8', folioId: 'SIN-2026-00493', fechaAviso: '2026-03-27', asegurado: 'Diana Flores Castillo', numPoliza: 'POL-1489320', canal: 'Reembolso', tipoSiniestro: 'Reembolso rehabilitación', montoReservado: 78000, claimTypeId: 'detallado', deadlineMs: NOW_MS + 0.9 * 3600000 },
+  { id: 'c9', folioId: 'SIN-2026-00495', fechaAviso: '2026-03-30', asegurado: 'Eduardo Vargas Núñez', numPoliza: 'POL-9072148', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 65000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 1.5 * 3600000 },
+  { id: 'c10', folioId: 'SIN-2026-00498', fechaAviso: '2026-03-29', asegurado: 'Patricia Morales Ruiz', numPoliza: 'POL-3350917', canal: 'App móvil', tipoSiniestro: 'Consulta médica', montoReservado: 450, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.8 * 3600000 },
+  { id: 'c11', folioId: 'SIN-2026-00500', fechaAviso: '2026-03-30', asegurado: 'Miguel Ángel Soto Reyes', numPoliza: 'POL-4467283', canal: 'App móvil', tipoSiniestro: 'Estudios de laboratorio', montoReservado: 1200, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.5 * 3600000 },
+  { id: 'c12', folioId: 'SIN-2026-00502', fechaAviso: '2026-03-28', asegurado: 'Gabriela Jiménez Ortiz', numPoliza: 'POL-5584619', canal: 'Call center', tipoSiniestro: 'Consulta especialista', montoReservado: 3500, claimTypeId: 'automatica', deadlineMs: NOW_MS + 2.2 * 3600000 },
 ];
 
 // Stage summary generator
@@ -1366,11 +1369,10 @@ const E2EClaimsWorkstation: React.FC = () => {
   };
 
   // -- Parrilla State --
-  const [parrillaEntryTime, setParrillaEntryTime] = useState<Date | null>(null);
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
-  const [timerRemaining, setTimerRemaining] = useState(7200000); // 2 hours in ms
   const [showSidePanel, setShowSidePanel] = useState(false);
   const [reviewedCases, setReviewedCases] = useState<Set<string>>(new Set());
+  const [tick, setTick] = useState(0); // forces re-render every second for timers
 
   // -- Original State --
   const [selectedClaimType, setSelectedClaimType] = useState<ClaimTypeId | null>(null);
@@ -1383,16 +1385,16 @@ const E2EClaimsWorkstation: React.FC = () => {
   const [pagoAprobado, setPagoAprobado] = useState<boolean | null>(null);
   const selectorRef = useRef<HTMLDivElement>(null);
 
-  // -- Timer Effect --
+  // -- Timer tick (re-renders every second to update all case timers) --
   useEffect(() => {
-    if (!parrillaEntryTime) return;
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - parrillaEntryTime.getTime();
-      const remaining = Math.max(0, 7200000 - elapsed);
-      setTimerRemaining(remaining);
-    }, 1000);
+    const interval = setInterval(() => setTick(t => t + 1), 1000);
     return () => clearInterval(interval);
-  }, [parrillaEntryTime]);
+  }, []);
+
+  // Helper: get remaining ms for a case
+  const getCaseRemaining = useCallback((c: ParrillaCase): number => {
+    return Math.max(0, c.deadlineMs - Date.now());
+  }, [tick]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // -- Derived --
   const claimConfig = useMemo(
@@ -1486,10 +1488,6 @@ const E2EClaimsWorkstation: React.FC = () => {
 
   // -- Parrilla Handlers --
   const handleSelectCase = useCallback((caseItem: ParrillaCase) => {
-    if (!parrillaEntryTime) {
-      setParrillaEntryTime(new Date());
-      setTimerRemaining(7200000);
-    }
     setSelectedCaseId(caseItem.id);
     setSelectedClaimType(caseItem.claimTypeId);
     setSimulationState('idle');
@@ -1500,7 +1498,7 @@ const E2EClaimsWorkstation: React.FC = () => {
     setDictamenAprobado(null);
     setPagoAprobado(null);
     setShowSidePanel(false);
-  }, [parrillaEntryTime]);
+  }, []);
 
   const handleBackToParrilla = useCallback(() => {
     if (simulationState === 'complete' && selectedCaseId) {
@@ -1524,8 +1522,8 @@ const E2EClaimsWorkstation: React.FC = () => {
     [selectedCaseId],
   );
 
-  // All parrilla cases sorted by monto reservado (highest first)
-  const parrillaCases = useMemo(() => [...PARRILLA_CASES].sort((a, b) => b.montoReservado - a.montoReservado), []);
+  // All parrilla cases sorted by least time remaining (most urgent first)
+  const parrillaCases = useMemo(() => [...PARRILLA_CASES].sort((a, b) => a.deadlineMs - b.deadlineMs), []);
 
   const downloadMasterPDF = useCallback((config: ClaimTypeConfig) => {
     const fecha = new Date().toISOString().split('T')[0];
@@ -3115,8 +3113,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
             <div className={styles.heroBanner} style={{ marginBottom: 20 }}>
               <h1 className={styles.heroTitle}>Casos Asignados a {DICTAMINADOR_NAME}</h1>
               <p className={styles.heroSubtitle}>
-                Seleccione un caso para iniciar el flujo de revisión.
-                {!parrillaEntryTime && ' El timer de 2 horas iniciará al abrir el primer caso.'}
+                Seleccione un caso para iniciar el flujo de revisión. Los casos están ordenados por urgencia.
               </p>
             </div>
             <div className={styles.timerBar}>
@@ -3126,10 +3123,6 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 </h2>
               </div>
               <div className={styles.timerBarRight}>
-                <span className={styles.timerLabel}>Tiempo restante:</span>
-                <span className={styles.timerValue} style={{ color: getTimerColor(timerRemaining) }}>
-                  <Clock size={16} /> {formatTimer(timerRemaining)}
-                </span>
                 <span className={styles.timerProgress}>
                   {reviewedCases.size} de {parrillaCases.length} revisados
                 </span>
@@ -3148,6 +3141,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                     <th>Canal</th>
                     <th>Tipo de Siniestro</th>
                     <th>Monto Reservado</th>
+                    <th>Tiempo Restante</th>
                     <th>Acción</th>
                   </tr>
                 </thead>
@@ -3163,6 +3157,16 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                         <td>{c.canal}</td>
                         <td>{c.tipoSiniestro}</td>
                         <td className={styles.casesTableMonto}>{fmtCurrency(c.montoReservado)}</td>
+                        <td>
+                          {(() => {
+                            const rem = getCaseRemaining(c);
+                            return (
+                              <span className={styles.casesTableTimer} style={{ color: getTimerColor(rem) }}>
+                                <Clock size={13} /> {formatTimer(rem)}
+                              </span>
+                            );
+                          })()}
+                        </td>
                         <td>
                           {isReviewed ? (
                             <span className={styles.casesTableReviewedBadge}><CheckCircle size={14} /> Revisado</span>
@@ -3198,9 +3202,14 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 <span className={styles.caseHeaderItem}><strong>Póliza:</strong> {currentCase.numPoliza}</span>
                 <span className={styles.caseHeaderItem}><strong>Reservado:</strong> <span style={{ color: '#0175D8', fontWeight: 700 }}>{fmtCurrency(currentCase.montoReservado)}</span></span>
               </div>
-              <div className={styles.caseHeaderTimer} style={{ color: getTimerColor(timerRemaining) }}>
-                <Clock size={14} /> {formatTimer(timerRemaining)}
-              </div>
+              {currentCase && (() => {
+                const rem = getCaseRemaining(currentCase);
+                return (
+                  <div className={styles.caseHeaderTimer} style={{ color: getTimerColor(rem) }}>
+                    <Clock size={14} /> {formatTimer(rem)}
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Resumen appears only after all stages complete */}
