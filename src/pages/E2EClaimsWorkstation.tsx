@@ -3319,6 +3319,39 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 })}
               </div>
 
+              {/* Per-stage summaries, appear as each stage completes */}
+              {Object.values(stageStatuses).some(s => s === 'complete') && (
+                <div className={styles.stageSummarySection}>
+                  {claimConfig.stages.map(stage => {
+                    if (stageStatuses[stage.id] !== 'complete') return null;
+                    const summary = generateStageSummary(stage.id, claimConfig);
+                    return (
+                      <motion.div
+                        key={stage.id}
+                        className={`${styles.stageSummaryInline} ${summary.needsInput ? styles.stageSummaryInlineAlert : ''}`}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className={styles.stageSummaryInlineHeader}>
+                          <span className={styles.stageSummaryCardIcon}>{stage.icon}</span>
+                          <span className={styles.stageSummaryInlineLabel}>{stage.label}</span>
+                          <span className={styles.stageSummaryCardBadge}><CheckCircle size={11} /> Completado</span>
+                        </div>
+                        <div className={styles.stageSummaryInlineBody}>
+                          {summary.bullets.map((b, i) => <span key={i} className={styles.stageSummaryInlineBullet}>{b}</span>)}
+                        </div>
+                        {summary.needsInput && (
+                          <button className={styles.stageSummaryInputBtn} onClick={() => { setShowStageDetail(stage.id); setShowSidePanel(true); }}>
+                            <AlertTriangle size={12} /> {summary.inputReason}
+                          </button>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              )}
+
               {/* Mode legend */}
               <div className={styles.modeLegend}>
                 {(['manual', 'ia-asistido', 'automatizado'] as ProcessMode[]).map((mode) => (
