@@ -1,0 +1,29 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.link {
+  color: #00d4aa;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #33e0be;
+  text-decoration: underline;
+}
+
+.current {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 11px;
+  user-select: none;
+}

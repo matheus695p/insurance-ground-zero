@@ -1,0 +1,435 @@
+/* ── Container ── */
+.container {
+  background: rgba(10, 14, 26, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 32px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+.button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.runButton {
+  background: #00d4aa;
+  color: #0a0e1a;
+}
+
+.runButton:hover:not(:disabled) {
+  background: #00eabb;
+  box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+}
+
+.resetButton {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.resetButton:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Flow area ── */
+.flowArea {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ── Node + Connector pair ── */
+.nodeGroup {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* ── Node card ── */
+.node {
+  width: 200px;
+  background: #1a2035;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px 16px;
+  position: relative;
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* ── Type colours for the left border ── */
+.nodeDataSource  { border-left-color: #3b82f6; }
+.nodeModel       { border-left-color: #8b5cf6; }
+.nodeAgent       { border-left-color: #00d4aa; }
+.nodeAction      { border-left-color: #f59e0b; }
+.nodeOutput      { border-left-color: #22c55e; }
+
+/* ── Active glow per type ── */
+.nodeDataSource.nodeActive  { box-shadow: 0 0 24px rgba(59, 130, 246, 0.35), inset 0 0 24px rgba(59, 130, 246, 0.06); }
+.nodeModel.nodeActive       { box-shadow: 0 0 24px rgba(139, 92, 246, 0.35), inset 0 0 24px rgba(139, 92, 246, 0.06); }
+.nodeAgent.nodeActive       { box-shadow: 0 0 24px rgba(0, 212, 170, 0.35),  inset 0 0 24px rgba(0, 212, 170, 0.06); }
+.nodeAction.nodeActive      { box-shadow: 0 0 24px rgba(245, 158, 11, 0.35), inset 0 0 24px rgba(245, 158, 11, 0.06); }
+.nodeOutput.nodeActive      { box-shadow: 0 0 24px rgba(34, 197, 94, 0.35),  inset 0 0 24px rgba(34, 197, 94, 0.06); }
+
+.nodeActive {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Type badge ── */
+.typeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.badgeDataSource { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.badgeModel      { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+.badgeAgent      { background: rgba(0, 212, 170, 0.15);  color: #00d4aa; }
+.badgeAction     { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.badgeOutput     { background: rgba(34, 197, 94, 0.15);  color: #22c55e; }
+
+.badgeIcon {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Node content ── */
+.nodeLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f0f4ff;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.nodeDescription {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ── Details list ── */
+.detailsList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.detailItem {
+  font-size: 12px;
+  color: #64748b;
+  padding: 3px 0;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.detailItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.nodeDataSource .detailItem::before { background: rgba(59, 130, 246, 0.5); }
+.nodeModel .detailItem::before      { background: rgba(139, 92, 246, 0.5); }
+.nodeAgent .detailItem::before      { background: rgba(0, 212, 170, 0.5); }
+.nodeAction .detailItem::before     { background: rgba(245, 158, 11, 0.5); }
+.nodeOutput .detailItem::before     { background: rgba(34, 197, 94, 0.5); }
+
+/* ── Processing indicator ── */
+.processingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.pulsingDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.pulsingDot:nth-child(2) { animation-delay: 0.2s; }
+.pulsingDot:nth-child(3) { animation-delay: 0.4s; }
+
+.dotDataSource { background: #3b82f6; }
+.dotModel      { background: #8b5cf6; }
+.dotAgent      { background: #00d4aa; }
+.dotAction     { background: #f59e0b; }
+.dotOutput     { background: #22c55e; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+
+/* ── Connector arrow between nodes ── */
+.connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-height: 80px;
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  padding-top: 16px;
+}
+
+.connectorLine {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.connectorLine::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 4px,
+    rgba(255, 255, 255, 0.15) 4px,
+    rgba(255, 255, 255, 0.15) 8px
+  );
+}
+
+/* Arrow head */
+.connectorArrow {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid rgba(255, 255, 255, 0.15);
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Connector label */
+.connectorLabel {
+  font-size: 10px;
+  color: #64748b;
+  white-space: nowrap;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* Active connector */
+.connectorActive .connectorLine {
+  background: rgba(0, 212, 170, 0.2);
+}
+
+.connectorActive .connectorLine::before {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 212, 170, 0.5) 4px,
+    rgba(0, 212, 170, 0.5) 8px
+  );
+  animation: dashMove 0.6s linear infinite;
+}
+
+.connectorActive .connectorArrow {
+  border-left-color: rgba(0, 212, 170, 0.6);
+}
+
+/* Pulse traveling along the connector */
+.connectorPulse {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 4px;
+  border-radius: 2px;
+  background: #00d4aa;
+  box-shadow: 0 0 8px rgba(0, 212, 170, 0.6);
+  transform: translateY(-50%);
+  animation: travelPulse 0.8s ease-in-out;
+}
+
+@keyframes dashMove {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(8px); }
+}
+
+@keyframes travelPulse {
+  0%   { left: 0; opacity: 1; }
+  100% { left: calc(100% - 16px); opacity: 0.3; }
+}
+
+/* ── Status banner ── */
+.statusBanner {
+  margin-top: 24px;
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.statusComplete {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.statusIdle {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #64748b;
+}
+
+/* ── Responsive: stack vertically on small screens ── */
+@media (max-width: 900px) {
+  .flowArea {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nodeGroup {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .connector {
+    width: 2px;
+    min-height: 32px;
+    height: 32px;
+    flex-direction: row;
+    padding-top: 0;
+  }
+
+  .connectorLine {
+    width: 2px;
+    height: 100%;
+  }
+
+  .connectorLine::before {
+    background: repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 4px,
+      rgba(255, 255, 255, 0.15) 4px,
+      rgba(255, 255, 255, 0.15) 8px
+    );
+  }
+
+  .connectorActive .connectorLine::before {
+    background: repeating-linear-gradient(
+      180deg,
+      transparent,
+      transparent 4px,
+      rgba(0, 212, 170, 0.5) 4px,
+      rgba(0, 212, 170, 0.5) 8px
+    );
+    animation: dashMoveVertical 0.6s linear infinite;
+  }
+
+  .connectorArrow {
+    border-top: 5px solid transparent;
+    border-bottom: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top-color: rgba(255, 255, 255, 0.15);
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .connectorActive .connectorArrow {
+    border-left-color: transparent;
+    border-top-color: rgba(0, 212, 170, 0.6);
+  }
+
+  .connectorPulse {
+    width: 4px;
+    height: 16px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: travelPulseVertical 0.8s ease-in-out;
+  }
+
+  .connectorLabel {
+    margin-top: 0;
+    margin-left: 10px;
+  }
+
+  @keyframes dashMoveVertical {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(8px); }
+  }
+
+  @keyframes travelPulseVertical {
+    0%   { top: 0; opacity: 1; }
+    100% { top: calc(100% - 16px); opacity: 0.3; }
+  }
+}

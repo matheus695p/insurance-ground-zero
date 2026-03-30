@@ -1,0 +1,51 @@
+.card {
+  background: rgba(15, 20, 35, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(0, 212, 170, 0.2);
+  box-shadow: 0 0 24px rgba(0, 212, 170, 0.08);
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.valueRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.value {
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.trendUp {
+  color: #22c55e;
+  display: flex;
+  align-items: center;
+}
+
+.trendDown {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+}

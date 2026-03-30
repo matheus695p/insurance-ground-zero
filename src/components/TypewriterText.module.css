@@ -1,0 +1,33 @@
+.container {
+  display: inline;
+  line-height: 1.6;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: #00d4aa;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  font-family: "Courier New", Courier, monospace;
+  animation: blink 0.7s step-end infinite;
+}
+
+.cursorHidden {
+  display: none;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
