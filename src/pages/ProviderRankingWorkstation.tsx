@@ -22,9 +22,10 @@ import styles from './ProviderRankingWorkstation.module.css';
 
 // Import from V2 data
 import {
-  hospitals, negotiationOpportunities, MEXICO_STATES_GEO,
+  hospitals, negotiationOpportunities,
   CATEGORY_DEFINITIONS, costEvolution, statesDataV2, hospitalCategoryAnalyses, negotiationArguments,
 } from '../data/providers/provider-ranking-data-v2';
+import { mexicoStates, MEXICO_VIEWBOX } from '../data/mexico-map-data';
 import type {
   Hospital,
   AnalysisCategory, NegotiationArgument,
@@ -1374,17 +1375,27 @@ ${leverSections}`;
                 <div style={{ flex: '1 1 360px', minWidth: 300 }}>
                   <h2 className={styles.sectionTitle}><MapPin size={16} /> Vision Geografica</h2>
                   <div className={styles.mapContainer}>
-                    <svg viewBox="0 0 800 600" className={styles.mexicoMap} onMouseLeave={() => setMapTooltip(null)}>
-                      {MEXICO_STATES_GEO.map(geo => {
-                        const sd = statesDataV2.find(s => s.stateCode === geo.code);
+                    <svg viewBox={MEXICO_VIEWBOX} className={styles.mexicoMap} onMouseLeave={() => setMapTooltip(null)}>
+                      <defs>
+                        <filter id="mapGlow">
+                          <feGaussianBlur stdDeviation="2" result="blur" />
+                          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                        <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="rgba(15,23,42,0.3)" />
+                          <stop offset="100%" stopColor="rgba(15,23,42,0)" />
+                        </linearGradient>
+                      </defs>
+                      {Object.entries(mexicoStates).map(([code, state]) => {
+                        const sd = statesDataV2.find(s => s.stateCode === code);
                         const fill = sd ? getSavingsColor(sd.savingsPotentialMXN) : '#1e293b';
                         return (
                           <path
-                            key={geo.code}
-                            d={geo.path}
+                            key={code}
+                            d={state.d}
                             fill={fill}
-                            className={`${styles.statePath} ${selectedStateCode === geo.code ? styles.statePathSelected : ''}`}
-                            onClick={() => setSelectedStateCode(prev => prev === geo.code ? null : geo.code)}
+                            className={`${styles.statePath} ${selectedStateCode === code ? styles.statePathSelected : ''}`}
+                            onClick={() => setSelectedStateCode(prev => prev === code ? null : code)}
                             onMouseEnter={e => { if (sd) setMapTooltip({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY, state: sd }); }}
                             onMouseMove={e => { if (sd) setMapTooltip({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY, state: sd }); }}
                             onMouseLeave={() => setMapTooltip(null)}

@@ -1,5 +1,5 @@
 // ============================================================================
-// E2EClaimsWorkstation — Interactive Claims Flow Simulator
+// E2EClaimsWorkstation - Interactive Claims Flow Simulator
 // GNP Brand: Primary #0175D8 (blue), CTA #F5A623 (orange)
 // All UI text in Spanish. No company names.
 // ============================================================================
@@ -209,7 +209,7 @@ const AGENT_FLOWS: Record<StageId, StageAgentFlow> = {
   },
   triaje: {
     nodes: [
-      { id: 'triage-ml', type: 'model', label: 'Motor de Triaje ML', description: 'Modelo predictivo de 6 variables — segmentación inteligente', details: ['Perfil Clínico', 'Severidad Económica', 'Fase del Evento', 'Perfil del Proveedor', 'Condiciones Contractuales', 'Alertas de Fraude'] },
+      { id: 'triage-ml', type: 'model', label: 'Motor de Triaje ML', description: 'Modelo predictivo de 6 variables,segmentación inteligente', details: ['Perfil Clínico', 'Severidad Económica', 'Fase del Evento', 'Perfil del Proveedor', 'Condiciones Contractuales', 'Alertas de Fraude'] },
     ],
     connections: [],
   },
@@ -251,17 +251,17 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '7 de 8' }, { label: 'Confianza OCR', value: '92%' }], confidence: 92, duration: '3.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '90%' }, { label: 'Inconsistencias', value: '0' }], confidence: 95, duration: '2.0s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud Total — Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '1.4s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud Total,Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '1.4s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'manual', duration: 1.5,
         agents: [
-          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '4%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Hospital verificado', value: 'Nivel 1 — convenio activo' }], confidence: 98, duration: '2.4s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium Plus' }, { label: 'Cirugía cardiovascular', value: 'Cubierta — $1.5M tope' }, { label: 'UCI', value: 'Cubierta — $800K' }, { label: 'Rehabilitación', value: 'Cubierta — $200K' }, { label: 'Prótesis', value: 'Cubierta por endoso' }], confidence: 96, duration: '2.2s' },
-          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Cardiopatía isquémica', value: 'Declarada — cubierta' }, { label: 'Hipertensión', value: 'Declarada — sin exclusión' }, { label: 'Evaluación', value: 'Condiciones declaradas correctamente' }], confidence: 97, duration: '1.6s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-201 Cirugía Mayor', value: 'Aplica — cobertura ampliada' }, { label: 'END-089 Prótesis', value: 'Aplica — stents y válvulas' }, { label: 'END-155 Rehabilitación Extendida', value: 'Aplica — 30 sesiones' }], confidence: 96, duration: '1.8s' },
-          { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto muy alto + multicobertura' }, { label: 'Recomendación', value: 'ELEGIBLE — comité médico requerido' }], confidence: 94, duration: '1.4s' },
+          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '4%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Hospital verificado', value: 'Nivel 1,convenio activo' }], confidence: 98, duration: '2.4s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium Plus' }, { label: 'Cirugía cardiovascular', value: 'Cubierta,$1.5M tope' }, { label: 'UCI', value: 'Cubierta,$800K' }, { label: 'Rehabilitación', value: 'Cubierta,$200K' }, { label: 'Prótesis', value: 'Cubierta por endoso' }], confidence: 96, duration: '2.2s' },
+          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Cardiopatía isquémica', value: 'Declarada,cubierta' }, { label: 'Hipertensión', value: 'Declarada,sin exclusión' }, { label: 'Evaluación', value: 'Condiciones declaradas correctamente' }], confidence: 97, duration: '1.6s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-201 Cirugía Mayor', value: 'Aplica,cobertura ampliada' }, { label: 'END-089 Prótesis', value: 'Aplica,stents y válvulas' }, { label: 'END-155 Rehabilitación Extendida', value: 'Aplica,30 sesiones' }], confidence: 96, duration: '1.8s' },
+          { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto muy alto + multicobertura' }, { label: 'Recomendación', value: 'ELEGIBLE,comité médico requerido' }], confidence: 94, duration: '1.4s' },
         ],
       },
       {
@@ -307,7 +307,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 4,
     },
     elegibilidad: {
-      resultado: 'Elegible — requiere supervision hospitalaria dedicada y comite medico', alertaHumana: true, deducible: 25000, coaseguro: 10,
+      resultado: 'Elegible,requiere supervision hospitalaria dedicada y comite medico', alertaHumana: true, deducible: 25000, coaseguro: 10,
       poliza: { tipo: 'Individual', vigente: true, pagada: true, producto: 'Premium Salud Total' },
       coberturas: [
         { nombre: 'Hospitalizacion', activa: true, limite: 3000000 },
@@ -317,26 +317,26 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Rehabilitación Cardiaca', activa: true, limite: 300000 },
       ],
       preexistencias: [
-        { condicion: 'Enfermedad Coronaria (I25.1)', declarada: true, aplica: false, justificacion: 'Condicion declarada al inicio de la poliza — cubierta bajo clausula de continuidad de tratamiento' },
+        { condicion: 'Enfermedad Coronaria (I25.1)', declarada: true, aplica: false, justificacion: 'Condicion declarada al inicio de la poliza,cubierta bajo clausula de continuidad de tratamiento' },
       ],
       endosos: [
         { id: 'END-142', nombre: 'Endoso de Ampliacion Cardiovascular', descripcion: 'Amplia cobertura cardiovascular al 100% sin copago', impacto: 'Elimina coaseguro en cirugia CABG', aplica: true },
         { id: 'END-089', nombre: 'Endoso de Protesis/Implantes', descripcion: 'Cubre stents, valvulas y dispositivos implantables', impacto: 'Stents y valvula cubiertos al 100%', aplica: true },
         { id: 'END-205', nombre: 'Endoso de Segunda Opinion', descripcion: 'Cubre costo de segunda opinion medica especializada', impacto: 'Segunda opinion cardiovascular cubierta', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE — Multiples coberturas activas. Endosos de ampliacion cardiovascular, protesis e implantes, y segunda opinion aplican. Requiere supervision hospitalaria dedicada y comite medico por complejidad del caso.',
+      dictamenPreliminar: 'ELEGIBLE,Multiples coberturas activas. Endosos de ampliacion cardiovascular, protesis e implantes, y segunda opinion aplican. Requiere supervision hospitalaria dedicada y comite medico por complejidad del caso.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'case-management',
       scoreTriaje: 82,
       variables: {
-        perfilClinico: { valor: 'Bypass Coronario CABG (I25.1) — cirugía mayor', nivel: 'Crítico', peso: 98 },
-        severidadEconomica: { valor: '$520,000 — monto extremadamente alto', nivel: 'Muy Alta', peso: 96 },
-        faseEvento: { valor: 'Agudo — procedimiento quirúrgico mayor', nivel: 'Agudo', peso: 92 },
-        perfilProveedor: { valor: 'Hospital Ángeles Pedregal — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
-        condicionesContractuales: { valor: 'Póliza Versátil Premium Plus — multicobertura', nivel: 'VIP', peso: 8 },
-        alertasFraude: { valor: 'Sin alertas — score 4%', nivel: 'Ninguna', peso: 3 },
+        perfilClinico: { valor: 'Bypass Coronario CABG (I25.1),cirugía mayor', nivel: 'Crítico', peso: 98 },
+        severidadEconomica: { valor: '$520,000,monto extremadamente alto', nivel: 'Muy Alta', peso: 96 },
+        faseEvento: { valor: 'Agudo,procedimiento quirúrgico mayor', nivel: 'Agudo', peso: 92 },
+        perfilProveedor: { valor: 'Hospital Ángeles Pedregal,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
+        condicionesContractuales: { valor: 'Póliza Versátil Premium Plus,multicobertura', nivel: 'VIP', peso: 8 },
+        alertasFraude: { valor: 'Sin alertas,score 4%', nivel: 'Ninguna', peso: 3 },
       },
       arbolDecision: [
         'Perfil Clínico = Crítico (CABG) → Cirugía de máxima complejidad',
@@ -360,42 +360,42 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     },
     dictamenMedico: {
       expedienteMedico: {
-        diagnosticoPrincipal: 'Cirugía de Bypass Coronario — CABG (I25.1)',
+        diagnosticoPrincipal: 'Cirugía de Bypass Coronario,CABG (I25.1)',
         codigoCIE: 'I25.1',
         historialRelevante: [
-          'Cardiopatía isquémica diagnosticada hace 3 años — declarada en póliza',
-          'Hipertensión arterial controlada — medicación continua',
-          '1 siniestro previo hace 2 años — cateterismo diagnóstico',
-          'Última evaluación cardiológica hace 4 meses — progresión de enfermedad coronaria',
+          'Cardiopatía isquémica diagnosticada hace 3 años,declarada en póliza',
+          'Hipertensión arterial controlada,medicación continua',
+          '1 siniestro previo hace 2 años,cateterismo diagnóstico',
+          'Última evaluación cardiológica hace 4 meses,progresión de enfermedad coronaria',
         ],
         observaciones: [
-          'Cirugía de máxima complejidad — requiere equipo multidisciplinario',
+          'Cirugía de máxima complejidad,requiere equipo multidisciplinario',
           'Estancia en UCI estimada 3-4 días + 4-6 días en piso',
           'Negociación de paquete quirúrgico integral con el hospital recomendada',
           'Rehabilitación cardíaca post-operatoria será necesaria (30 sesiones estimadas)',
         ],
       },
       programacionCirugia: {
-        procedimiento: 'Cirugía de Bypass Coronario (CABG) — Triple Bypass',
+        procedimiento: 'Cirugía de Bypass Coronario (CABG),Triple Bypass',
         fecha: '2026-02-20',
-        cirujano: 'Dr. Roberto Villalobos — Cirujano Cardiovascular',
+        cirujano: 'Dr. Roberto Villalobos,Cirujano Cardiovascular',
         duracionEstimada: '5-6 horas',
         pertinente: true,
         argumentosPertinencia: [
-          'Cateterismo previo confirmó enfermedad de 3 vasos — indicación clara de CABG',
+          'Cateterismo previo confirmó enfermedad de 3 vasos,indicación clara de CABG',
           'Guías ESC/EACTS recomiendan CABG sobre angioplastía para enfermedad trivascular',
-          'Fracción de eyección preservada (55%) — buen candidato quirúrgico',
-          'Comorbilidades controladas — riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
+          'Fracción de eyección preservada (55%),buen candidato quirúrgico',
+          'Comorbilidades controladas,riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
         ],
       },
       contextoClinico: {
         timeline: [
           { fecha: '10/01/2026', evento: 'Consulta cardiológica por angina de esfuerzo progresiva' },
-          { fecha: '15/01/2026', evento: 'Cateterismo diagnóstico — enfermedad de 3 vasos confirmada' },
-          { fecha: '22/01/2026', evento: 'Junta médica multidisciplinaria — decisión de CABG' },
+          { fecha: '15/01/2026', evento: 'Cateterismo diagnóstico,enfermedad de 3 vasos confirmada' },
+          { fecha: '22/01/2026', evento: 'Junta médica multidisciplinaria,decisión de CABG' },
           { fecha: '30/01/2026', evento: 'Estudios preoperatorios completos (laboratorios, EKG, Rx tórax, ecocardiograma)' },
           { fecha: '05/02/2026', evento: 'Valoración preanestésica y evaluación de riesgo quirúrgico' },
-          { fecha: '10/02/2026', evento: 'Segunda opinión cardiológica — confirma indicación CABG' },
+          { fecha: '10/02/2026', evento: 'Segunda opinión cardiológica,confirma indicación CABG' },
           { fecha: '15/02/2026', evento: 'Ingreso hospitalario y preparación preoperatoria' },
           { fecha: '20/02/2026', evento: 'Cirugía programada: Bypass Coronario Triple (CABG)' },
         ],
@@ -407,7 +407,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
           { prueba: 'Química sanguínea', resultado: 'Glucosa 98, creatinina 0.9, electrolitos normales' },
           { prueba: 'Tiempos de coagulación', resultado: 'TP y TTP dentro de rango' },
           { prueba: 'Radiografía de tórax', resultado: 'Sin cardiomegalia, campos pulmonares limpios' },
-          { prueba: 'Prueba de esfuerzo', resultado: 'Positiva para isquemia a baja carga — 4 METs' },
+          { prueba: 'Prueba de esfuerzo', resultado: 'Positiva para isquemia a baja carga,4 METs' },
         ],
         adjuntos: [
           { tipo: 'Informes médicos', cantidad: 10 },
@@ -421,16 +421,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       checksPertinencia: [
-        'Cateterismo confirmó enfermedad de 3 vasos — indicación clara de revascularización quirúrgica',
+        'Cateterismo confirmó enfermedad de 3 vasos,indicación clara de revascularización quirúrgica',
         'Guías ESC/EACTS respaldan CABG como tratamiento de primera línea para enfermedad trivascular',
-        'FEVI preservada (55%) — candidato quirúrgico adecuado',
+        'FEVI preservada (55%),candidato quirúrgico adecuado',
         'Riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
         'Comorbilidades controladas y evaluadas por equipo multidisciplinario',
         'Segunda opinión cardiológica confirma indicación quirúrgica',
       ],
       insumos: [
         { nombre: 'Honorarios Médicos (Equipo Cardiovascular)', checks: ['Equipo multidisciplinario: cirujano cardiovascular + ayudante + perfusionista', 'Importe de $45,000 dentro de tabulador para CABG triple'] },
-        { nombre: 'Estancia Hospitalaria', checks: ['8-10 días adecuados para bypass coronario triple', 'UCI 3-4 días + piso 4-6 días — esquema estándar post-CABG'] },
+        { nombre: 'Estancia Hospitalaria', checks: ['8-10 días adecuados para bypass coronario triple', 'UCI 3-4 días + piso 4-6 días,esquema estándar post-CABG'] },
         { nombre: 'Anestesia', checks: ['Anestesia general con monitoreo invasivo acorde a cirugía cardíaca mayor', 'Duración estimada de 5-6 horas coherente con procedimiento'] },
         { nombre: 'Quirófano y Material Quirúrgico', checks: ['Circuito de circulación extracorpórea dentro de costos esperados', 'Injertos venosos y material de sutura consistentes con técnica CABG'] },
         { nombre: 'Prótesis e Implantes', checks: ['3 stents de reserva y válvula incluidos por endoso END-089', 'Costos dentro de rango de referencia para dispositivos cardiovasculares'] },
@@ -438,10 +438,10 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       ],
       checksDictamen: [
         'Endoso END-142 (Ampliación Cardiovascular) verificado y aplicado correctamente',
-        'Endoso END-089 (Prótesis/Implantes) verificado — stents y válvula cubiertos',
-        'Preexistencia declarada (cardiopatía isquémica) — cubierta bajo cláusula de continuidad',
+        'Endoso END-089 (Prótesis/Implantes) verificado,stents y válvula cubiertos',
+        'Preexistencia declarada (cardiopatía isquémica),cubierta bajo cláusula de continuidad',
         'Documentación médica completa y con alto nivel de congruencia clínica',
-        'Importes verificados contra tabulador médico — sin desviaciones significativas',
+        'Importes verificados contra tabulador médico,sin desviaciones significativas',
       ],
       resumenFinanciero: {
         montoReclamado: 520000,
@@ -475,16 +475,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '5 de 6' }, { label: 'Confianza OCR', value: '94%' }], confidence: 94, duration: '3.4s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '92%' }, { label: 'Inconsistencias', value: '0' }], confidence: 97, duration: '1.8s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud — Vigente' }, { label: 'Producto', value: 'Flexible' }], confidence: 99, duration: '1.2s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud,Vigente' }, { label: 'Producto', value: 'Flexible' }], confidence: 99, duration: '1.2s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '8%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Incidencias previas', value: '0' }], confidence: 96, duration: '2.1s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium' }, { label: 'Hospitalización', value: 'Activa — $2.5M tope' }, { label: 'Cardiovascular', value: 'Cubierta al 100%' }, { label: 'UCI', value: 'Incluida' }], confidence: 97, duration: '1.8s' },
-          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Hipertensión Arterial', value: 'Declarada — Sin exclusión' }, { label: 'Evaluación', value: 'No genera exclusión para evento agudo' }], confidence: 95, duration: '1.5s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-142 Ampliación Cardiovascular', value: 'Aplica — elimina coaseguro' }, { label: 'END-089 Prótesis/Implantes', value: 'Aplica — stents cubiertos 100%' }, { label: 'Endosos revisados', value: '4 de 4' }], confidence: 97, duration: '1.4s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium' }, { label: 'Hospitalización', value: 'Activa,$2.5M tope' }, { label: 'Cardiovascular', value: 'Cubierta al 100%' }, { label: 'UCI', value: 'Incluida' }], confidence: 97, duration: '1.8s' },
+          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Hipertensión Arterial', value: 'Declarada,Sin exclusión' }, { label: 'Evaluación', value: 'No genera exclusión para evento agudo' }], confidence: 95, duration: '1.5s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-142 Ampliación Cardiovascular', value: 'Aplica,elimina coaseguro' }, { label: 'END-089 Prótesis/Implantes', value: 'Aplica,stents cubiertos 100%' }, { label: 'Endosos revisados', value: '4 de 4' }], confidence: 97, duration: '1.4s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto alto + evento crítico' }, { label: 'Recomendación', value: 'ELEGIBLE con monitoreo' }], confidence: 94, duration: '1.2s' },
         ],
       },
@@ -538,25 +538,25 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Rehabilitación Cardiaca', activa: true, limite: 200000 },
       ],
       preexistencias: [
-        { condicion: 'Hipertension Arterial', declarada: true, aplica: false, justificacion: 'Condicion declarada y cubierta — no genera exclusion para evento cardiaco agudo' },
+        { condicion: 'Hipertension Arterial', declarada: true, aplica: false, justificacion: 'Condicion declarada y cubierta,no genera exclusion para evento cardiaco agudo' },
       ],
       endosos: [
         { id: 'END-142', nombre: 'Endoso de Ampliacion Cardiovascular', descripcion: 'Amplia cobertura cardiovascular al 100% sin copago', impacto: 'Elimina coaseguro en procedimientos cardiacos', aplica: true },
         { id: 'END-089', nombre: 'Endoso de Protesis/Implantes', descripcion: 'Cubre stents y dispositivos implantables', impacto: 'Stents coronarios cubiertos al 100%', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE — Cobertura hospitalaria y cardiovascular confirmada. Endosos de ampliacion cardiovascular y protesis aplican favorablemente. Sin exclusiones activas.',
+      dictamenPreliminar: 'ELEGIBLE,Cobertura hospitalaria y cardiovascular confirmada. Endosos de ampliacion cardiovascular y protesis aplican favorablemente. Sin exclusiones activas.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'proactiva',
       scoreTriaje: 88,
       variables: {
-        perfilClinico: { valor: 'Infarto Agudo de Miocardio (I21.0) — evento cardíaco crítico', nivel: 'Crítico', peso: 95 },
-        severidadEconomica: { valor: '$185,000 — monto muy elevado', nivel: 'Muy Alta', peso: 88 },
-        faseEvento: { valor: 'Agudo — ingreso por urgencias', nivel: 'Agudo', peso: 90 },
-        perfilProveedor: { valor: 'Hospital Ángeles Pedregal — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
-        condicionesContractuales: { valor: 'Póliza Versátil Premium — cobertura amplia', nivel: 'Premium', peso: 10 },
-        alertasFraude: { valor: 'Sin alertas — score 8%', nivel: 'Ninguna', peso: 5 },
+        perfilClinico: { valor: 'Infarto Agudo de Miocardio (I21.0),evento cardíaco crítico', nivel: 'Crítico', peso: 95 },
+        severidadEconomica: { valor: '$185,000,monto muy elevado', nivel: 'Muy Alta', peso: 88 },
+        faseEvento: { valor: 'Agudo,ingreso por urgencias', nivel: 'Agudo', peso: 90 },
+        perfilProveedor: { valor: 'Hospital Ángeles Pedregal,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
+        condicionesContractuales: { valor: 'Póliza Versátil Premium,cobertura amplia', nivel: 'Premium', peso: 10 },
+        alertasFraude: { valor: 'Sin alertas,score 8%', nivel: 'Ninguna', peso: 5 },
       },
       arbolDecision: [
         'Perfil Clínico = Crítico (I21.0) → Evento de alto riesgo vital',
@@ -572,7 +572,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         cargaEquipo: 78,
         recomendacion: 'Se recomienda monitoreo proactivo. El potencial de ahorro justifica seguimiento activo',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic) — biocompatible equivalente', ahorroPotencial: '$4,200 por unidad', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic),biocompatible equivalente', ahorroPotencial: '$4,200 por unidad', aplica: true },
           honorariosMedicos: { montoActual: '$8,600', promedioHistorico: '$7,800', desviacion: '+10.3%', alerta: false },
           duracionEstancia: { diasProgramados: 5, promedioHistorico: 6, desviacion: '-16.7% (favorable)', alerta: false },
         },
@@ -583,43 +583,43 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         diagnosticoPrincipal: 'Infarto Agudo de Miocardio (I21.0)',
         codigoCIE: 'I21.0',
         historialRelevante: [
-          'Hipertensión arterial diagnosticada hace 5 años — controlada con medicación',
+          'Hipertensión arterial diagnosticada hace 5 años,controlada con medicación',
           'Sin eventos cardíacos previos',
-          '2 siniestros previos en 18 meses — consultas cardiológicas de seguimiento',
-          'IMC: 28.5 — sobrepeso leve',
+          '2 siniestros previos en 18 meses,consultas cardiológicas de seguimiento',
+          'IMC: 28.5,sobrepeso leve',
         ],
         observaciones: [
-          'Evento agudo con ingreso por urgencias — cateterismo reveló oclusión de arteria descendente anterior',
+          'Evento agudo con ingreso por urgencias,cateterismo reveló oclusión de arteria descendente anterior',
           'Angioplastía primaria con colocación de 2 stents medicados',
-          'Evolución favorable — descenso de UCI a piso día 3',
+          'Evolución favorable,descenso de UCI a piso día 3',
           'ATENCIÓN: Verificar congruencia entre stents colocados (2) y stents facturados',
         ],
       },
       programacionCirugia: {
         procedimiento: 'Angioplastía con colocación de Stent',
         fecha: '2026-02-28',
-        cirujano: 'Dr. Carlos Méndez — Cardiólogo Intervencionista',
+        cirujano: 'Dr. Carlos Méndez,Cardiólogo Intervencionista',
         duracionEstimada: '2.5 horas',
         pertinente: true,
         argumentosPertinencia: [
           'Diagnóstico I21.0 (IAM) confirma indicación de intervención percutánea urgente',
           'Guías clínicas AHA/ACC respaldan angioplastía primaria como tratamiento de primera línea',
-          'Cateterismo diagnóstico previo confirmó oclusión — procedimiento congruente',
-          'Hospital Nivel 1 con unidad de hemodinámica — capacidad verificada',
+          'Cateterismo diagnóstico previo confirmó oclusión,procedimiento congruente',
+          'Hospital Nivel 1 con unidad de hemodinámica,capacidad verificada',
         ],
       },
       contextoClinico: {
         timeline: [
-          { fecha: '28/02/2026', evento: 'Ingreso por urgencias — dolor torácico agudo, elevación ST en V1-V4' },
-          { fecha: '28/02/2026', evento: 'Cateterismo diagnóstico urgente — oclusión de arteria descendente anterior' },
+          { fecha: '28/02/2026', evento: 'Ingreso por urgencias,dolor torácico agudo, elevación ST en V1-V4' },
+          { fecha: '28/02/2026', evento: 'Cateterismo diagnóstico urgente,oclusión de arteria descendente anterior' },
           { fecha: '28/02/2026', evento: 'Angioplastía primaria con colocación de 2 stents medicados' },
-          { fecha: '01/03/2026', evento: 'Estancia en UCI — monitoreo hemodinámico continuo' },
-          { fecha: '03/03/2026', evento: 'Descenso de UCI a piso — evolución favorable' },
+          { fecha: '01/03/2026', evento: 'Estancia en UCI,monitoreo hemodinámico continuo' },
+          { fecha: '03/03/2026', evento: 'Descenso de UCI a piso,evolución favorable' },
           { fecha: '05/03/2026', evento: 'Alta hospitalaria programada con plan de rehabilitación cardíaca' },
         ],
         pruebasDiagnosticas: [
           { prueba: 'Electrocardiograma de ingreso', resultado: 'Elevación ST en V1-V4, compatible con IAM anterior' },
-          { prueba: 'Troponina I', resultado: '12.5 ng/mL (positiva — confirma daño miocárdico)' },
+          { prueba: 'Troponina I', resultado: '12.5 ng/mL (positiva,confirma daño miocárdico)' },
           { prueba: 'Cateterismo cardíaco', resultado: 'Oclusión total de DA proximal, Cx y CD sin lesiones' },
           { prueba: 'Ecocardiograma post-procedimiento', resultado: 'FEVI 45%, hipocinesia apical leve' },
           { prueba: 'Biometría hemática', resultado: 'Valores dentro de parámetros normales' },
@@ -637,23 +637,23 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       checksPertinencia: [
         'Diagnóstico I21.0 (IAM) confirma indicación de intervención percutánea urgente',
         'Guías AHA/ACC respaldan angioplastía primaria como primera línea en IAM con elevación ST',
-        'Cateterismo diagnóstico confirmó lesión culpable en DA — procedimiento congruente',
+        'Cateterismo diagnóstico confirmó lesión culpable en DA,procedimiento congruente',
         'Colocación de 2 stents medicados acorde a extensión de la lesión',
         'Hospital Nivel 1 con unidad de hemodinámica certificada',
       ],
       insumos: [
         { nombre: 'Honorarios Médicos (Cardiólogo Intervencionista)', checks: ['Especialidad acorde al procedimiento de hemodinámica', 'Importe de $8,600 dentro de tabulador para angioplastía con stent'] },
-        { nombre: 'Estancia Hospitalaria', checks: ['5 días adecuados para IAM con angioplastía primaria', 'UCI 2 días + piso 3 días — esquema estándar post-IAM'] },
+        { nombre: 'Estancia Hospitalaria', checks: ['5 días adecuados para IAM con angioplastía primaria', 'UCI 2 días + piso 3 días,esquema estándar post-IAM'] },
         { nombre: 'Anestesia y Sedación', checks: ['Sedación consciente acorde a cateterismo intervencionista', 'Duración de 2.5 horas coherente con el procedimiento'] },
         { nombre: 'Stents Coronarios Medicados (x2)', checks: ['Stent Xience (Abbott) dentro de rango de precio aprobado', 'Cantidad (2) consistente con lesión reportada en cateterismo'] },
         { nombre: 'Medicamentos Intrahospitalarios', checks: ['Doble antiagregación (aspirina + clopidogrel) acorde a protocolo post-IAM', 'Heparina y protocolo UCI cardiovascular estándar'] },
       ],
       checksDictamen: [
-        'Endoso END-142 (Ampliación Cardiovascular) verificado — elimina coaseguro',
-        'Endoso END-089 (Prótesis/Implantes) verificado — stents cubiertos al 100%',
+        'Endoso END-142 (Ampliación Cardiovascular) verificado,elimina coaseguro',
+        'Endoso END-089 (Prótesis/Implantes) verificado,stents cubiertos al 100%',
         'No se identifican indicios de preexistencia no declarada',
         'Documentación médica completa y congruente con evento agudo',
-        'Importes verificados contra tabulador — desviación en honorarios de +10.3% (dentro de tolerancia)',
+        'Importes verificados contra tabulador,desviación en honorarios de +10.3% (dentro de tolerancia)',
       ],
       resumenFinanciero: {
         montoReclamado: 185000,
@@ -687,16 +687,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '4 de 4' }, { label: 'Confianza OCR', value: '93%' }], confidence: 93, duration: '2.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '95%' }, { label: 'Inconsistencias', value: '0' }], confidence: 96, duration: '1.2s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Personaliza — Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '0.8s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Personaliza,Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '0.8s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '5%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }], confidence: 97, duration: '1.2s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Cirugía General', value: 'Activa — $800K tope' }, { label: 'Hospitalización', value: 'Activa — $1.5M tope' }], confidence: 96, duration: '1.0s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Cirugía General', value: 'Activa,$800K tope' }, { label: 'Hospitalización', value: 'Activa,$1.5M tope' }], confidence: 96, duration: '1.0s' },
           { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Preexistencias', value: 'Sin registros' }, { label: 'Exclusiones', value: 'Ninguna' }], confidence: 99, duration: '0.6s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-067 Cirugía Ambulatoria', value: 'Aplica — alta el mismo día' }, { label: 'Endosos revisados', value: '3 de 3' }], confidence: 97, duration: '0.8s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-067 Cirugía Ambulatoria', value: 'Aplica,alta el mismo día' }, { label: 'Endosos revisados', value: '3 de 3' }], confidence: 97, duration: '0.8s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Validación Humana' }, { label: 'Motivo', value: 'Monto moderado-alto + cirugía programada' }, { label: 'Recomendación', value: 'ELEGIBLE con dictamen estándar' }], confidence: 93, duration: '0.9s' },
         ],
       },
@@ -738,7 +738,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 5,
     },
     elegibilidad: {
-      resultado: 'Elegible — cobertura quirúrgica confirmada', alertaHumana: true, deducible: 10000, coaseguro: 10,
+      resultado: 'Elegible,cobertura quirúrgica confirmada', alertaHumana: true, deducible: 10000, coaseguro: 10,
       poliza: { tipo: 'Individual', vigente: true, pagada: true, producto: 'Personaliza' },
       coberturas: [
         { nombre: 'Hospitalización', activa: true, limite: 1500000 },
@@ -749,19 +749,19 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       endosos: [
         { id: 'END-067', nombre: 'Cirugía Ambulatoria', descripcion: 'Permite cirugía con alta el mismo día', impacto: 'Reduce costo de habitación', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE — Cobertura quirúrgica confirmada. Cirugía programada dentro de beneficios.',
+      dictamenPreliminar: 'ELEGIBLE,Cobertura quirúrgica confirmada. Cirugía programada dentro de beneficios.',
       recetaMedicaPendiente: false,
     },
     triaje: {
       rutaActiva: 'reactiva',
       scoreTriaje: 85,
       variables: {
-        perfilClinico: { valor: 'Hernia inguinal — cirugía electiva programada', nivel: 'Medio', peso: 45 },
-        severidadEconomica: { valor: '$125,000 — monto moderado-alto', nivel: 'Media', peso: 55 },
-        faseEvento: { valor: 'Electivo — cirugía programada', nivel: 'Electivo', peso: 20 },
-        perfilProveedor: { valor: 'Hospital Ángeles — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 10 },
-        condicionesContractuales: { valor: 'Personaliza — cobertura estándar plus', nivel: 'Mejorado', peso: 15 },
-        alertasFraude: { valor: 'Sin alertas — score 5%', nivel: 'Ninguna', peso: 3 },
+        perfilClinico: { valor: 'Hernia inguinal,cirugía electiva programada', nivel: 'Medio', peso: 45 },
+        severidadEconomica: { valor: '$125,000,monto moderado-alto', nivel: 'Media', peso: 55 },
+        faseEvento: { valor: 'Electivo,cirugía programada', nivel: 'Electivo', peso: 20 },
+        perfilProveedor: { valor: 'Hospital Ángeles,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 10 },
+        condicionesContractuales: { valor: 'Personaliza,cobertura estándar plus', nivel: 'Mejorado', peso: 15 },
+        alertasFraude: { valor: 'Sin alertas,score 5%', nivel: 'Ninguna', peso: 3 },
       },
       arbolDecision: [
         'Perfil Clínico = Medio → Cirugía electiva sin riesgo vital',
@@ -792,7 +792,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
           'Sin comorbilidades relevantes',
         ],
         observaciones: [
-          'Cirugía programada con técnica laparoscópica — abordaje estándar',
+          'Cirugía programada con técnica laparoscópica,abordaje estándar',
           'Alta esperada el mismo día o al día siguiente',
           'Verificar que honorarios estén dentro de rango de referencia',
         ],
@@ -800,11 +800,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       programacionCirugia: {
         procedimiento: 'Hernioplastía Inguinal Laparoscópica con Malla',
         fecha: '2026-03-05',
-        cirujano: 'Dr. Alejandro Fuentes — Cirugía General',
+        cirujano: 'Dr. Alejandro Fuentes,Cirugía General',
         duracionEstimada: '1.5 horas',
         pertinente: true,
         argumentosPertinencia: [
-          'Ultrasonido confirma hernia inguinal indirecta — indicación quirúrgica clara',
+          'Ultrasonido confirma hernia inguinal indirecta,indicación quirúrgica clara',
           'Abordaje laparoscópico es primera línea para hernia inguinal unilateral',
           'Paciente sin contraindicaciones para cirugía bajo anestesia general',
         ],
@@ -885,14 +885,14 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '2 de 4' }, { label: 'Confianza OCR', value: '78%' }], confidence: 78, duration: '2.3s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '72%' }, { label: 'Inconsistencias', value: '2' }], confidence: 72, duration: '1.5s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Salud Empresarial Plus — Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 90, duration: '1.0s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Salud Empresarial Plus,Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 90, duration: '1.0s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'manual', duration: 1.5,
         agents: [
-          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '72%' }, { label: 'Duplicidad documentos', value: '2 documentos sospechosos' }, { label: 'Proveedor en lista negra', value: 'ALERTA — proveedor marcado' }, { label: 'Patrón de reclamos', value: '3 reclamos similares en 6 meses' }], confidence: 78, duration: '3.2s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Rehabilitación', value: 'Activa — tope 12 sesiones' }, { label: 'Exceso sobre tope', value: '8 sesiones no cubiertas' }], confidence: 85, duration: '1.4s' },
+          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '72%' }, { label: 'Duplicidad documentos', value: '2 documentos sospechosos' }, { label: 'Proveedor en lista negra', value: 'ALERTA,proveedor marcado' }, { label: 'Patrón de reclamos', value: '3 reclamos similares en 6 meses' }], confidence: 78, duration: '3.2s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Rehabilitación', value: 'Activa,tope 12 sesiones' }, { label: 'Exceso sobre tope', value: '8 sesiones no cubiertas' }], confidence: 85, duration: '1.4s' },
           { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Lumbalgia previa', value: 'No declarada' }, { label: 'Evaluación', value: 'Posible preexistencia oculta' }], confidence: 72, duration: '1.8s' },
           { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'Endoso rehabilitación', value: 'Límite 12 sesiones' }, { label: 'Proveedor fuera de red', value: 'Sin cobertura directa' }, { label: 'Resultado', value: 'Excede límites del endoso' }], confidence: 80, duration: '1.2s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Alerta de fraude + proveedor marcado' }, { label: 'Recomendación', value: 'DERIVAR a investigación' }], confidence: 75, duration: '1.5s' },
@@ -911,7 +911,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       {
         id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'manual', duration: 1.5,
         agents: [
-          { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$0 — retenido' }, { label: 'Validaciones', value: '2/4 pendientes' }], confidence: 40, duration: '1.0s' },
+          { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$0,retenido' }, { label: 'Validaciones', value: '2/4 pendientes' }], confidence: 40, duration: '1.0s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '72%' }, { label: 'Resultado', value: 'Investigacion en curso' }, { label: 'Dictamen comite', value: 'Pendiente' }], confidence: 40, duration: '0.8s' },
         ],
       },
@@ -935,31 +935,31 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 72,
     },
     elegibilidad: {
-      resultado: 'Alerta de fraude activada — revision manual obligatoria', alertaHumana: true, deducible: 5000, coaseguro: 20,
+      resultado: 'Alerta de fraude activada,revision manual obligatoria', alertaHumana: true, deducible: 5000, coaseguro: 20,
       poliza: { tipo: 'Colectivo', vigente: true, pagada: true, producto: 'Salud Empresarial Plus' },
       coberturas: [
         { nombre: 'Rehabilitación Fisica', activa: true, limite: 60000 },
         { nombre: 'Consulta Especialidad', activa: true, limite: 25000 },
       ],
       preexistencias: [
-        { condicion: 'Lumbalgia Cronica', declarada: false, aplica: true, justificacion: 'Condicion no declarada en solicitud original — potencial exclusion por omision de preexistencia' },
+        { condicion: 'Lumbalgia Cronica', declarada: false, aplica: true, justificacion: 'Condicion no declarada en solicitud original,potencial exclusion por omision de preexistencia' },
       ],
       endosos: [
-        { id: 'END-201', nombre: 'Endoso de Rehabilitación Extendida', descripcion: 'Amplia sesiones de fisioterapia de 12 a 24', impacto: 'No aplica — proveedor fuera de red', aplica: false },
+        { id: 'END-201', nombre: 'Endoso de Rehabilitación Extendida', descripcion: 'Amplia sesiones de fisioterapia de 12 a 24', impacto: 'No aplica,proveedor fuera de red', aplica: false },
       ],
-      dictamenPreliminar: 'ALERTA — Fraude potencial detectado. Preexistencia no declarada, proveedor fuera de red, patron de reclamos atipico. Requiere investigacion detallada antes de dictamen.',
+      dictamenPreliminar: 'ALERTA,Fraude potencial detectado. Preexistencia no declarada, proveedor fuera de red, patron de reclamos atipico. Requiere investigacion detallada antes de dictamen.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'detallado',
       scoreTriaje: 72,
       variables: {
-        perfilClinico: { valor: 'Lumbalgia crónica (M54.2) — complejidad media', nivel: 'Medio', peso: 40 },
-        severidadEconomica: { valor: '$78,000 — excede tope de cobertura (12 sesiones)', nivel: 'Media', peso: 55 },
-        faseEvento: { valor: 'Post-Agudo — rehabilitación prolongada', nivel: 'Post-Agudo', peso: 45 },
-        perfilProveedor: { valor: 'Centro Rehabilitación Vita — Fuera de Red, marcado', nivel: 'Fuera de Red', peso: 92 },
-        condicionesContractuales: { valor: 'Póliza Personaliza — tope limitado rehabilitación', nivel: 'Estándar', peso: 60 },
-        alertasFraude: { valor: 'ALERTA ALTA — score 72%, proveedor en lista negra', nivel: 'Alta', peso: 95 },
+        perfilClinico: { valor: 'Lumbalgia crónica (M54.2),complejidad media', nivel: 'Medio', peso: 40 },
+        severidadEconomica: { valor: '$78,000,excede tope de cobertura (12 sesiones)', nivel: 'Media', peso: 55 },
+        faseEvento: { valor: 'Post-Agudo,rehabilitación prolongada', nivel: 'Post-Agudo', peso: 45 },
+        perfilProveedor: { valor: 'Centro Rehabilitación Vita,Fuera de Red, marcado', nivel: 'Fuera de Red', peso: 92 },
+        condicionesContractuales: { valor: 'Póliza Personaliza,tope limitado rehabilitación', nivel: 'Estándar', peso: 60 },
+        alertasFraude: { valor: 'ALERTA ALTA,score 72%, proveedor en lista negra', nivel: 'Alta', peso: 95 },
       },
       arbolDecision: [
         'Alertas Fraude = Alta (72%) → PRIORIDAD: señal dominante',
@@ -982,31 +982,31 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     },
     dictamenMedico: {
       expedienteMedico: {
-        diagnosticoPrincipal: 'Lumbalgia Crónica (M54.2) — Fisioterapia 20 sesiones',
+        diagnosticoPrincipal: 'Lumbalgia Crónica (M54.2),Fisioterapia 20 sesiones',
         codigoCIE: 'M54.2',
         historialRelevante: [
-          '3 reclamos de fisioterapia en los últimos 6 meses — patrón atípico',
+          '3 reclamos de fisioterapia en los últimos 6 meses,patrón atípico',
           'Diagnóstico de lumbalgia crónica sin estudios de imagen que lo respalden',
           'Proveedor "Centro Rehabilitación Vita" fuera de red y marcado en sistema',
         ],
         observaciones: [
-          'ALERTA: Proveedor en lista de vigilancia — investigación activa',
+          'ALERTA: Proveedor en lista de vigilancia,investigación activa',
           'ALERTA: 20 sesiones solicitadas exceden tope de póliza (12 sesiones)',
           'ALERTA: Sin resonancia magnética ni estudios que justifiquen tratamiento prolongado',
-          'Referencia médica pendiente de verificación — posible documento editado',
+          'Referencia médica pendiente de verificación,posible documento editado',
         ],
       },
       contextoClinico: {
         timeline: [
-          { fecha: '10/12/2025', evento: 'Primera consulta por lumbalgia — sin estudios de imagen' },
+          { fecha: '10/12/2025', evento: 'Primera consulta por lumbalgia,sin estudios de imagen' },
           { fecha: '15/12/2025', evento: 'Inicio de sesiones de fisioterapia (1er reclamo: 8 sesiones)' },
           { fecha: '20/01/2026', evento: 'Segundo reclamo de fisioterapia (10 sesiones adicionales)' },
-          { fecha: '15/02/2026', evento: 'Tercer reclamo actual — 20 sesiones de fisioterapia' },
+          { fecha: '15/02/2026', evento: 'Tercer reclamo actual,20 sesiones de fisioterapia' },
         ],
         pruebasDiagnosticas: [
-          { prueba: 'Resonancia magnética lumbar', resultado: 'NO PRESENTADA — faltante crítico' },
+          { prueba: 'Resonancia magnética lumbar', resultado: 'NO PRESENTADA,faltante crítico' },
           { prueba: 'Radiografía lumbar', resultado: 'No disponible en expediente' },
-          { prueba: 'Referencia médica', resultado: 'Documento en revisión — posibles alteraciones detectadas' },
+          { prueba: 'Referencia médica', resultado: 'Documento en revisión,posibles alteraciones detectadas' },
         ],
         adjuntos: [
           { tipo: 'Recibos de fisioterapia', cantidad: 3 },
@@ -1018,7 +1018,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'FALLA: 20 sesiones exceden el tope de póliza de 12 sesiones',
         'FALLA: Proveedor fuera de red y marcado en lista de vigilancia',
         'FALLA: Patrón de 3 reclamos en 6 meses sin evidencia de mejoría documentada',
-        'FALLA: Referencia médica con posibles alteraciones — pendiente de verificación',
+        'FALLA: Referencia médica con posibles alteraciones,pendiente de verificación',
       ],
       insumos: [
         { nombre: 'Sesiones de Fisioterapia (20)', checks: ['FALLA: Costo por sesión de $3,900 supera el promedio de $1,800 (+116.7%)', 'FALLA: 20 sesiones exceden tope de póliza (12 sesiones máximo)'] },
@@ -1026,8 +1026,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Material Terapéutico', checks: ['FALLA: Material facturado no consistente con fisioterapia estándar para lumbalgia', 'Montos por sesión significativamente elevados'] },
       ],
       checksDictamen: [
-        'FALLA: Preexistencia no declarada (lumbalgia crónica) — posible exclusión por omisión',
-        'FALLA: Proveedor en lista de vigilancia — investigación activa',
+        'FALLA: Preexistencia no declarada (lumbalgia crónica),posible exclusión por omisión',
+        'FALLA: Proveedor en lista de vigilancia,investigación activa',
         'FALLA: Documentación médica incompleta y con posibles alteraciones',
         'FALLA: Importes significativamente por encima del tabulador (+116.7% en honorarios)',
       ],
@@ -1043,7 +1043,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: ['ALERTA: Verificar existencia real del tratamiento', 'Confirmar diagnóstico de lumbalgia con estudios de imagen', 'Solicitar segunda opinión médica'],
       asistenciaFraudeManual: 'ATENCIÓN: Se detectaron patrones consistentes con facturación duplicada y sobre-codificación. Verificar que los servicios facturados correspondan a tratamientos efectivamente realizados. El proveedor se encuentra en lista de vigilancia.',
     },
-    pago: { validaciones: ['Investigacion de fraude completada', 'Dictamen de comite antifraude', 'Revision de pertinencia medica', 'Validacion juridica'], montoFinal: 0, ajustes: ['Pago retenido — investigacion en curso', 'Proveedor marcado para auditoria', 'Exceso sobre tope de 12 sesiones: -$39,000'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    pago: { validaciones: ['Investigacion de fraude completada', 'Dictamen de comite antifraude', 'Revision de pertinencia medica', 'Validacion juridica'], montoFinal: 0, ajustes: ['Pago retenido,investigacion en curso', 'Proveedor marcado para auditoria', 'Exceso sobre tope de 12 sesiones: -$39,000'], estado: 'Reclamo procesado bajo modelo inteligente' },
     analitica: { automatizacion: 40, tiempoHumano: '180 min', riesgoResidual: 72, ahorro: 78000 },
   },
 
@@ -1063,7 +1063,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '1 de 1' }, { label: 'Confianza OCR', value: '99%' }], confidence: 99, duration: '0.5s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '100%' }, { label: 'Inconsistencias', value: '0' }], confidence: 100, duration: '0.3s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Basico Salud Empresarial — Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 100, duration: '0.2s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Basico Salud Empresarial,Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 100, duration: '0.2s' },
         ],
       },
       {
@@ -1109,26 +1109,26 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 1,
     },
     elegibilidad: {
-      resultado: 'Aprobacion instantanea — cobertura basica confirmada', alertaHumana: false, deducible: 0, coaseguro: 0,
+      resultado: 'Aprobacion instantanea,cobertura basica confirmada', alertaHumana: false, deducible: 0, coaseguro: 0,
       poliza: { tipo: 'Colectivo', vigente: true, pagada: true, producto: 'Basico Salud Empresarial' },
       coberturas: [
         { nombre: 'Consulta General', activa: true, limite: 10000 },
       ],
       preexistencias: [],
       endosos: [],
-      dictamenPreliminar: 'ELEGIBLE — Cobertura basica de consulta confirmada. Sin deducible ni coaseguro. Aprobacion instantanea.',
+      dictamenPreliminar: 'ELEGIBLE,Cobertura basica de consulta confirmada. Sin deducible ni coaseguro. Aprobacion instantanea.',
       recetaMedicaPendiente: false,
     },
     triaje: {
       rutaActiva: 'automatica',
       scoreTriaje: 99,
       variables: {
-        perfilClinico: { valor: 'Consulta general (Z00.0) — mínima complejidad', nivel: 'Bajo', peso: 2 },
-        severidadEconomica: { valor: '$450 — monto mínimo', nivel: 'Baja', peso: 1 },
-        faseEvento: { valor: 'Electivo — consulta programada', nivel: 'Electivo', peso: 1 },
-        perfilProveedor: { valor: 'Consultorio Dr. Ramírez — en red', nivel: 'Nivel 2', peso: 5 },
+        perfilClinico: { valor: 'Consulta general (Z00.0),mínima complejidad', nivel: 'Bajo', peso: 2 },
+        severidadEconomica: { valor: '$450,monto mínimo', nivel: 'Baja', peso: 1 },
+        faseEvento: { valor: 'Electivo,consulta programada', nivel: 'Electivo', peso: 1 },
+        perfilProveedor: { valor: 'Consultorio Dr. Ramírez,en red', nivel: 'Nivel 2', peso: 5 },
         condicionesContractuales: { valor: 'Póliza Esencial Básica', nivel: 'Estándar', peso: 2 },
-        alertasFraude: { valor: 'Sin alertas — score <1%', nivel: 'Ninguna', peso: 0 },
+        alertasFraude: { valor: 'Sin alertas,score <1%', nivel: 'Ninguna', peso: 0 },
       },
       arbolDecision: [
         'Todas las variables en nivel mínimo → Sin factores de complejidad',
@@ -1147,7 +1147,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         diagnosticoPrincipal: 'Consulta médica general (Z00.0)',
         codigoCIE: 'Z00.0',
         historialRelevante: ['Sin antecedentes relevantes', 'Primera consulta del año'],
-        observaciones: ['Caso trivial — sin hallazgos que requieran análisis'],
+        observaciones: ['Caso trivial,sin hallazgos que requieran análisis'],
       },
       contextoClinico: {
         timeline: [
@@ -1165,7 +1165,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'Monto consistente con tabulador de consulta de primer nivel',
       ],
       insumos: [
-        { nombre: 'Consulta Médica General', checks: ['Importe de $450 dentro de rango para consulta de primer nivel', 'Proveedor en red — consultorio verificado'] },
+        { nombre: 'Consulta Médica General', checks: ['Importe de $450 dentro de rango para consulta de primer nivel', 'Proveedor en red,consultorio verificado'] },
       ],
       checksDictamen: [
         'Sin endosos aplicables',
@@ -1184,7 +1184,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: [],
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
-    pago: { validaciones: ['Cobertura vigente', 'Sin deducible', 'Score fraude < 1%'], montoFinal: 450, ajustes: ['Sin ajustes — cobertura total'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    pago: { validaciones: ['Cobertura vigente', 'Sin deducible', 'Score fraude < 1%'], montoFinal: 450, ajustes: ['Sin ajustes,cobertura total'], estado: 'Reclamo procesado bajo modelo inteligente' },
     analitica: { automatizacion: 98, tiempoHumano: '0 min', riesgoResidual: 1, ahorro: 350 },
   },
 ];
@@ -1230,6 +1230,120 @@ const defaultStageStatuses = (): Record<StageId, StageStatus> => ({
 });
 
 // ---------------------------------------------------------------------------
+// Parrilla data (cases assigned to dictaminador at intake)
+// Only information available at the moment of claim notification
+// ---------------------------------------------------------------------------
+
+const DICTAMINADOR_NAME = 'Dra. Alejandra Vázquez Moreno';
+
+interface ParrillaCase {
+  id: string;
+  folioId: string;
+  fechaAviso: string;
+  asegurado: string;
+  numPoliza: string;
+  canal: string;
+  tipoSiniestro: string;
+  montoReservado: number;
+  claimTypeId: ClaimTypeId;
+}
+
+const PARRILLA_CASES: ParrillaCase[] = [
+  { id: 'c1', folioId: 'SIN-2026-00481', fechaAviso: '2026-03-28', asegurado: 'Roberto García Méndez', numPoliza: 'POL-4821093', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 520000, claimTypeId: 'case-management' },
+  { id: 'c2', folioId: 'SIN-2026-00483', fechaAviso: '2026-03-27', asegurado: 'María Elena Torres Vega', numPoliza: 'POL-3917254', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 485000, claimTypeId: 'case-management' },
+  { id: 'c3', folioId: 'SIN-2026-00479', fechaAviso: '2026-03-29', asegurado: 'Javier Hernández López', numPoliza: 'POL-5528410', canal: 'Urgencias', tipoSiniestro: 'Intervención cardiovascular', montoReservado: 310000, claimTypeId: 'proactiva' },
+  { id: 'c4', folioId: 'SIN-2026-00485', fechaAviso: '2026-03-30', asegurado: 'Ana Sofía Ramírez Cruz', numPoliza: 'POL-6104837', canal: 'Hospital directo', tipoSiniestro: 'Hospitalización', montoReservado: 195000, claimTypeId: 'proactiva' },
+  { id: 'c5', folioId: 'SIN-2026-00472', fechaAviso: '2026-03-26', asegurado: 'Carlos Pérez Domínguez', numPoliza: 'POL-2293015', canal: 'Call center', tipoSiniestro: 'Hospitalización', montoReservado: 185000, claimTypeId: 'proactiva' },
+  { id: 'c6', folioId: 'SIN-2026-00488', fechaAviso: '2026-03-28', asegurado: 'Laura Martínez Sánchez', numPoliza: 'POL-7741562', canal: 'App móvil', tipoSiniestro: 'Cirugía programada', montoReservado: 125000, claimTypeId: 'reactiva' },
+  { id: 'c7', folioId: 'SIN-2026-00490', fechaAviso: '2026-03-29', asegurado: 'Fernando Ríos Gutiérrez', numPoliza: 'POL-8356201', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 98000, claimTypeId: 'reactiva' },
+  { id: 'c8', folioId: 'SIN-2026-00493', fechaAviso: '2026-03-27', asegurado: 'Diana Flores Castillo', numPoliza: 'POL-1489320', canal: 'Reembolso', tipoSiniestro: 'Reembolso rehabilitación', montoReservado: 78000, claimTypeId: 'detallado' },
+  { id: 'c9', folioId: 'SIN-2026-00495', fechaAviso: '2026-03-30', asegurado: 'Eduardo Vargas Núñez', numPoliza: 'POL-9072148', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 65000, claimTypeId: 'reactiva' },
+  { id: 'c10', folioId: 'SIN-2026-00498', fechaAviso: '2026-03-29', asegurado: 'Patricia Morales Ruiz', numPoliza: 'POL-3350917', canal: 'App móvil', tipoSiniestro: 'Consulta médica', montoReservado: 450, claimTypeId: 'automatica' },
+  { id: 'c11', folioId: 'SIN-2026-00500', fechaAviso: '2026-03-30', asegurado: 'Miguel Ángel Soto Reyes', numPoliza: 'POL-4467283', canal: 'App móvil', tipoSiniestro: 'Estudios de laboratorio', montoReservado: 1200, claimTypeId: 'automatica' },
+  { id: 'c12', folioId: 'SIN-2026-00502', fechaAviso: '2026-03-28', asegurado: 'Gabriela Jiménez Ortiz', numPoliza: 'POL-5584619', canal: 'Call center', tipoSiniestro: 'Consulta especialista', montoReservado: 3500, claimTypeId: 'automatica' },
+];
+
+// Stage summary generator
+const generateStageSummary = (stageId: StageId, config: ClaimTypeConfig): { bullets: string[]; needsInput: boolean; inputReason: string } => {
+  switch (stageId) {
+    case 'validaciones': {
+      const docs = config.validaciones.documentosDetectados.filter(d => d.estado === 'verificado').length;
+      const total = config.validaciones.documentosDetectados.length;
+      const needsInput = config.validaciones.ocrConfianza < 60;
+      return {
+        bullets: [
+          `${docs} de ${total} documentos procesados y verificados`,
+          `Confianza OCR: ${config.validaciones.ocrConfianza}%`,
+          `Score fraude inicial: ${config.validaciones.fraudeScoreInicial}%`,
+        ],
+        needsInput,
+        inputReason: needsInput ? 'Confianza OCR baja, verificar datos extraídos' : '',
+      };
+    }
+    case 'elegibilidad': {
+      const needsInput = config.elegibilidad.alertaHumana;
+      return {
+        bullets: [
+          `Resultado: ${config.elegibilidad.resultado}`,
+          `Deducible: ${fmtCurrency(config.elegibilidad.deducible)}, Coaseguro: ${config.elegibilidad.coaseguro}%`,
+          `Coberturas activas: ${config.elegibilidad.coberturas.filter(c => c.activa).length} de ${config.elegibilidad.coberturas.length}`,
+        ],
+        needsInput,
+        inputReason: needsInput ? 'Aprobar o rechazar dictamen de elegibilidad' : '',
+      };
+    }
+    case 'triaje':
+      return {
+        bullets: [
+          `Segmento asignado: ${SEGMENTO_LABELS[config.triaje.rutaActiva]}`,
+          `Score de triaje: ${config.triaje.scoreTriaje}%`,
+          `Variables evaluadas: 6`,
+        ],
+        needsInput: false,
+        inputReason: '',
+      };
+    case 'dictamen-medico':
+      return {
+        bullets: [
+          `Verificaciones de pertinencia: ${config.dictamenMedico.checksPertinencia.length} checks`,
+          `Insumos a revisar: ${config.dictamenMedico.insumos.length} ítems`,
+          `Monto a pagar: ${fmtCurrency(config.dictamenMedico.resumenFinanciero.totalCargoAseguradora)}`,
+        ],
+        needsInput: true,
+        inputReason: 'Revisar pertinencia clínica y aprobar insumos',
+      };
+    case 'pago':
+      return {
+        bullets: [
+          `Monto final: ${fmtCurrency(config.pago.montoFinal)}`,
+          `Ajustes aplicados: ${config.pago.ajustes.length}`,
+          config.pago.estado,
+        ],
+        needsInput: true,
+        inputReason: 'Autorizar pago final',
+      };
+    default:
+      return { bullets: [], needsInput: false, inputReason: '' };
+  }
+};
+
+// Timer formatter
+const formatTimer = (ms: number): string => {
+  if (ms <= 0) return '00:00:00';
+  const totalSec = Math.floor(ms / 1000);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+};
+
+const getTimerColor = (ms: number): string => {
+  if (ms > 3600000) return '#22c55e';
+  if (ms > 1800000) return '#f59e0b';
+  return '#ef4444';
+};
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
@@ -1251,7 +1365,14 @@ const E2EClaimsWorkstation: React.FC = () => {
     description: 'Gestión integral del ciclo de vida del siniestro punta a punta.',
   };
 
-  // -- State --
+  // -- Parrilla State --
+  const [parrillaEntryTime, setParrillaEntryTime] = useState<Date | null>(null);
+  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
+  const [timerRemaining, setTimerRemaining] = useState(7200000); // 2 hours in ms
+  const [showSidePanel, setShowSidePanel] = useState(false);
+  const [reviewedCases, setReviewedCases] = useState<Set<string>>(new Set());
+
+  // -- Original State --
   const [selectedClaimType, setSelectedClaimType] = useState<ClaimTypeId | null>(null);
   const [simulationState, setSimulationState] = useState<'idle' | 'running' | 'complete'>('idle');
   const [stageStatuses, setStageStatuses] = useState<Record<StageId, StageStatus>>(defaultStageStatuses());
@@ -1261,6 +1382,17 @@ const E2EClaimsWorkstation: React.FC = () => {
   const [dictamenAprobado, setDictamenAprobado] = useState<boolean | null>(null);
   const [pagoAprobado, setPagoAprobado] = useState<boolean | null>(null);
   const selectorRef = useRef<HTMLDivElement>(null);
+
+  // -- Timer Effect --
+  useEffect(() => {
+    if (!parrillaEntryTime) return;
+    const interval = setInterval(() => {
+      const elapsed = Date.now() - parrillaEntryTime.getTime();
+      const remaining = Math.max(0, 7200000 - elapsed);
+      setTimerRemaining(remaining);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [parrillaEntryTime]);
 
   // -- Derived --
   const claimConfig = useMemo(
@@ -1352,6 +1484,49 @@ const E2EClaimsWorkstation: React.FC = () => {
     selectorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, []);
 
+  // -- Parrilla Handlers --
+  const handleSelectCase = useCallback((caseItem: ParrillaCase) => {
+    if (!parrillaEntryTime) {
+      setParrillaEntryTime(new Date());
+      setTimerRemaining(7200000);
+    }
+    setSelectedCaseId(caseItem.id);
+    setSelectedClaimType(caseItem.claimTypeId);
+    setSimulationState('idle');
+    setStageStatuses(defaultStageStatuses());
+    setShowStageDetail(null);
+    setIsProcessing(false);
+    setPendingStageIndex(0);
+    setDictamenAprobado(null);
+    setPagoAprobado(null);
+    setShowSidePanel(false);
+  }, [parrillaEntryTime]);
+
+  const handleBackToParrilla = useCallback(() => {
+    if (simulationState === 'complete' && selectedCaseId) {
+      setReviewedCases(prev => new Set(prev).add(selectedCaseId));
+    }
+    setSelectedCaseId(null);
+    setSelectedClaimType(null);
+    setSimulationState('idle');
+    setStageStatuses(defaultStageStatuses());
+    setShowStageDetail(null);
+    setIsProcessing(false);
+    setPendingStageIndex(0);
+    setDictamenAprobado(null);
+    setPagoAprobado(null);
+    setShowSidePanel(false);
+  }, [simulationState, selectedCaseId]);
+
+  // Derived: current case data
+  const currentCase = useMemo(
+    () => selectedCaseId ? PARRILLA_CASES.find(c => c.id === selectedCaseId) ?? null : null,
+    [selectedCaseId],
+  );
+
+  // All parrilla cases sorted by monto reservado (highest first)
+  const parrillaCases = useMemo(() => [...PARRILLA_CASES].sort((a, b) => b.montoReservado - a.montoReservado), []);
+
   const downloadMasterPDF = useCallback((config: ClaimTypeConfig) => {
     const fecha = new Date().toISOString().split('T')[0];
     const hora = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
@@ -1362,7 +1537,7 @@ const E2EClaimsWorkstation: React.FC = () => {
     const statusIcon = (estado: string) => estado === 'verificado' ? '✅' : estado === 'pendiente' ? '⏳' : '❌';
     const confColor = (c: number) => c > 90 ? '#22c55e' : c > 80 ? '#F5A623' : '#ef4444';
 
-    const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${config.validaciones.folioId} — Expediente Consolidado</title>
+    const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${config.validaciones.folioId},Expediente Consolidado</title>
 <style>
   @page { margin: 20mm; size: A4; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1408,7 +1583,7 @@ const E2EClaimsWorkstation: React.FC = () => {
 </style></head><body><div class="page">
 
 <div class="logo-bar">
-  <div><div class="logo">CLAIM MASTER FILE</div><div class="logo-sub">Expediente Digital Consolidado — Motor de Apertura Inteligente</div></div>
+  <div><div class="logo">CLAIM MASTER FILE</div><div class="logo-sub">Expediente Digital Consolidado,Motor de Apertura Inteligente</div></div>
   <div class="folio-box"><div class="folio">${config.validaciones.folioId}</div><div class="date">${fecha} · ${hora}</div><div class="date">v${config.validaciones.pdfMaestro.version} · ${config.validaciones.pdfMaestro.paginas} págs · ${config.validaciones.pdfMaestro.pesoMB} MB</div></div>
 </div>
 
@@ -1436,7 +1611,7 @@ const E2EClaimsWorkstation: React.FC = () => {
 </table>
 ${config.validaciones.faltantes.length > 0 ? config.validaciones.faltantes.map(f => `<div class="alert-box alert-warn">⚠️ Faltante: ${f}</div>`).join('') : '<div class="alert-box alert-ok">✅ Todos los documentos obligatorios presentes</div>'}
 
-<h2>3. Transcripción IA — Datos Extraídos</h2>
+<h2>3. Transcripción IA,Datos Extraídos</h2>
 <table>
   <thead><tr><th>Campo</th><th>Valor Extraído</th><th>Confianza</th></tr></thead>
   <tbody>${config.validaciones.transcripcion.map(t => `<tr><td>${t.campo}</td><td style="font-weight:600;color:#e2e8f0">${t.valor}</td><td style="color:${confColor(t.confianza)};font-weight:700">${t.confianza}%</td></tr>`).join('')}</tbody>
@@ -1458,11 +1633,11 @@ ${config.validaciones.faltantes.length > 0 ? config.validaciones.faltantes.map(f
   <tbody>${e.coberturas.map(c => `<tr><td>${c.nombre}</td><td><span class="badge ${c.activa ? 'badge-green' : 'badge-red'}">${c.activa ? '✅ Activa' : '❌ Inactiva'}</span></td><td style="font-weight:700">${fmtCurrency(c.limite)}</td></tr>`).join('')}</tbody>
 </table>
 
-${e.preexistencias.length > 0 ? `<h3>Análisis de Preexistencias</h3>${e.preexistencias.map(p => `<div class="alert-box ${p.aplica ? 'alert-danger' : 'alert-ok'}"><div><strong>${p.condicion}</strong> — ${p.declarada ? 'Declarada' : 'No Declarada'}<br/>${p.justificacion}</div></div>`).join('')}` : ''}
+${e.preexistencias.length > 0 ? `<h3>Análisis de Preexistencias</h3>${e.preexistencias.map(p => `<div class="alert-box ${p.aplica ? 'alert-danger' : 'alert-ok'}"><div><strong>${p.condicion}</strong>,${p.declarada ? 'Declarada' : 'No Declarada'}<br/>${p.justificacion}</div></div>`).join('')}` : ''}
 
 ${e.endosos.length > 0 ? `<h3>Endosos Aplicables</h3><table><thead><tr><th>ID</th><th>Endoso</th><th>Impacto</th><th>Aplica</th></tr></thead><tbody>${e.endosos.map(en => `<tr><td style="font-family:monospace;color:#64748b">${en.id}</td><td><strong>${en.nombre}</strong><br/><span style="color:#94a3b8;font-size:11px">${en.descripcion}</span></td><td style="color:#F5A623;font-size:11px">${en.impacto}</td><td><span class="badge ${en.aplica ? 'badge-green' : 'badge-amber'}">${en.aplica ? 'Sí' : 'No'}</span></td></tr>`).join('')}</tbody></table>` : ''}
 
-<h2>5. Motor de Triaje — 6 Variables</h2>
+<h2>5. Motor de Triaje,6 Variables</h2>
 <table>
   <thead><tr><th>Variable</th><th>Evaluación</th><th>Nivel</th><th>Peso</th></tr></thead>
   <tbody>
@@ -1478,7 +1653,7 @@ ${e.endosos.length > 0 ? `<h3>Endosos Aplicables</h3><table><thead><tr><th>ID</t
 <h3>Árbol de Decisión</h3>
 ${t.arbolDecision.map(step => `<div class="tree-step ${step.startsWith('RESULTADO') ? 'tree-result' : ''}">${step}</div>`).join('')}
 
-<h2>6. Expediente Médico — Pertinencia</h2>
+<h2>6. Expediente Médico,Pertinencia</h2>
 <div class="section-card">
   <div class="row"><span class="row-label">Diagnóstico Principal</span><span class="row-value">${g.expedienteMedico.diagnosticoPrincipal}</span></div>
   <div class="row"><span class="row-label">Código CIE</span><span class="row-value" style="font-family:monospace">${g.expedienteMedico.codigoCIE}</span></div>
@@ -1537,9 +1712,9 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
 </div>
 
 <div class="footer">
-  <div>CLAIM MASTER FILE — ${config.validaciones.folioId} — v${config.validaciones.pdfMaestro.version}</div>
+  <div>CLAIM MASTER FILE,${config.validaciones.folioId},v${config.validaciones.pdfMaestro.version}</div>
   <div>Generado por Motor de Apertura Inteligente · ${fecha} ${hora}</div>
-  <div style="margin-top:4px;color:#334155">Documento confidencial — Uso exclusivo para dictaminación de siniestros</div>
+  <div style="margin-top:4px;color:#334155">Documento confidencial,Uso exclusivo para dictaminación de siniestros</div>
 </div>
 
 <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar como PDF</button>
@@ -1554,10 +1729,10 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
   }, []);
 
   // ---------------------------------------------------------------------------
-  // StageAgentGraph — inline component (banking AgentProcessFlow pattern)
+  // StageAgentGraph,inline component (banking AgentProcessFlow pattern)
   // ---------------------------------------------------------------------------
 
-  // StageAgentGraph as a plain render function (no hooks — avoids inline component remount issues)
+  // StageAgentGraph as a plain render function (no hooks,avoids inline component remount issues)
   const renderStageAgentGraph = (flowNodes: StageAgentFlowNode[], flowConns: StageAgentFlowConnection[], isActive: boolean) => {
     if (!isActive || flowNodes.length === 0) return null;
 
@@ -1925,7 +2100,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               <div className={styles.pdfMaestroCard}>
                 <div className={styles.pdfMaestroIcon}><FileText size={24} /></div>
                 <div className={styles.pdfMaestroInfo}>
-                  <span className={styles.pdfMaestroTitle}>Claim Master File — v{data.pdfMaestro.version}</span>
+                  <span className={styles.pdfMaestroTitle}>Claim Master File,v{data.pdfMaestro.version}</span>
                   <span className={styles.pdfMaestroMeta}>{data.pdfMaestro.paginas} paginas · {data.pdfMaestro.pesoMB} MB</span>
                 </div>
                 <div className={styles.pdfMaestroScore}>
@@ -2108,7 +2283,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                   ) : (
                     <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)', borderRadius: 'var(--radius-md)' }}>
                       <AlertTriangle size={14} style={{ color: '#ef4444' }} />
-                      <span style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.82rem' }}>Dictamen rechazado — derivado a revisión</span>
+                      <span style={{ color: '#ef4444', fontWeight: 600, fontSize: '0.82rem' }}>Dictamen rechazado,derivado a revisión</span>
                     </div>
                   )}
                   {dictamenAprobado === null && (
@@ -2133,7 +2308,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               ) : (
                 <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 8, padding: '10px 14px', background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 'var(--radius-md)' }}>
                   <Zap size={14} style={{ color: '#22c55e' }} />
-                  <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '0.82rem' }}>Dictamen automático aprobado — sin intervención humana</span>
+                  <span style={{ color: '#22c55e', fontWeight: 600, fontSize: '0.82rem' }}>Dictamen automático aprobado,sin intervención humana</span>
                 </div>
               )}
             </div>
@@ -2202,7 +2377,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               </div>
               <div style={{ width: 1, height: 40, background: 'var(--border-subtle)' }} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4 }}>Motor de Segmentación Predictivo — 6 Variables</div>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4 }}>Motor de Segmentación Predictivo,6 Variables</div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Índice de complejidad agregado: {agregadoPct}% · Confianza del modelo: {data.scoreTriaje}%</div>
               </div>
               <div style={{ textAlign: 'center', minWidth: 80 }}>
@@ -2211,7 +2386,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               </div>
             </div>
 
-            {/* 6 Variables — Gauge-style Dashboard */}
+            {/* 6 Variables,Gauge-style Dashboard */}
             <div className={styles.triajeVariablesReport}>
               <h4 className={styles.triajeVariablesTitle}>
                 <Cpu size={14} /> Evaluación de 6 Variables de Segmentación
@@ -2250,7 +2425,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               </div>
             </div>
 
-            {/* Visual Decision Tree — Branching structure */}
+            {/* Visual Decision Tree,Branching structure */}
             <div className={styles.triajeDecisionTree} style={{ position: 'relative' }}>
               <h4 className={styles.triajeDecisionTreeTitle}>
                 <BarChart3 size={14} /> Árbol de Decisión: Razonamiento del Motor
@@ -2331,7 +2506,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               </div>
             </div>
 
-            {/* Segmento Routes — Enhanced visualization */}
+            {/* Segmento Routes,Enhanced visualization */}
             <div className={styles.triajeMotor}>
               <div className={styles.triajeMotorHeader}>
                 <Cpu size={16} style={{ color: '#0175D8' }} />
@@ -2853,7 +3028,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               <div>
                 <div style={{ padding: '14px 16px', background: 'rgba(1,117,216,0.06)', border: '1px solid rgba(1,117,216,0.15)', borderRadius: 'var(--radius-md)', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
                   <CreditCard size={16} style={{ color: '#0175D8' }} />
-                  <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: 600 }}>Autorización de pago pendiente — requiere aprobación del dictaminador</span>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--text-primary)', fontWeight: 600 }}>Autorización de pago pendiente,requiere aprobación del dictaminador</span>
                 </div>
                 <div style={{ display: 'flex', gap: 12 }}>
                   <button
@@ -2861,7 +3036,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                     onClick={() => setPagoAprobado(true)}
                     style={{ background: '#22c55e', flex: 1, justifyContent: 'center', padding: '14px 24px', fontSize: '0.92rem' }}
                   >
-                    <CheckCircle size={18} /> Aprobar Pago — {fmtCurrency(data.montoFinal)}
+                    <CheckCircle size={18} /> Aprobar Pago,{fmtCurrency(data.montoFinal)}
                   </button>
                   <button
                     className={styles.pdfDownloadButton}
@@ -2880,7 +3055,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               >
                 <div className={styles.pagoEstado}>
                   <CheckCircle size={18} />
-                  <span>Pago Aprobado — {fmtCurrency(data.montoFinal)} autorizado para procesamiento</span>
+                  <span>Pago Aprobado,{fmtCurrency(data.montoFinal)} autorizado para procesamiento</span>
                 </div>
                 <div style={{ marginTop: 8, padding: '10px 14px', background: 'rgba(34,197,94,0.06)', border: '1px solid rgba(34,197,94,0.15)', borderRadius: 'var(--radius-md)', fontSize: '0.78rem', color: '#22c55e', textAlign: 'center' }}>
                   {data.estado}
@@ -2894,7 +3069,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 style={{ padding: '14px 16px', background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: 10 }}
               >
                 <AlertTriangle size={16} style={{ color: '#ef4444' }} />
-                <span style={{ fontSize: '0.85rem', color: '#ef4444', fontWeight: 600 }}>Pago rechazado — derivado a revisión adicional del comité</span>
+                <span style={{ fontSize: '0.85rem', color: '#ef4444', fontWeight: 600 }}>Pago rechazado,derivado a revisión adicional del comité</span>
               </motion.div>
             )}
           </div>
@@ -2931,81 +3106,113 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
         </Link>
 
         {/* ================================================================ */}
-        {/* SECTION 1: HERO                                                  */}
+        {/* SECTION 1: PARRILLA,Cases Table (no case open)                 */}
         {/* ================================================================ */}
 
-        <motion.div
-          className={styles.heroBanner}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className={styles.heroTitle}>
-            Modelo Inteligente de Gestión de Siniestros E2E
-          </h1>
-          <p className={styles.heroSubtitle}>
-            Simulación interactiva del flujo dinámico impulsado por IA y segmentación inteligente.
-            Seleccione un tipo de reclamo para visualizar cómo el motor de decisión enruta,
-            procesa y resuelve cada caso de forma diferenciada.
-          </p>
-          <button
-            className={styles.heroCTA}
-            onClick={scrollToSelector}
-          >
-            <Play size={18} /> Simular un Reclamo
-          </button>
-        </motion.div>
+        {!selectedCaseId && (
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {/* Hero + Timer Bar */}
+            <div className={styles.heroBanner} style={{ marginBottom: 20 }}>
+              <h1 className={styles.heroTitle}>Casos Asignados a {DICTAMINADOR_NAME}</h1>
+              <p className={styles.heroSubtitle}>
+                Seleccione un caso para iniciar el flujo de revisión.
+                {!parrillaEntryTime && ' El timer de 2 horas iniciará al abrir el primer caso.'}
+              </p>
+            </div>
+            <div className={styles.timerBar}>
+              <div className={styles.timerBarLeft}>
+                <h2 className={styles.parrillaActiveTitle}>
+                  Parrilla de Trabajo
+                </h2>
+              </div>
+              <div className={styles.timerBarRight}>
+                <span className={styles.timerLabel}>Tiempo restante:</span>
+                <span className={styles.timerValue} style={{ color: getTimerColor(timerRemaining) }}>
+                  <Clock size={16} /> {formatTimer(timerRemaining)}
+                </span>
+                <span className={styles.timerProgress}>
+                  {reviewedCases.size} de {parrillaCases.length} revisados
+                </span>
+              </div>
+            </div>
+
+            {/* Cases Table */}
+            <div className={styles.casesTableWrapper}>
+              <table className={styles.casesTable}>
+                <thead>
+                  <tr>
+                    <th>Folio</th>
+                    <th>Fecha Aviso</th>
+                    <th>Asegurado</th>
+                    <th>No. Póliza</th>
+                    <th>Canal</th>
+                    <th>Tipo de Siniestro</th>
+                    <th>Monto Reservado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {parrillaCases.map(c => {
+                    const isReviewed = reviewedCases.has(c.id);
+                    return (
+                      <tr key={c.id} className={isReviewed ? styles.casesTableRowReviewed : ''}>
+                        <td className={styles.casesTableFolio}>{c.folioId}</td>
+                        <td>{c.fechaAviso}</td>
+                        <td>{c.asegurado}</td>
+                        <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem' }}>{c.numPoliza}</td>
+                        <td>{c.canal}</td>
+                        <td>{c.tipoSiniestro}</td>
+                        <td className={styles.casesTableMonto}>{fmtCurrency(c.montoReservado)}</td>
+                        <td>
+                          {isReviewed ? (
+                            <span className={styles.casesTableReviewedBadge}><CheckCircle size={14} /> Revisado</span>
+                          ) : (
+                            <button className={styles.casesTableReviewBtn} onClick={() => handleSelectCase(c)}>
+                              <Eye size={14} /> Revisar
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
 
         {/* ================================================================ */}
-        {/* SECTION 2: CLAIM TYPE SELECTOR                                   */}
+        {/* SECTION 3: CASE VIEW (case selected,pipeline + enhancements)   */}
         {/* ================================================================ */}
 
-        <motion.section
-          ref={selectorRef}
-          className={styles.selectorSection}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <h2 className={styles.selectorTitle}>
-            <BarChart3 size={18} /> Seleccione Tipo de Reclamo
-          </h2>
-          <div className={styles.selectorGrid}>
-            {CLAIM_TYPES.map((ct) => {
-              const isSelected = selectedClaimType === ct.id;
-              return (
-                <motion.div
-                  key={ct.id}
-                  className={`${styles.claimCard} ${isSelected ? styles.claimCardSelected : ''}`}
-                  onClick={() => handleSelectClaimType(ct.id)}
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                >
-                  <div className={styles.claimCardIcon} style={{ color: isSelected ? '#0175D8' : 'var(--text-muted)' }}>
-                    {ct.icon}
-                  </div>
-                  <h3 className={styles.claimCardTitle}>{ct.title}</h3>
-                  <p className={styles.claimCardSubtitle}>{ct.subtitle}</p>
-                  <div className={styles.claimCardMonto}>{fmtCurrency(ct.monto)}</div>
-                  <span
-                    className={styles.claimCardSegmento}
-                    style={{ background: `${SEGMENTO_COLORS[ct.segmento]}18`, color: SEGMENTO_COLORS[ct.segmento], border: `1px solid ${SEGMENTO_COLORS[ct.segmento]}33` }}
-                  >
-                    {SEGMENTO_LABELS[ct.segmento]}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.section>
+        {selectedCaseId && currentCase && claimConfig && (
+          <>
+            {/* Case Header Bar */}
+            <div className={styles.caseHeaderBar}>
+              <button className={styles.caseBackBtn} onClick={handleBackToParrilla}>
+                <ArrowLeft size={14} /> Volver a Parrilla
+              </button>
+              <div className={styles.caseHeaderInfo}>
+                <span className={styles.caseHeaderItem}><strong>Folio:</strong> {currentCase.folioId}</span>
+                <span className={styles.caseHeaderItem}><strong>Asegurado:</strong> {currentCase.asegurado}</span>
+                <span className={styles.caseHeaderItem}><strong>Póliza:</strong> {currentCase.numPoliza}</span>
+                <span className={styles.caseHeaderItem}><strong>Reservado:</strong> <span style={{ color: '#0175D8', fontWeight: 700 }}>{fmtCurrency(currentCase.montoReservado)}</span></span>
+              </div>
+              <div className={styles.caseHeaderTimer} style={{ color: getTimerColor(timerRemaining) }}>
+                <Clock size={14} /> {formatTimer(timerRemaining)}
+              </div>
+            </div>
+
+            {/* Resumen appears only after all stages complete */}
+          </>
+        )}
 
         {/* ================================================================ */}
-        {/* SECTION 3: PIPELINE VISUALIZATION                                */}
+        {/* SECTION 4: PIPELINE VISUALIZATION (only when case is selected)   */}
         {/* ================================================================ */}
 
         <AnimatePresence>
-          {claimConfig && (
+          {selectedCaseId && claimConfig && (
             <motion.section
               className={styles.pipelineSection}
               initial={{ opacity: 0, height: 0 }}
@@ -3023,8 +3230,8 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                       <RotateCcw size={14} /> Reiniciar
                     </button>
                   )}
-                  <button className={styles.pipelineButtonSecondary} onClick={handleReset}>
-                    <ArrowLeft size={14} /> Cambiar Tipo
+                  <button className={styles.pipelineButtonSecondary} onClick={handleBackToParrilla}>
+                    <ArrowLeft size={14} /> Volver a Parrilla
                   </button>
                 </div>
               </div>
@@ -3154,7 +3361,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               {simulationState === 'complete' && (
                 <div className={styles.statusBanner} style={{ borderColor: 'rgba(34,197,94,0.3)', background: 'rgba(34,197,94,0.06)' }}>
                   <CheckCircle size={16} style={{ color: '#22c55e' }} />
-                  <span style={{ color: '#22c55e' }}>Simulación Completa — Todas las etapas ejecutadas exitosamente</span>
+                  <span style={{ color: '#22c55e' }}>Simulación Completa,Todas las etapas ejecutadas exitosamente</span>
                 </div>
               )}
             </motion.section>
@@ -3284,20 +3491,230 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
         {/* SECTION 6: COMPARE NOTE                                          */}
         {/* ================================================================ */}
 
-        {simulationState === 'complete' && claimConfig && (
+        {/* ================================================================ */}
+        {/* HOJA RESUMEN: appears only when all stages are complete          */}
+        {/* ================================================================ */}
+
+        {simulationState === 'complete' && claimConfig && selectedCaseId && currentCase && (
           <motion.div
-            className={styles.compareNote}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>
-              Seleccione otro tipo de reclamo para comparar como el motor de decision enruta diferentes casos.
-            </span>
+            <div className={styles.stageSummarySection}>
+              <h3 className={styles.stageSummaryTitle}><FileText size={18} /> Hoja Resumen del Dictamen</h3>
+              <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 16 }}>
+                Resumen consolidado de todos los procesos ejecutados para el caso {currentCase.folioId}
+              </p>
+
+              {/* Summary cards for each stage */}
+              <div className={styles.stageSummaryGrid}>
+                {claimConfig.stages.map(stage => {
+                  const summary = generateStageSummary(stage.id, claimConfig);
+                  return (
+                    <div
+                      key={stage.id}
+                      className={`${styles.stageSummaryCard} ${summary.needsInput ? styles.stageSummaryCardAlert : ''}`}
+                    >
+                      <div className={styles.stageSummaryCardHeader}>
+                        <span className={styles.stageSummaryCardIcon}>{stage.icon}</span>
+                        <span className={styles.stageSummaryCardLabel}>{stage.label}</span>
+                        <span className={styles.stageSummaryCardBadge}><CheckCircle size={12} /> Completado</span>
+                      </div>
+                      <ul className={styles.stageSummaryBullets}>
+                        {summary.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                      </ul>
+                      <div className={styles.stageSummaryActions}>
+                        <button className={styles.stageSummaryPdfBtn} onClick={() => setShowStageDetail(stage.id)}>
+                          <FileText size={13} /> Ver Detalle
+                        </button>
+                        {summary.needsInput && (
+                          <button className={styles.stageSummaryInputBtn} onClick={() => { setShowStageDetail(stage.id); setShowSidePanel(true); }}>
+                            <AlertTriangle size={13} /> {summary.inputReason}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Financial summary */}
+              <div className={styles.stageSummaryCard} style={{ marginTop: 16, borderColor: 'rgba(1,117,216,0.25)' }}>
+                <div className={styles.stageSummaryCardHeader}>
+                  <span className={styles.stageSummaryCardIcon}><DollarSign size={16} /></span>
+                  <span className={styles.stageSummaryCardLabel}>Resumen Financiero</span>
+                </div>
+                <ul className={styles.stageSummaryBullets}>
+                  <li>Monto reclamado: {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.montoReclamado)}</li>
+                  <li>Deducible aplicado: {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.deducible)}</li>
+                  <li>Coaseguro ({claimConfig.dictamenMedico.resumenFinanciero.coaseguroPct}%): {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.totalCargoAsegurado - claimConfig.dictamenMedico.resumenFinanciero.deducible)}</li>
+                  <li>Total cargo asegurado: {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.totalCargoAsegurado)}</li>
+                  <li><strong>Total a pagar por aseguradora: {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.totalCargoAseguradora)}</strong></li>
+                  <li>Suma asegurada remanente: {fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.sumaAseguradaRemanente)}</li>
+                </ul>
+              </div>
+
+              {/* Actions */}
+              <div style={{ display: 'flex', gap: 12, marginTop: 20 }}>
+                <button className={styles.stageSummaryPdfBtn} style={{ padding: '10px 20px', fontSize: '0.8rem' }} onClick={() => {
+                  if (claimConfig) downloadMasterPDF(claimConfig);
+                }}>
+                  <FileText size={14} /> Descargar Expediente PDF
+                </button>
+                <button className={styles.parrillaEnterBtn} onClick={handleBackToParrilla}>
+                  <ArrowLeft size={14} /> Volver a Parrilla
+                </button>
+              </div>
+            </div>
           </motion.div>
         )}
 
       </div>
+
+      {/* ================================================================ */}
+      {/* SIDE PANEL,Dictaminador Input                                  */}
+      {/* ================================================================ */}
+      <AnimatePresence>
+        {showSidePanel && claimConfig && showStageDetail && (
+          <>
+            <motion.div
+              className={styles.sidePanelOverlay}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowSidePanel(false)}
+            />
+            <motion.div
+              className={styles.sidePanel}
+              initial={{ x: 380 }}
+              animate={{ x: 0 }}
+              exit={{ x: 380 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            >
+              <div className={styles.sidePanelHeader}>
+                <div>
+                  <h3 className={styles.sidePanelTitle}><AlertTriangle size={16} /> Acción Requerida</h3>
+                  <span className={styles.sidePanelStage}>{claimConfig.stages.find(s => s.id === showStageDetail)?.label}</span>
+                </div>
+                <button className={styles.sidePanelClose} onClick={() => setShowSidePanel(false)}>✕</button>
+              </div>
+              <div className={styles.sidePanelBody}>
+                {/* Validaciones,low confidence fields */}
+                {showStageDetail === 'validaciones' && (
+                  <div>
+                    <p className={styles.sidePanelDesc}>Los siguientes campos tienen confianza OCR baja. Verifique o corrija los valores extraídos:</p>
+                    {claimConfig.validaciones.transcripcion.filter(t => t.confianza < 85).map((t, i) => (
+                      <div key={i} className={styles.sidePanelField}>
+                        <div className={styles.sidePanelFieldHeader}>
+                          <span className={styles.sidePanelFieldLabel}>{t.campo}</span>
+                          <span className={styles.sidePanelFieldConf} style={{ color: t.confianza < 60 ? '#ef4444' : '#f59e0b' }}>{t.confianza}% confianza</span>
+                        </div>
+                        <div className={styles.sidePanelFieldValue}>{t.valor}</div>
+                        <div className={styles.sidePanelFieldActions}>
+                          <button className={styles.sidePanelAccept}><CheckCircle size={14} /> Aceptar</button>
+                          <button className={styles.sidePanelCorrect}><Scale size={14} /> Corregir</button>
+                        </div>
+                      </div>
+                    ))}
+                    {claimConfig.validaciones.transcripcion.filter(t => t.confianza < 85).length === 0 && (
+                      <div className={styles.sidePanelNoAction}>
+                        <CheckCircle size={18} style={{ color: '#22c55e' }} />
+                        <span>Todos los campos tienen confianza aceptable. No se requiere acción.</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Elegibilidad,approve/reject */}
+                {showStageDetail === 'elegibilidad' && (
+                  <div>
+                    <p className={styles.sidePanelDesc}>Dictamen preliminar de elegibilidad:</p>
+                    <div className={styles.sidePanelDictamen}>{claimConfig.elegibilidad.dictamenPreliminar}</div>
+                    <div className={styles.sidePanelFieldInfo}>
+                      <div>Deducible: <strong>{fmtCurrency(claimConfig.elegibilidad.deducible)}</strong></div>
+                      <div>Coaseguro: <strong>{claimConfig.elegibilidad.coaseguro}%</strong></div>
+                    </div>
+                    {dictamenAprobado === null ? (
+                      <div className={styles.sidePanelActions}>
+                        <button className={styles.sidePanelApprove} onClick={() => { setDictamenAprobado(true); setShowSidePanel(false); }}>
+                          <CheckCircle size={16} /> Aprobar Dictamen
+                        </button>
+                        <button className={styles.sidePanelReject} onClick={() => { setDictamenAprobado(false); setShowSidePanel(false); }}>
+                          <AlertTriangle size={16} /> Rechazar
+                        </button>
+                      </div>
+                    ) : (
+                      <div className={styles.sidePanelResult} style={{ borderColor: dictamenAprobado ? '#22c55e' : '#ef4444' }}>
+                        {dictamenAprobado ? <><CheckCircle size={16} style={{ color: '#22c55e' }} /> Dictamen aprobado</> : <><AlertTriangle size={16} style={{ color: '#ef4444' }} /> Dictamen rechazado</>}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Dictamen Médico,pertinence review */}
+                {showStageDetail === 'dictamen-medico' && (
+                  <div>
+                    <p className={styles.sidePanelDesc}>Revisión de pertinencia clínica:</p>
+                    <div className={styles.sidePanelChecks}>
+                      {claimConfig.dictamenMedico.checksPertinencia.map((check, i) => (
+                        <div key={i} className={styles.sidePanelCheckItem}>
+                          <CheckCircle size={14} style={{ color: '#22c55e' }} />
+                          <span>{check}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p className={styles.sidePanelDesc} style={{ marginTop: 16 }}>Insumos a aprobar:</p>
+                    {claimConfig.dictamenMedico.insumos.map((ins, i) => (
+                      <div key={i} className={styles.sidePanelField}>
+                        <div className={styles.sidePanelFieldLabel}>{ins.nombre}</div>
+                        {ins.checks.map((c, j) => (
+                          <div key={j} className={styles.sidePanelCheckItem} style={{ fontSize: '0.75rem' }}>
+                            <CheckCircle size={12} style={{ color: c.startsWith('FALLA') ? '#ef4444' : '#22c55e' }} />
+                            <span>{c}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                    <div className={styles.sidePanelActions} style={{ marginTop: 16 }}>
+                      <button className={styles.sidePanelApprove} onClick={() => setShowSidePanel(false)}>
+                        <CheckCircle size={16} /> Confirmar Pertinencia
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Pago,final authorization */}
+                {showStageDetail === 'pago' && (
+                  <div>
+                    <p className={styles.sidePanelDesc}>Autorización de pago final:</p>
+                    <div className={styles.sidePanelFieldInfo}>
+                      <div>Monto reclamado: <strong>{fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.montoReclamado)}</strong></div>
+                      <div>Deducible: <strong>-{fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.deducible)}</strong></div>
+                      <div>Coaseguro: <strong>-{fmtCurrency(claimConfig.dictamenMedico.resumenFinanciero.totalCargoAsegurado - claimConfig.dictamenMedico.resumenFinanciero.deducible)}</strong></div>
+                      <div style={{ fontSize: '1.1rem', color: '#0175D8', fontWeight: 700, marginTop: 8 }}>Total a pagar: {fmtCurrency(claimConfig.pago.montoFinal)}</div>
+                    </div>
+                    {pagoAprobado === null ? (
+                      <div className={styles.sidePanelActions}>
+                        <button className={styles.sidePanelApprove} onClick={() => { setPagoAprobado(true); setShowSidePanel(false); }}>
+                          <CheckCircle size={16} /> Aprobar Pago,{fmtCurrency(claimConfig.pago.montoFinal)}
+                        </button>
+                        <button className={styles.sidePanelReject} onClick={() => { setPagoAprobado(false); setShowSidePanel(false); }}>
+                          <AlertTriangle size={16} /> Rechazar
+                        </button>
+                      </div>
+                    ) : (
+                      <div className={styles.sidePanelResult} style={{ borderColor: pagoAprobado ? '#22c55e' : '#ef4444' }}>
+                        {pagoAprobado ? <><CheckCircle size={16} style={{ color: '#22c55e' }} /> Pago aprobado</> : <><AlertTriangle size={16} style={{ color: '#ef4444' }} /> Pago rechazado</>}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

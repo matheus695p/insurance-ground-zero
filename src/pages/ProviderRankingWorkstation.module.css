@@ -193,50 +193,64 @@
 }
 .mapContainer {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background: linear-gradient(135deg, rgba(15,23,42,0.95) 0%, rgba(30,41,59,0.9) 50%, rgba(15,23,42,0.95) 100%);
+  border: 1px solid rgba(245,158,11,0.15);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 28px 24px 20px;
   overflow: hidden;
+}
+.mapContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(245,158,11,0.04) 0%, transparent 70%);
+  pointer-events: none;
 }
 .mexicoMap {
   width: 100%;
-  max-width: 700px;
+  max-width: 780px;
   margin: 0 auto;
   display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 .statePath {
   cursor: pointer;
-  stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 0.5;
-  transition: all var(--transition-fast);
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 0.6;
+  stroke-linejoin: round;
+  transition: all 0.2s ease;
+  filter: saturate(0.85);
 }
 .statePath:hover {
-  filter: brightness(1.25);
-  stroke: rgba(255, 255, 255, 0.3);
-  stroke-width: 1;
+  filter: brightness(1.35) saturate(1.1);
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 1.2;
+  z-index: 2;
 }
 .statePathSelected {
   stroke: #f59e0b;
-  stroke-width: 2;
-  filter: brightness(1.15);
+  stroke-width: 1.8;
+  filter: brightness(1.2) saturate(1.1) drop-shadow(0 0 6px rgba(245,158,11,0.4));
 }
 .mapTooltip {
   position: absolute;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
+  background: rgba(15,23,42,0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(245,158,11,0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
   font-size: 0.72rem;
   color: var(--text-primary);
   pointer-events: none;
   z-index: 10;
   white-space: nowrap;
-  box-shadow: var(--shadow-elevated);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
 }
 .mapTooltipName {
   font-weight: 700;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+  color: #f59e0b;
 }
 .mapTooltipScore {
   color: #f59e0b;
@@ -247,24 +261,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 18px;
 }
 .mapLegendGradient {
-  width: 200px;
-  height: 10px;
-  border-radius: 5px;
-  background: linear-gradient(to right, #ef4444, #f97316, #f59e0b, #84cc16, #22c55e);
+  width: 220px;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, #22c55e, #84cc16, #f59e0b, #f97316, #ef4444);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .mapLegendLabel {
   font-size: 0.65rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .mapFilterInfo {
   text-align: center;
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 0.75rem;
   color: #f59e0b;
   font-weight: 600;
@@ -277,6 +294,7 @@
   cursor: pointer;
   font-size: 0.75rem;
   margin-left: 8px;
+  transition: color 0.15s ease;
 }
 .mapClearFilter:hover {
   color: var(--text-secondary);
