@@ -3348,6 +3348,18 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                         >
                           {stage.label}
                         </span>
+                        {!isSkipped && (
+                          <span style={{
+                            fontSize: '0.6rem',
+                            fontWeight: 700,
+                            color: MODE_COLORS[stage.mode],
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.04em',
+                            marginTop: 2,
+                          }}>
+                            {MODE_LABELS[stage.mode]}
+                          </span>
+                        )}
                       </div>
                     </div>
                   );
@@ -3389,7 +3401,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
 
               {/* Mode legend */}
               <div className={styles.modeLegend}>
-                {(['manual', 'ia-asistido', 'automatizado'] as ProcessMode[]).map((mode) => (
+                {(['automatizado', 'ia-asistido'] as ProcessMode[]).map((mode) => (
                   <div key={mode} className={styles.modeLegendItem}>
                     <span className={styles.modeLegendDot} style={{ background: MODE_COLORS[mode] }} />
                     <span>{MODE_LABELS[mode]}</span>
