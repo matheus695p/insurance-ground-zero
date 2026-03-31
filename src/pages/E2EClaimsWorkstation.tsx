@@ -209,7 +209,7 @@ const AGENT_FLOWS: Record<StageId, StageAgentFlow> = {
   },
   triaje: {
     nodes: [
-      { id: 'triage-ml', type: 'model', label: 'Motor de Triaje ML', description: 'Modelo predictivo de 6 variables,segmentación inteligente', details: ['Perfil Clínico', 'Severidad Económica', 'Fase del Evento', 'Perfil del Proveedor', 'Condiciones Contractuales', 'Alertas de Fraude'] },
+      { id: 'triage-ml', type: 'model', label: 'Motor de Triaje ML', description: 'Modelo predictivo de 6 variables — segmentación inteligente', details: ['Perfil Clínico', 'Severidad Económica', 'Fase del Evento', 'Perfil del Proveedor', 'Condiciones Contractuales', 'Alertas de Fraude'] },
     ],
     connections: [],
   },
@@ -251,17 +251,17 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '7 de 8' }, { label: 'Confianza OCR', value: '92%' }], confidence: 92, duration: '3.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '90%' }, { label: 'Inconsistencias', value: '0' }], confidence: 95, duration: '2.0s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud Total,Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '1.4s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud Total — Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '1.4s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
-          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '4%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Hospital verificado', value: 'Nivel 1,convenio activo' }], confidence: 98, duration: '2.4s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium Plus' }, { label: 'Cirugía cardiovascular', value: 'Cubierta,$1.5M tope' }, { label: 'UCI', value: 'Cubierta,$800K' }, { label: 'Rehabilitación', value: 'Cubierta,$200K' }, { label: 'Prótesis', value: 'Cubierta por endoso' }], confidence: 96, duration: '2.2s' },
-          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Cardiopatía isquémica', value: 'Declarada,cubierta' }, { label: 'Hipertensión', value: 'Declarada,sin exclusión' }, { label: 'Evaluación', value: 'Condiciones declaradas correctamente' }], confidence: 97, duration: '1.6s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-201 Cirugía Mayor', value: 'Aplica,cobertura ampliada' }, { label: 'END-089 Prótesis', value: 'Aplica,stents y válvulas' }, { label: 'END-155 Rehabilitación Extendida', value: 'Aplica,30 sesiones' }], confidence: 96, duration: '1.8s' },
-          { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto muy alto + multicobertura' }, { label: 'Recomendación', value: 'ELEGIBLE,comité médico requerido' }], confidence: 94, duration: '1.4s' },
+          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '4%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Hospital verificado', value: 'Nivel 1 — convenio activo' }], confidence: 98, duration: '2.4s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium Plus' }, { label: 'Cirugía cardiovascular', value: 'Cubierta — $1.5M tope' }, { label: 'UCI', value: 'Cubierta — $800K' }, { label: 'Rehabilitación', value: 'Cubierta — $200K' }, { label: 'Prótesis', value: 'Cubierta por endoso' }], confidence: 96, duration: '2.2s' },
+          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Cardiopatía isquémica', value: 'Declarada — cubierta' }, { label: 'Hipertensión', value: 'Declarada — sin exclusión' }, { label: 'Evaluación', value: 'Condiciones declaradas correctamente' }], confidence: 97, duration: '1.6s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-201 Cirugía Mayor', value: 'Aplica — cobertura ampliada' }, { label: 'END-089 Prótesis', value: 'Aplica — stents y válvulas' }, { label: 'END-155 Rehabilitación Extendida', value: 'Aplica — 30 sesiones' }], confidence: 96, duration: '1.8s' },
+          { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto muy alto + multicobertura' }, { label: 'Recomendación', value: 'ELEGIBLE: comité médico requerido' }], confidence: 94, duration: '1.4s' },
         ],
       },
       {
@@ -307,7 +307,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 4,
     },
     elegibilidad: {
-      resultado: 'Elegible,requiere supervision hospitalaria dedicada y comite medico', alertaHumana: true, deducible: 25000, coaseguro: 10,
+      resultado: 'Elegible — requiere supervision hospitalaria dedicada y comite medico', alertaHumana: true, deducible: 25000, coaseguro: 10,
       poliza: { tipo: 'Individual', vigente: true, pagada: true, producto: 'Premium Salud Total' },
       coberturas: [
         { nombre: 'Hospitalizacion', activa: true, limite: 3000000 },
@@ -317,26 +317,26 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Rehabilitación Cardiaca', activa: true, limite: 300000 },
       ],
       preexistencias: [
-        { condicion: 'Enfermedad Coronaria (I25.1)', declarada: true, aplica: false, justificacion: 'Condicion declarada al inicio de la poliza,cubierta bajo clausula de continuidad de tratamiento' },
+        { condicion: 'Enfermedad Coronaria (I25.1)', declarada: true, aplica: false, justificacion: 'Condicion declarada al inicio de la poliza — cubierta bajo clausula de continuidad de tratamiento' },
       ],
       endosos: [
         { id: 'END-142', nombre: 'Endoso de Ampliacion Cardiovascular', descripcion: 'Amplia cobertura cardiovascular al 100% sin copago', impacto: 'Elimina coaseguro en cirugia CABG', aplica: true },
         { id: 'END-089', nombre: 'Endoso de Protesis/Implantes', descripcion: 'Cubre stents, valvulas y dispositivos implantables', impacto: 'Stents y valvula cubiertos al 100%', aplica: true },
         { id: 'END-205', nombre: 'Endoso de Segunda Opinion', descripcion: 'Cubre costo de segunda opinion medica especializada', impacto: 'Segunda opinion cardiovascular cubierta', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE,Multiples coberturas activas. Endosos de ampliacion cardiovascular, protesis e implantes, y segunda opinion aplican. Requiere supervision hospitalaria dedicada y comite medico por complejidad del caso.',
+      dictamenPreliminar: 'ELEGIBLE: Multiples coberturas activas. Endosos de ampliacion cardiovascular, protesis e implantes, y segunda opinion aplican. Requiere supervision hospitalaria dedicada y comite medico por complejidad del caso.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'case-management',
       scoreTriaje: 82,
       variables: {
-        perfilClinico: { valor: 'Bypass Coronario CABG (I25.1),cirugía mayor', nivel: 'Crítico', peso: 98 },
-        severidadEconomica: { valor: '$520,000,monto extremadamente alto', nivel: 'Muy Alta', peso: 96 },
-        faseEvento: { valor: 'Agudo,procedimiento quirúrgico mayor', nivel: 'Agudo', peso: 92 },
-        perfilProveedor: { valor: 'Hospital Ángeles Pedregal,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
-        condicionesContractuales: { valor: 'Póliza Versátil Premium Plus,multicobertura', nivel: 'VIP', peso: 8 },
-        alertasFraude: { valor: 'Sin alertas,score 4%', nivel: 'Ninguna', peso: 3 },
+        perfilClinico: { valor: 'Bypass Coronario CABG (I25.1) — cirugía mayor', nivel: 'Crítico', peso: 98 },
+        severidadEconomica: { valor: '$520,000 — monto extremadamente alto', nivel: 'Muy Alta', peso: 96 },
+        faseEvento: { valor: 'Agudo — procedimiento quirúrgico mayor', nivel: 'Agudo', peso: 92 },
+        perfilProveedor: { valor: 'Hospital Ángeles Pedregal — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
+        condicionesContractuales: { valor: 'Póliza Versátil Premium Plus — multicobertura', nivel: 'VIP', peso: 8 },
+        alertasFraude: { valor: 'Sin alertas — score 4%', nivel: 'Ninguna', peso: 3 },
       },
       arbolDecision: [
         'Perfil Clínico = Crítico (CABG) → Cirugía de máxima complejidad',
@@ -360,42 +360,42 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     },
     dictamenMedico: {
       expedienteMedico: {
-        diagnosticoPrincipal: 'Cirugía de Bypass Coronario,CABG (I25.1)',
+        diagnosticoPrincipal: 'Cirugía de Bypass Coronario — CABG (I25.1)',
         codigoCIE: 'I25.1',
         historialRelevante: [
-          'Cardiopatía isquémica diagnosticada hace 3 años,declarada en póliza',
-          'Hipertensión arterial controlada,medicación continua',
-          '1 siniestro previo hace 2 años,cateterismo diagnóstico',
-          'Última evaluación cardiológica hace 4 meses,progresión de enfermedad coronaria',
+          'Cardiopatía isquémica diagnosticada hace 3 años — declarada en póliza',
+          'Hipertensión arterial controlada — medicación continua',
+          '1 siniestro previo hace 2 años — cateterismo diagnóstico',
+          'Última evaluación cardiológica hace 4 meses — progresión de enfermedad coronaria',
         ],
         observaciones: [
-          'Cirugía de máxima complejidad,requiere equipo multidisciplinario',
+          'Cirugía de máxima complejidad — requiere equipo multidisciplinario',
           'Estancia en UCI estimada 3-4 días + 4-6 días en piso',
           'Negociación de paquete quirúrgico integral con el hospital recomendada',
           'Rehabilitación cardíaca post-operatoria será necesaria (30 sesiones estimadas)',
         ],
       },
       programacionCirugia: {
-        procedimiento: 'Cirugía de Bypass Coronario (CABG),Triple Bypass',
+        procedimiento: 'Cirugía de Bypass Coronario (CABG) — Triple Bypass',
         fecha: '2026-02-20',
-        cirujano: 'Dr. Roberto Villalobos,Cirujano Cardiovascular',
+        cirujano: 'Dr. Roberto Villalobos — Cirujano Cardiovascular',
         duracionEstimada: '5-6 horas',
         pertinente: true,
         argumentosPertinencia: [
-          'Cateterismo previo confirmó enfermedad de 3 vasos,indicación clara de CABG',
+          'Cateterismo previo confirmó enfermedad de 3 vasos — indicación clara de CABG',
           'Guías ESC/EACTS recomiendan CABG sobre angioplastía para enfermedad trivascular',
-          'Fracción de eyección preservada (55%),buen candidato quirúrgico',
-          'Comorbilidades controladas,riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
+          'Fracción de eyección preservada (55%) — buen candidato quirúrgico',
+          'Comorbilidades controladas — riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
         ],
       },
       contextoClinico: {
         timeline: [
           { fecha: '10/01/2026', evento: 'Consulta cardiológica por angina de esfuerzo progresiva' },
-          { fecha: '15/01/2026', evento: 'Cateterismo diagnóstico,enfermedad de 3 vasos confirmada' },
-          { fecha: '22/01/2026', evento: 'Junta médica multidisciplinaria,decisión de CABG' },
+          { fecha: '15/01/2026', evento: 'Cateterismo diagnóstico — enfermedad de 3 vasos confirmada' },
+          { fecha: '22/01/2026', evento: 'Junta médica multidisciplinaria — decisión de CABG' },
           { fecha: '30/01/2026', evento: 'Estudios preoperatorios completos (laboratorios, EKG, Rx tórax, ecocardiograma)' },
           { fecha: '05/02/2026', evento: 'Valoración preanestésica y evaluación de riesgo quirúrgico' },
-          { fecha: '10/02/2026', evento: 'Segunda opinión cardiológica,confirma indicación CABG' },
+          { fecha: '10/02/2026', evento: 'Segunda opinión cardiológica — confirma indicación CABG' },
           { fecha: '15/02/2026', evento: 'Ingreso hospitalario y preparación preoperatoria' },
           { fecha: '20/02/2026', evento: 'Cirugía programada: Bypass Coronario Triple (CABG)' },
         ],
@@ -407,7 +407,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
           { prueba: 'Química sanguínea', resultado: 'Glucosa 98, creatinina 0.9, electrolitos normales' },
           { prueba: 'Tiempos de coagulación', resultado: 'TP y TTP dentro de rango' },
           { prueba: 'Radiografía de tórax', resultado: 'Sin cardiomegalia, campos pulmonares limpios' },
-          { prueba: 'Prueba de esfuerzo', resultado: 'Positiva para isquemia a baja carga,4 METs' },
+          { prueba: 'Prueba de esfuerzo', resultado: 'Positiva para isquemia a baja carga — 4 METs' },
         ],
         adjuntos: [
           { tipo: 'Informes médicos', cantidad: 10 },
@@ -421,16 +421,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       checksPertinencia: [
-        'Cateterismo confirmó enfermedad de 3 vasos,indicación clara de revascularización quirúrgica',
+        'Cateterismo confirmó enfermedad de 3 vasos — indicación clara de revascularización quirúrgica',
         'Guías ESC/EACTS respaldan CABG como tratamiento de primera línea para enfermedad trivascular',
-        'FEVI preservada (55%),candidato quirúrgico adecuado',
+        'FEVI preservada (55%) — candidato quirúrgico adecuado',
         'Riesgo quirúrgico aceptable (EuroSCORE II: 2.1%)',
         'Comorbilidades controladas y evaluadas por equipo multidisciplinario',
         'Segunda opinión cardiológica confirma indicación quirúrgica',
       ],
       insumos: [
         { nombre: 'Honorarios Médicos (Equipo Cardiovascular)', checks: ['Equipo multidisciplinario: cirujano cardiovascular + ayudante + perfusionista', 'Importe de $45,000 dentro de tabulador para CABG triple'] },
-        { nombre: 'Estancia Hospitalaria', checks: ['8-10 días adecuados para bypass coronario triple', 'UCI 3-4 días + piso 4-6 días,esquema estándar post-CABG'] },
+        { nombre: 'Estancia Hospitalaria', checks: ['8-10 días adecuados para bypass coronario triple', 'UCI 3-4 días + piso 4-6 días — esquema estándar post-CABG'] },
         { nombre: 'Anestesia', checks: ['Anestesia general con monitoreo invasivo acorde a cirugía cardíaca mayor', 'Duración estimada de 5-6 horas coherente con procedimiento'] },
         { nombre: 'Quirófano y Material Quirúrgico', checks: ['Circuito de circulación extracorpórea dentro de costos esperados', 'Injertos venosos y material de sutura consistentes con técnica CABG'] },
         { nombre: 'Prótesis e Implantes', checks: ['3 stents de reserva y válvula incluidos por endoso END-089', 'Costos dentro de rango de referencia para dispositivos cardiovasculares'] },
@@ -438,10 +438,10 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       ],
       checksDictamen: [
         'Endoso END-142 (Ampliación Cardiovascular) verificado y aplicado correctamente',
-        'Endoso END-089 (Prótesis/Implantes) verificado,stents y válvula cubiertos',
-        'Preexistencia declarada (cardiopatía isquémica),cubierta bajo cláusula de continuidad',
+        'Endoso END-089 (Prótesis/Implantes) verificado — stents y válvula cubiertos',
+        'Preexistencia declarada (cardiopatía isquémica) — cubierta bajo cláusula de continuidad',
         'Documentación médica completa y con alto nivel de congruencia clínica',
-        'Importes verificados contra tabulador médico,sin desviaciones significativas',
+        'Importes verificados contra tabulador médico — sin desviaciones significativas',
       ],
       resumenFinanciero: {
         montoReclamado: 520000,
@@ -475,16 +475,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '5 de 6' }, { label: 'Confianza OCR', value: '94%' }], confidence: 94, duration: '3.4s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '92%' }, { label: 'Inconsistencias', value: '0' }], confidence: 97, duration: '1.8s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud,Vigente' }, { label: 'Producto', value: 'Flexible' }], confidence: 99, duration: '1.2s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Premium Salud — Vigente' }, { label: 'Producto', value: 'Flexible' }], confidence: 99, duration: '1.2s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '8%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Incidencias previas', value: '0' }], confidence: 96, duration: '2.1s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium' }, { label: 'Hospitalización', value: 'Activa,$2.5M tope' }, { label: 'Cardiovascular', value: 'Cubierta al 100%' }, { label: 'UCI', value: 'Incluida' }], confidence: 97, duration: '1.8s' },
-          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Hipertensión Arterial', value: 'Declarada,Sin exclusión' }, { label: 'Evaluación', value: 'No genera exclusión para evento agudo' }], confidence: 95, duration: '1.5s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-142 Ampliación Cardiovascular', value: 'Aplica,elimina coaseguro' }, { label: 'END-089 Prótesis/Implantes', value: 'Aplica,stents cubiertos 100%' }, { label: 'Endosos revisados', value: '4 de 4' }], confidence: 97, duration: '1.4s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium' }, { label: 'Hospitalización', value: 'Activa — $2.5M tope' }, { label: 'Cardiovascular', value: 'Cubierta al 100%' }, { label: 'UCI', value: 'Incluida' }], confidence: 97, duration: '1.8s' },
+          { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Hipertensión Arterial', value: 'Declarada — Sin exclusión' }, { label: 'Evaluación', value: 'No genera exclusión para evento agudo' }], confidence: 95, duration: '1.5s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-142 Ampliación Cardiovascular', value: 'Aplica — elimina coaseguro' }, { label: 'END-089 Prótesis/Implantes', value: 'Aplica — stents cubiertos 100%' }, { label: 'Endosos revisados', value: '4 de 4' }], confidence: 97, duration: '1.4s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Monto alto + evento crítico' }, { label: 'Recomendación', value: 'ELEGIBLE con monitoreo' }], confidence: 94, duration: '1.2s' },
         ],
       },
@@ -538,25 +538,25 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Rehabilitación Cardiaca', activa: true, limite: 200000 },
       ],
       preexistencias: [
-        { condicion: 'Hipertension Arterial', declarada: true, aplica: false, justificacion: 'Condicion declarada y cubierta,no genera exclusion para evento cardiaco agudo' },
+        { condicion: 'Hipertension Arterial', declarada: true, aplica: false, justificacion: 'Condicion declarada y cubierta — no genera exclusion para evento cardiaco agudo' },
       ],
       endosos: [
         { id: 'END-142', nombre: 'Endoso de Ampliacion Cardiovascular', descripcion: 'Amplia cobertura cardiovascular al 100% sin copago', impacto: 'Elimina coaseguro en procedimientos cardiacos', aplica: true },
         { id: 'END-089', nombre: 'Endoso de Protesis/Implantes', descripcion: 'Cubre stents y dispositivos implantables', impacto: 'Stents coronarios cubiertos al 100%', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE,Cobertura hospitalaria y cardiovascular confirmada. Endosos de ampliacion cardiovascular y protesis aplican favorablemente. Sin exclusiones activas.',
+      dictamenPreliminar: 'ELEGIBLE: Cobertura hospitalaria y cardiovascular confirmada. Endosos de ampliacion cardiovascular y protesis aplican favorablemente. Sin exclusiones activas.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'proactiva',
       scoreTriaje: 88,
       variables: {
-        perfilClinico: { valor: 'Infarto Agudo de Miocardio (I21.0),evento cardíaco crítico', nivel: 'Crítico', peso: 95 },
-        severidadEconomica: { valor: '$185,000,monto muy elevado', nivel: 'Muy Alta', peso: 88 },
-        faseEvento: { valor: 'Agudo,ingreso por urgencias', nivel: 'Agudo', peso: 90 },
-        perfilProveedor: { valor: 'Hospital Ángeles Pedregal,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
-        condicionesContractuales: { valor: 'Póliza Versátil Premium,cobertura amplia', nivel: 'Premium', peso: 10 },
-        alertasFraude: { valor: 'Sin alertas,score 8%', nivel: 'Ninguna', peso: 5 },
+        perfilClinico: { valor: 'Infarto Agudo de Miocardio (I21.0) — evento cardíaco crítico', nivel: 'Crítico', peso: 95 },
+        severidadEconomica: { valor: '$185,000 — monto muy elevado', nivel: 'Muy Alta', peso: 88 },
+        faseEvento: { valor: 'Agudo — ingreso por urgencias', nivel: 'Agudo', peso: 90 },
+        perfilProveedor: { valor: 'Hospital Ángeles Pedregal — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 15 },
+        condicionesContractuales: { valor: 'Póliza Versátil Premium — cobertura amplia', nivel: 'Premium', peso: 10 },
+        alertasFraude: { valor: 'Sin alertas — score 8%', nivel: 'Ninguna', peso: 5 },
       },
       arbolDecision: [
         'Perfil Clínico = Crítico (I21.0) → Evento de alto riesgo vital',
@@ -572,7 +572,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         cargaEquipo: 78,
         recomendacion: 'Se recomienda monitoreo proactivo. El potencial de contención justifica seguimiento activo',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic),biocompatible equivalente', contencionPotencial: '$4,200 por unidad', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic) — biocompatible equivalente', contencionPotencial: '$4,200 por unidad', aplica: true },
           honorariosMedicos: { montoActual: '$8,600', promedioHistorico: '$7,800', desviacion: '+10.3%', alerta: false },
           duracionEstancia: { diasProgramados: 5, promedioHistorico: 6, desviacion: '-16.7% (favorable)', alerta: false },
         },
@@ -583,43 +583,43 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         diagnosticoPrincipal: 'Infarto Agudo de Miocardio (I21.0)',
         codigoCIE: 'I21.0',
         historialRelevante: [
-          'Hipertensión arterial diagnosticada hace 5 años,controlada con medicación',
+          'Hipertensión arterial diagnosticada hace 5 años — controlada con medicación',
           'Sin eventos cardíacos previos',
-          '2 siniestros previos en 18 meses,consultas cardiológicas de seguimiento',
-          'IMC: 28.5,sobrepeso leve',
+          '2 siniestros previos en 18 meses — consultas cardiológicas de seguimiento',
+          'IMC: 28.5 — sobrepeso leve',
         ],
         observaciones: [
-          'Evento agudo con ingreso por urgencias,cateterismo reveló oclusión de arteria descendente anterior',
+          'Evento agudo con ingreso por urgencias — cateterismo reveló oclusión de arteria descendente anterior',
           'Angioplastía primaria con colocación de 2 stents medicados',
-          'Evolución favorable,descenso de UCI a piso día 3',
+          'Evolución favorable — descenso de UCI a piso día 3',
           'ATENCIÓN: Verificar congruencia entre stents colocados (2) y stents facturados',
         ],
       },
       programacionCirugia: {
         procedimiento: 'Angioplastía con colocación de Stent',
         fecha: '2026-02-28',
-        cirujano: 'Dr. Carlos Méndez,Cardiólogo Intervencionista',
+        cirujano: 'Dr. Carlos Méndez — Cardiólogo Intervencionista',
         duracionEstimada: '2.5 horas',
         pertinente: true,
         argumentosPertinencia: [
           'Diagnóstico I21.0 (IAM) confirma indicación de intervención percutánea urgente',
           'Guías clínicas AHA/ACC respaldan angioplastía primaria como tratamiento de primera línea',
-          'Cateterismo diagnóstico previo confirmó oclusión,procedimiento congruente',
-          'Hospital Nivel 1 con unidad de hemodinámica,capacidad verificada',
+          'Cateterismo diagnóstico previo confirmó oclusión — procedimiento congruente',
+          'Hospital Nivel 1 con unidad de hemodinámica — capacidad verificada',
         ],
       },
       contextoClinico: {
         timeline: [
-          { fecha: '28/02/2026', evento: 'Ingreso por urgencias,dolor torácico agudo, elevación ST en V1-V4' },
-          { fecha: '28/02/2026', evento: 'Cateterismo diagnóstico urgente,oclusión de arteria descendente anterior' },
+          { fecha: '28/02/2026', evento: 'Ingreso por urgencias — dolor torácico agudo, elevación ST en V1-V4' },
+          { fecha: '28/02/2026', evento: 'Cateterismo diagnóstico urgente — oclusión de arteria descendente anterior' },
           { fecha: '28/02/2026', evento: 'Angioplastía primaria con colocación de 2 stents medicados' },
-          { fecha: '01/03/2026', evento: 'Estancia en UCI,monitoreo hemodinámico continuo' },
-          { fecha: '03/03/2026', evento: 'Descenso de UCI a piso,evolución favorable' },
+          { fecha: '01/03/2026', evento: 'Estancia en UCI — monitoreo hemodinámico continuo' },
+          { fecha: '03/03/2026', evento: 'Descenso de UCI a piso — evolución favorable' },
           { fecha: '05/03/2026', evento: 'Alta hospitalaria programada con plan de rehabilitación cardíaca' },
         ],
         pruebasDiagnosticas: [
           { prueba: 'Electrocardiograma de ingreso', resultado: 'Elevación ST en V1-V4, compatible con IAM anterior' },
-          { prueba: 'Troponina I', resultado: '12.5 ng/mL (positiva,confirma daño miocárdico)' },
+          { prueba: 'Troponina I', resultado: '12.5 ng/mL (positiva — confirma daño miocárdico)' },
           { prueba: 'Cateterismo cardíaco', resultado: 'Oclusión total de DA proximal, Cx y CD sin lesiones' },
           { prueba: 'Ecocardiograma post-procedimiento', resultado: 'FEVI 45%, hipocinesia apical leve' },
           { prueba: 'Biometría hemática', resultado: 'Valores dentro de parámetros normales' },
@@ -637,23 +637,23 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       checksPertinencia: [
         'Diagnóstico I21.0 (IAM) confirma indicación de intervención percutánea urgente',
         'Guías AHA/ACC respaldan angioplastía primaria como primera línea en IAM con elevación ST',
-        'Cateterismo diagnóstico confirmó lesión culpable en DA,procedimiento congruente',
+        'Cateterismo diagnóstico confirmó lesión culpable en DA — procedimiento congruente',
         'Colocación de 2 stents medicados acorde a extensión de la lesión',
         'Hospital Nivel 1 con unidad de hemodinámica certificada',
       ],
       insumos: [
         { nombre: 'Honorarios Médicos (Cardiólogo Intervencionista)', checks: ['Especialidad acorde al procedimiento de hemodinámica', 'Importe de $8,600 dentro de tabulador para angioplastía con stent'] },
-        { nombre: 'Estancia Hospitalaria', checks: ['5 días adecuados para IAM con angioplastía primaria', 'UCI 2 días + piso 3 días,esquema estándar post-IAM'] },
+        { nombre: 'Estancia Hospitalaria', checks: ['5 días adecuados para IAM con angioplastía primaria', 'UCI 2 días + piso 3 días — esquema estándar post-IAM'] },
         { nombre: 'Anestesia y Sedación', checks: ['Sedación consciente acorde a cateterismo intervencionista', 'Duración de 2.5 horas coherente con el procedimiento'] },
         { nombre: 'Stents Coronarios Medicados (x2)', checks: ['Stent Xience (Abbott) dentro de rango de precio aprobado', 'Cantidad (2) consistente con lesión reportada en cateterismo'] },
         { nombre: 'Medicamentos Intrahospitalarios', checks: ['Doble antiagregación (aspirina + clopidogrel) acorde a protocolo post-IAM', 'Heparina y protocolo UCI cardiovascular estándar'] },
       ],
       checksDictamen: [
-        'Endoso END-142 (Ampliación Cardiovascular) verificado,elimina coaseguro',
-        'Endoso END-089 (Prótesis/Implantes) verificado,stents cubiertos al 100%',
+        'Endoso END-142 (Ampliación Cardiovascular) verificado — elimina coaseguro',
+        'Endoso END-089 (Prótesis/Implantes) verificado — stents cubiertos al 100%',
         'No se identifican indicios de preexistencia no declarada',
         'Documentación médica completa y congruente con evento agudo',
-        'Importes verificados contra tabulador,desviación en honorarios de +10.3% (dentro de tolerancia)',
+        'Importes verificados contra tabulador — desviación en honorarios de +10.3% (dentro de tolerancia)',
       ],
       resumenFinanciero: {
         montoReclamado: 185000,
@@ -687,16 +687,16 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '4 de 4' }, { label: 'Confianza OCR', value: '93%' }], confidence: 93, duration: '2.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '95%' }, { label: 'Inconsistencias', value: '0' }], confidence: 96, duration: '1.2s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Personaliza,Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '0.8s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Personaliza — Vigente' }, { label: 'Producto', value: 'Individual' }], confidence: 99, duration: '0.8s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '5%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }], confidence: 97, duration: '1.2s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Cirugía General', value: 'Activa,$800K tope' }, { label: 'Hospitalización', value: 'Activa,$1.5M tope' }], confidence: 96, duration: '1.0s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Cirugía General', value: 'Activa — $800K tope' }, { label: 'Hospitalización', value: 'Activa — $1.5M tope' }], confidence: 96, duration: '1.0s' },
           { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Preexistencias', value: 'Sin registros' }, { label: 'Exclusiones', value: 'Ninguna' }], confidence: 99, duration: '0.6s' },
-          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-067 Cirugía Ambulatoria', value: 'Aplica,alta el mismo día' }, { label: 'Endosos revisados', value: '3 de 3' }], confidence: 97, duration: '0.8s' },
+          { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'END-067 Cirugía Ambulatoria', value: 'Aplica — alta el mismo día' }, { label: 'Endosos revisados', value: '3 de 3' }], confidence: 97, duration: '0.8s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Validación Humana' }, { label: 'Motivo', value: 'Monto moderado-alto + cirugía programada' }, { label: 'Recomendación', value: 'ELEGIBLE con dictamen estándar' }], confidence: 93, duration: '0.9s' },
         ],
       },
@@ -738,7 +738,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 5,
     },
     elegibilidad: {
-      resultado: 'Elegible,cobertura quirúrgica confirmada', alertaHumana: true, deducible: 10000, coaseguro: 10,
+      resultado: 'Elegible — cobertura quirúrgica confirmada', alertaHumana: true, deducible: 10000, coaseguro: 10,
       poliza: { tipo: 'Individual', vigente: true, pagada: true, producto: 'Personaliza' },
       coberturas: [
         { nombre: 'Hospitalización', activa: true, limite: 1500000 },
@@ -749,19 +749,19 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       endosos: [
         { id: 'END-067', nombre: 'Cirugía Ambulatoria', descripcion: 'Permite cirugía con alta el mismo día', impacto: 'Reduce costo de habitación', aplica: true },
       ],
-      dictamenPreliminar: 'ELEGIBLE,Cobertura quirúrgica confirmada. Cirugía programada dentro de beneficios.',
+      dictamenPreliminar: 'ELEGIBLE: Cobertura quirúrgica confirmada. Cirugía programada dentro de beneficios.',
       recetaMedicaPendiente: false,
     },
     triaje: {
       rutaActiva: 'reactiva',
       scoreTriaje: 85,
       variables: {
-        perfilClinico: { valor: 'Hernia inguinal,cirugía electiva programada', nivel: 'Medio', peso: 45 },
-        severidadEconomica: { valor: '$125,000,monto moderado-alto', nivel: 'Media', peso: 55 },
-        faseEvento: { valor: 'Electivo,cirugía programada', nivel: 'Electivo', peso: 20 },
-        perfilProveedor: { valor: 'Hospital Ángeles,Nivel 1 con convenio', nivel: 'Nivel 1', peso: 10 },
-        condicionesContractuales: { valor: 'Personaliza,cobertura estándar plus', nivel: 'Mejorado', peso: 15 },
-        alertasFraude: { valor: 'Sin alertas,score 5%', nivel: 'Ninguna', peso: 3 },
+        perfilClinico: { valor: 'Hernia inguinal — cirugía electiva programada', nivel: 'Medio', peso: 45 },
+        severidadEconomica: { valor: '$125,000 — monto moderado-alto', nivel: 'Media', peso: 55 },
+        faseEvento: { valor: 'Electivo — cirugía programada', nivel: 'Electivo', peso: 20 },
+        perfilProveedor: { valor: 'Hospital Ángeles — Nivel 1 con convenio', nivel: 'Nivel 1', peso: 10 },
+        condicionesContractuales: { valor: 'Personaliza — cobertura estándar plus', nivel: 'Mejorado', peso: 15 },
+        alertasFraude: { valor: 'Sin alertas — score 5%', nivel: 'Ninguna', peso: 3 },
       },
       arbolDecision: [
         'Perfil Clínico = Medio → Cirugía electiva sin riesgo vital',
@@ -776,7 +776,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         cargaEquipo: 78,
         recomendacion: 'No se considera necesaria una intervención activa de Case Management. Potencial de contención limitado',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Malla Proceed (Ethicon)', alternativa: 'Malla Ultrapro genérica equivalente', contencionPotencial: '$8,500', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Malla Proceed (Ethicon)', alternativa: 'Malla Ultrapro — genérica equivalente', contencionPotencial: '$8,500', aplica: true },
           honorariosMedicos: { montoActual: '$18,000', promedioHistorico: '$16,500', desviacion: '+9.1%', alerta: false },
           duracionEstancia: { diasProgramados: 1, promedioHistorico: 1, desviacion: '0% (dentro de rango)', alerta: false },
         },
@@ -792,7 +792,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
           'Sin comorbilidades relevantes',
         ],
         observaciones: [
-          'Cirugía programada con técnica laparoscópica,abordaje estándar',
+          'Cirugía programada con técnica laparoscópica — abordaje estándar',
           'Alta esperada el mismo día o al día siguiente',
           'Verificar que honorarios estén dentro de rango de referencia',
         ],
@@ -800,11 +800,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       programacionCirugia: {
         procedimiento: 'Hernioplastía Inguinal Laparoscópica con Malla',
         fecha: '2026-03-05',
-        cirujano: 'Dr. Alejandro Fuentes,Cirugía General',
+        cirujano: 'Dr. Alejandro Fuentes — Cirugía General',
         duracionEstimada: '1.5 horas',
         pertinente: true,
         argumentosPertinencia: [
-          'Ultrasonido confirma hernia inguinal indirecta,indicación quirúrgica clara',
+          'Ultrasonido confirma hernia inguinal indirecta — indicación quirúrgica clara',
           'Abordaje laparoscópico es primera línea para hernia inguinal unilateral',
           'Paciente sin contraindicaciones para cirugía bajo anestesia general',
         ],
@@ -885,14 +885,14 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '2 de 4' }, { label: 'Confianza OCR', value: '78%' }], confidence: 78, duration: '2.3s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '72%' }, { label: 'Inconsistencias', value: '2' }], confidence: 72, duration: '1.5s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Salud Empresarial Plus,Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 90, duration: '1.0s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Salud Empresarial Plus — Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 90, duration: '1.0s' },
         ],
       },
       {
         id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
-          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '72%' }, { label: 'Duplicidad documentos', value: '2 documentos sospechosos' }, { label: 'Proveedor en lista negra', value: 'ALERTA,proveedor marcado' }, { label: 'Patrón de reclamos', value: '3 reclamos similares en 6 meses' }], confidence: 78, duration: '3.2s' },
-          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Rehabilitación', value: 'Activa,tope 12 sesiones' }, { label: 'Exceso sobre tope', value: '8 sesiones no cubiertas' }], confidence: 85, duration: '1.4s' },
+          { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '72%' }, { label: 'Duplicidad documentos', value: '2 documentos sospechosos' }, { label: 'Proveedor en lista negra', value: 'ALERTA: proveedor marcado' }, { label: 'Patrón de reclamos', value: '3 reclamos similares en 6 meses' }], confidence: 78, duration: '3.2s' },
+          { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Rehabilitación', value: 'Activa — tope 12 sesiones' }, { label: 'Exceso sobre tope', value: '8 sesiones no cubiertas' }], confidence: 85, duration: '1.4s' },
           { agentName: 'Motor de Preexistencias', agentRole: 'Preexistencias', outputs: [{ label: 'Lumbalgia previa', value: 'No declarada' }, { label: 'Evaluación', value: 'Posible preexistencia oculta' }], confidence: 72, duration: '1.8s' },
           { agentName: 'Motor de Endosos', agentRole: 'Endosos', outputs: [{ label: 'Endoso rehabilitación', value: 'Límite 12 sesiones' }, { label: 'Proveedor fuera de red', value: 'Sin cobertura directa' }, { label: 'Resultado', value: 'Excede límites del endoso' }], confidence: 80, duration: '1.2s' },
           { agentName: 'Agente Dictaminador', agentRole: 'Dictamen', outputs: [{ label: 'Decisión', value: 'Requiere Supervisión Humana' }, { label: 'Motivo', value: 'Alerta de fraude + proveedor marcado' }, { label: 'Recomendación', value: 'DERIVAR a investigación' }], confidence: 75, duration: '1.5s' },
@@ -911,7 +911,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       {
         id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
-          { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$0,retenido' }, { label: 'Validaciones', value: '2/4 pendientes' }], confidence: 40, duration: '1.0s' },
+          { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$0 — retenido' }, { label: 'Validaciones', value: '2/4 pendientes' }], confidence: 40, duration: '1.0s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '72%' }, { label: 'Resultado', value: 'Investigacion en curso' }, { label: 'Dictamen comite', value: 'Pendiente' }], confidence: 40, duration: '0.8s' },
         ],
       },
@@ -935,31 +935,31 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 72,
     },
     elegibilidad: {
-      resultado: 'Alerta de fraude activada,revision manual obligatoria', alertaHumana: true, deducible: 5000, coaseguro: 20,
+      resultado: 'Alerta de fraude activada — revision manual obligatoria', alertaHumana: true, deducible: 5000, coaseguro: 20,
       poliza: { tipo: 'Colectivo', vigente: true, pagada: true, producto: 'Salud Empresarial Plus' },
       coberturas: [
         { nombre: 'Rehabilitación Fisica', activa: true, limite: 60000 },
         { nombre: 'Consulta Especialidad', activa: true, limite: 25000 },
       ],
       preexistencias: [
-        { condicion: 'Lumbalgia Cronica', declarada: false, aplica: true, justificacion: 'Condicion no declarada en solicitud original,potencial exclusion por omision de preexistencia' },
+        { condicion: 'Lumbalgia Cronica', declarada: false, aplica: true, justificacion: 'Condicion no declarada en solicitud original — potencial exclusion por omision de preexistencia' },
       ],
       endosos: [
-        { id: 'END-201', nombre: 'Endoso de Rehabilitación Extendida', descripcion: 'Amplia sesiones de fisioterapia de 12 a 24', impacto: 'No aplica,proveedor fuera de red', aplica: false },
+        { id: 'END-201', nombre: 'Endoso de Rehabilitación Extendida', descripcion: 'Amplia sesiones de fisioterapia de 12 a 24', impacto: 'No aplica — proveedor fuera de red', aplica: false },
       ],
-      dictamenPreliminar: 'ALERTA,Fraude potencial detectado. Preexistencia no declarada, proveedor fuera de red, patron de reclamos atipico. Requiere investigacion detallada antes de dictamen.',
+      dictamenPreliminar: 'ALERTA: Fraude potencial detectado. Preexistencia no declarada, proveedor fuera de red, patron de reclamos atipico. Requiere investigacion detallada antes de dictamen.',
       recetaMedicaPendiente: true,
     },
     triaje: {
       rutaActiva: 'detallado',
       scoreTriaje: 72,
       variables: {
-        perfilClinico: { valor: 'Lumbalgia crónica (M54.2),complejidad media', nivel: 'Medio', peso: 40 },
-        severidadEconomica: { valor: '$78,000,excede tope de cobertura (12 sesiones)', nivel: 'Media', peso: 55 },
-        faseEvento: { valor: 'Post-Agudo,rehabilitación prolongada', nivel: 'Post-Agudo', peso: 45 },
-        perfilProveedor: { valor: 'Centro Rehabilitación Vita,Fuera de Red, marcado', nivel: 'Fuera de Red', peso: 92 },
-        condicionesContractuales: { valor: 'Póliza Personaliza,tope limitado rehabilitación', nivel: 'Estándar', peso: 60 },
-        alertasFraude: { valor: 'ALERTA ALTA,score 72%, proveedor en lista negra', nivel: 'Alta', peso: 95 },
+        perfilClinico: { valor: 'Lumbalgia crónica (M54.2) — complejidad media', nivel: 'Medio', peso: 40 },
+        severidadEconomica: { valor: '$78,000 — excede tope de cobertura (12 sesiones)', nivel: 'Media', peso: 55 },
+        faseEvento: { valor: 'Post-Agudo — rehabilitación prolongada', nivel: 'Post-Agudo', peso: 45 },
+        perfilProveedor: { valor: 'Centro Rehabilitación Vita — Fuera de Red — marcado', nivel: 'Fuera de Red', peso: 92 },
+        condicionesContractuales: { valor: 'Póliza Personaliza — tope limitado rehabilitación', nivel: 'Estándar', peso: 60 },
+        alertasFraude: { valor: 'ALERTA ALTA: score 72% — proveedor en lista negra', nivel: 'Alta', peso: 95 },
       },
       arbolDecision: [
         'Alertas Fraude = Alta (72%) → PRIORIDAD: señal dominante',
@@ -982,31 +982,31 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     },
     dictamenMedico: {
       expedienteMedico: {
-        diagnosticoPrincipal: 'Lumbalgia Crónica (M54.2),Fisioterapia 20 sesiones',
+        diagnosticoPrincipal: 'Lumbalgia Crónica (M54.2) — Fisioterapia 20 sesiones',
         codigoCIE: 'M54.2',
         historialRelevante: [
-          '3 reclamos de fisioterapia en los últimos 6 meses,patrón atípico',
+          '3 reclamos de fisioterapia en los últimos 6 meses — patrón atípico',
           'Diagnóstico de lumbalgia crónica sin estudios de imagen que lo respalden',
           'Proveedor "Centro Rehabilitación Vita" fuera de red y marcado en sistema',
         ],
         observaciones: [
-          'ALERTA: Proveedor en lista de vigilancia,investigación activa',
+          'ALERTA: Proveedor en lista de vigilancia — investigación activa',
           'ALERTA: 20 sesiones solicitadas exceden tope de póliza (12 sesiones)',
           'ALERTA: Sin resonancia magnética ni estudios que justifiquen tratamiento prolongado',
-          'Referencia médica pendiente de verificación,posible documento editado',
+          'Referencia médica pendiente de verificación — posible documento editado',
         ],
       },
       contextoClinico: {
         timeline: [
-          { fecha: '10/12/2025', evento: 'Primera consulta por lumbalgia,sin estudios de imagen' },
+          { fecha: '10/12/2025', evento: 'Primera consulta por lumbalgia — sin estudios de imagen' },
           { fecha: '15/12/2025', evento: 'Inicio de sesiones de fisioterapia (1er reclamo: 8 sesiones)' },
           { fecha: '20/01/2026', evento: 'Segundo reclamo de fisioterapia (10 sesiones adicionales)' },
-          { fecha: '15/02/2026', evento: 'Tercer reclamo actual,20 sesiones de fisioterapia' },
+          { fecha: '15/02/2026', evento: 'Tercer reclamo actual — 20 sesiones de fisioterapia' },
         ],
         pruebasDiagnosticas: [
-          { prueba: 'Resonancia magnética lumbar', resultado: 'NO PRESENTADA,faltante crítico' },
+          { prueba: 'Resonancia magnética lumbar', resultado: 'NO PRESENTADA — faltante crítico' },
           { prueba: 'Radiografía lumbar', resultado: 'No disponible en expediente' },
-          { prueba: 'Referencia médica', resultado: 'Documento en revisión,posibles alteraciones detectadas' },
+          { prueba: 'Referencia médica', resultado: 'Documento en revisión — posibles alteraciones detectadas' },
         ],
         adjuntos: [
           { tipo: 'Recibos de fisioterapia', cantidad: 3 },
@@ -1017,8 +1017,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'FALLA: Diagnóstico NO soportado por estudios de imagen (resonancia o radiografía faltante)',
         'FALLA: 20 sesiones exceden el tope de póliza de 12 sesiones',
         'FALLA: Proveedor fuera de red y marcado en lista de vigilancia',
-        'FALLA: Patrón de 3 reclamos en 6 meses sin evidencia de mejoría documentada',
-        'FALLA: Referencia médica con posibles alteraciones,pendiente de verificación',
+        'FALLA: Patrón de 3 reclamos en 6 meses — sin evidencia de mejoría documentada',
+        'FALLA: Referencia médica con posibles alteraciones — pendiente de verificación',
       ],
       insumos: [
         { nombre: 'Sesiones de Fisioterapia (20)', checks: ['FALLA: Costo por sesión de $3,900 supera el promedio de $1,800 (+116.7%)', 'FALLA: 20 sesiones exceden tope de póliza (12 sesiones máximo)'] },
@@ -1026,8 +1026,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         { nombre: 'Material Terapéutico', checks: ['FALLA: Material facturado no consistente con fisioterapia estándar para lumbalgia', 'Montos por sesión significativamente elevados'] },
       ],
       checksDictamen: [
-        'FALLA: Preexistencia no declarada (lumbalgia crónica),posible exclusión por omisión',
-        'FALLA: Proveedor en lista de vigilancia,investigación activa',
+        'FALLA: Preexistencia no declarada (lumbalgia crónica) — posible exclusión por omisión',
+        'FALLA: Proveedor en lista de vigilancia — investigación activa',
         'FALLA: Documentación médica incompleta y con posibles alteraciones',
         'FALLA: Importes significativamente por encima del tabulador (+116.7% en honorarios)',
       ],
@@ -1043,7 +1043,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: ['ALERTA: Verificar existencia real del tratamiento', 'Confirmar diagnóstico de lumbalgia con estudios de imagen', 'Solicitar segunda opinión médica'],
       asistenciaFraudeManual: 'ATENCIÓN: Se detectaron patrones consistentes con facturación duplicada y sobre-codificación. Verificar que los servicios facturados correspondan a tratamientos efectivamente realizados. El proveedor se encuentra en lista de vigilancia.',
     },
-    pago: { validaciones: ['Investigacion de fraude completada', 'Dictamen de comite antifraude', 'Revision de pertinencia medica', 'Validacion juridica'], montoFinal: 0, ajustes: ['Pago retenido,investigacion en curso', 'Proveedor marcado para auditoria', 'Exceso sobre tope de 12 sesiones: -$39,000'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    pago: { validaciones: ['Investigacion de fraude completada', 'Dictamen de comite antifraude', 'Revision de pertinencia medica', 'Validacion juridica'], montoFinal: 0, ajustes: ['Pago retenido — investigacion en curso', 'Proveedor marcado para auditoria', 'Exceso sobre tope de 12 sesiones: -$39,000'], estado: 'Reclamo procesado bajo modelo inteligente' },
     analitica: { automatizacion: 40, tiempoHumano: '180 min', riesgoResidual: 72, contencion: 78000 },
   },
 
@@ -1063,7 +1063,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '1 de 1' }, { label: 'Confianza OCR', value: '99%' }], confidence: 99, duration: '0.5s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '100%' }, { label: 'Inconsistencias', value: '0' }], confidence: 100, duration: '0.3s' },
-          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Basico Salud Empresarial,Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 100, duration: '0.2s' },
+          { agentName: 'Agente de Contexto de Póliza', agentRole: 'Póliza', outputs: [{ label: 'Póliza', value: 'Basico Salud Empresarial — Vigente' }, { label: 'Producto', value: 'Colectivo' }], confidence: 100, duration: '0.2s' },
         ],
       },
       {
@@ -1109,26 +1109,26 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       fraudeScoreInicial: 1,
     },
     elegibilidad: {
-      resultado: 'Aprobacion instantanea,cobertura basica confirmada', alertaHumana: false, deducible: 0, coaseguro: 0,
+      resultado: 'Aprobacion instantanea — cobertura basica confirmada', alertaHumana: false, deducible: 0, coaseguro: 0,
       poliza: { tipo: 'Colectivo', vigente: true, pagada: true, producto: 'Basico Salud Empresarial' },
       coberturas: [
         { nombre: 'Consulta General', activa: true, limite: 10000 },
       ],
       preexistencias: [],
       endosos: [],
-      dictamenPreliminar: 'ELEGIBLE,Cobertura basica de consulta confirmada. Sin deducible ni coaseguro. Aprobacion instantanea.',
+      dictamenPreliminar: 'ELEGIBLE: Cobertura basica de consulta confirmada. Sin deducible ni coaseguro. Aprobacion instantanea.',
       recetaMedicaPendiente: false,
     },
     triaje: {
       rutaActiva: 'automatica',
       scoreTriaje: 99,
       variables: {
-        perfilClinico: { valor: 'Consulta general (Z00.0),mínima complejidad', nivel: 'Bajo', peso: 2 },
-        severidadEconomica: { valor: '$450,monto mínimo', nivel: 'Baja', peso: 1 },
-        faseEvento: { valor: 'Electivo,consulta programada', nivel: 'Electivo', peso: 1 },
-        perfilProveedor: { valor: 'Consultorio Dr. Ramírez,en red', nivel: 'Nivel 2', peso: 5 },
+        perfilClinico: { valor: 'Consulta general (Z00.0) — mínima complejidad', nivel: 'Bajo', peso: 2 },
+        severidadEconomica: { valor: '$450 — monto mínimo', nivel: 'Baja', peso: 1 },
+        faseEvento: { valor: 'Electivo — consulta programada', nivel: 'Electivo', peso: 1 },
+        perfilProveedor: { valor: 'Consultorio Dr. Ramírez — en red', nivel: 'Nivel 2', peso: 5 },
         condicionesContractuales: { valor: 'Póliza Esencial Básica', nivel: 'Estándar', peso: 2 },
-        alertasFraude: { valor: 'Sin alertas,score <1%', nivel: 'Ninguna', peso: 0 },
+        alertasFraude: { valor: 'Sin alertas — score <1%', nivel: 'Ninguna', peso: 0 },
       },
       arbolDecision: [
         'Todas las variables en nivel mínimo → Sin factores de complejidad',
@@ -1147,7 +1147,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         diagnosticoPrincipal: 'Consulta médica general (Z00.0)',
         codigoCIE: 'Z00.0',
         historialRelevante: ['Sin antecedentes relevantes', 'Primera consulta del año'],
-        observaciones: ['Caso trivial,sin hallazgos que requieran análisis'],
+        observaciones: ['Caso trivial — sin hallazgos que requieran análisis'],
       },
       contextoClinico: {
         timeline: [
@@ -1165,7 +1165,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'Monto consistente con tabulador de consulta de primer nivel',
       ],
       insumos: [
-        { nombre: 'Consulta Médica General', checks: ['Importe de $450 dentro de rango para consulta de primer nivel', 'Proveedor en red,consultorio verificado'] },
+        { nombre: 'Consulta Médica General', checks: ['Importe de $450 dentro de rango para consulta de primer nivel', 'Proveedor en red — consultorio verificado'] },
       ],
       checksDictamen: [
         'Sin endosos aplicables',
@@ -1184,7 +1184,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: [],
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
-    pago: { validaciones: ['Cobertura vigente', 'Sin deducible', 'Score fraude < 1%'], montoFinal: 450, ajustes: ['Sin ajustes,cobertura total'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    pago: { validaciones: ['Cobertura vigente', 'Sin deducible', 'Score fraude < 1%'], montoFinal: 450, ajustes: ['Sin ajustes — cobertura total'], estado: 'Reclamo procesado bajo modelo inteligente' },
     analitica: { automatizacion: 98, tiempoHumano: '0 min', riesgoResidual: 1, contencion: 350 },
   },
 ];
@@ -1433,7 +1433,14 @@ const E2EClaimsWorkstation: React.FC = () => {
     setStageStatuses((prev) => ({ ...prev, [currentStage.id]: 'active' }));
     setShowStageDetail(currentStage.id);
 
-    // After 2 seconds, mark as complete and move to next
+    // Calculate delay: wait for agent flow graph + agent outputs to finish before marking complete
+    const flow = getAgentFlow(currentStage.id);
+    const totalDetails = flow ? flow.nodes.reduce((s, n) => s + (n.details?.length || 0), 0) : 0;
+    const graphDelay = flow && flow.nodes.length > 0 ? flow.nodes.length * 2.0 + totalDetails * 0.5 + 1.0 : 0.3;
+    const agentCount = currentStage.agents.length;
+    const totalAnimationMs = (graphDelay + agentCount * 0.2 + 1.0) * 1000;
+    const stageDelay = Math.max(2000, totalAnimationMs);
+
     setTimeout(() => {
       setStageStatuses((prev) => ({ ...prev, [currentStage.id]: 'complete' }));
       setIsProcessing(false);
@@ -1445,8 +1452,8 @@ const E2EClaimsWorkstation: React.FC = () => {
       if (nextIndex >= activeStages.length) {
         setSimulationState('complete');
       }
-    }, 2000);
-  }, [claimConfig, isProcessing, simulationState, pendingStageIndex, activeStages]);
+    }, stageDelay);
+  }, [claimConfig, isProcessing, simulationState, pendingStageIndex, activeStages, getAgentFlow]);
 
   const handleSelectClaimType = useCallback((id: ClaimTypeId) => {
     const config = CLAIM_TYPES.find((c) => c.id === id);
@@ -1535,7 +1542,7 @@ const E2EClaimsWorkstation: React.FC = () => {
     const statusIcon = (estado: string) => estado === 'verificado' ? '✅' : estado === 'pendiente' ? '⏳' : '❌';
     const confColor = (c: number) => c > 90 ? '#22c55e' : c > 80 ? '#F5A623' : '#ef4444';
 
-    const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${config.validaciones.folioId},Expediente Consolidado</title>
+    const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${config.validaciones.folioId} — Expediente Consolidado</title>
 <style>
   @page { margin: 20mm; size: A4; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -2008,6 +2015,17 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
     );
   };
 
+  // Calculate total delay after all agent outputs have appeared
+  const getContentDelay = (stageId: StageId): number => {
+    if (!claimConfig) return 0;
+    const stageConfig = claimConfig.stages.find((s) => s.id === stageId);
+    if (!stageConfig || stageConfig.agents.length === 0) return 0;
+    const flow = getAgentFlow(stageId);
+    const totalDetails = flow ? flow.nodes.reduce((s, n) => s + (n.details?.length || 0), 0) : 0;
+    const graphDelay = flow && flow.nodes.length > 0 ? flow.nodes.length * 2.0 + totalDetails * 0.5 + 1.0 : 0.3;
+    return graphDelay + stageConfig.agents.length * 0.2 + 0.5;
+  };
+
   const renderAgentGraph = (stageId: StageId) => {
     const flow = getAgentFlow(stageId);
     if (!flow || flow.nodes.length === 0) return null;
@@ -2048,6 +2066,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
             {renderAgentGraph(stageId)}
             {renderAgentOutputs(stageId)}
 
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: getContentDelay(stageId) }}>
             {/* Step 1: Documentos Detectados */}
             <div className={styles.aperturaStep}>
               <h4 className={styles.aperturaStepTitle}>
@@ -2138,6 +2157,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 <FileText size={16} /> Descargar Resumen de Validaciones
               </button>
             </div>
+            </motion.div>
           </div>
         );
       }
@@ -2150,6 +2170,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
             {renderAgentGraph(stageId)}
             {renderAgentOutputs(stageId)}
 
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: getContentDelay(stageId) }}>
             {/* Resumen de Validaciones Previas */}
             <div style={{ padding: '12px 16px', background: 'rgba(1,117,216,0.04)', border: '1px solid rgba(1,117,216,0.12)', borderRadius: 'var(--radius-md)', marginBottom: 16, display: 'flex', gap: 16, flexWrap: 'wrap' as const }}>
               <div><span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', textTransform: 'uppercase' as const }}>Folio</span><br/><span style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-primary)' }}>{claimConfig.validaciones.folioId}</span></div>
@@ -2320,6 +2341,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 <FileText size={16} /> Descargar Nota de Elegibilidad
               </button>
             </div>
+            </motion.div>
           </div>
         );
       }
@@ -2367,6 +2389,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
             {renderAgentGraph(stageId)}
             {renderAgentOutputs(stageId)}
 
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: getContentDelay(stageId) }}>
             {/* Score Summary Header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, padding: '16px 20px', background: 'rgba(1,117,216,0.06)', border: '1px solid rgba(1,117,216,0.15)', borderRadius: 'var(--radius-md)' }}>
               <div style={{ textAlign: 'center', minWidth: 80 }}>
@@ -2637,6 +2660,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
 
             {/* Fraud banner */}
             {renderFraudBanner(claimConfig.validaciones.fraudeScoreInicial, 'el triaje')}
+            </motion.div>
           </div>
         );
       }
@@ -2991,6 +3015,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
         return (
           <div>
             {renderAgentOutputs(stageId)}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: getContentDelay(stageId) }}>
             <div className={styles.pagoValidaciones}>
               <h4 className={styles.pagoValidacionesTitle}>
                 <CheckCircle size={14} style={{ color: '#22c55e' }} /> Validaciones Completadas
@@ -3067,9 +3092,10 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 style={{ padding: '14px 16px', background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', gap: 10 }}
               >
                 <AlertTriangle size={16} style={{ color: '#ef4444' }} />
-                <span style={{ fontSize: '0.85rem', color: '#ef4444', fontWeight: 600 }}>Pago rechazado,derivado a revisión adicional del comité</span>
+                <span style={{ fontSize: '0.85rem', color: '#ef4444', fontWeight: 600 }}>Pago rechazado — derivado a revisión adicional del comité</span>
               </motion.div>
             )}
+            </motion.div>
           </div>
         );
       }
@@ -3111,7 +3137,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             {/* Hero + Timer Bar */}
             <div className={styles.heroBanner} style={{ marginBottom: 20 }}>
-              <h1 className={styles.heroTitle}>Parrilla de Trabajo — Gestión E2E de Siniestros</h1>
+              <h1 className={styles.heroTitle}>Gestión de Siniestros</h1>
               <p className={styles.heroSubtitle}>
                 Seleccione un caso para iniciar el flujo de revisión. Los casos están ordenados por urgencia.
               </p>
