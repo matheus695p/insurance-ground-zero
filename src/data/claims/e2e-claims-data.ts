@@ -243,7 +243,7 @@ export const claimsAgents: ClaimsAgent[] = [
     escalamientoDisparado: true,
     hallazgos: [
       { severidad: 'critico', categoria: 'Fraude', hallazgo: 'Identificación de desviaciones en pagos y potencial fraude en proveedores de alto volumen', evidencia: 'Análisis de patrones de facturación de 200 proveedores', recomendacion: 'Implementar monitoreo continuo de proveedores con score > 50' },
-      { severidad: 'alto', categoria: 'Contención', hallazgo: 'Contención de costos derivada de supervisión hospitalaria genera ahorros del 8-15%', evidencia: 'Seguimiento de casos supervisados vs no supervisados en 12 meses', recomendacion: 'Expandir supervisión proactiva a casos de Gestión Proactiva' },
+      { severidad: 'alto', categoria: 'Contención', hallazgo: 'Contención de costos derivada de supervisión hospitalaria genera contención del 8-15%', evidencia: 'Seguimiento de casos supervisados vs no supervisados en 12 meses', recomendacion: 'Expandir supervisión proactiva a casos de Gestión Proactiva' },
       { severidad: 'medio', categoria: 'Patrones', hallazgo: 'Detección de facturación duplicada en 3.2% de los siniestros', evidencia: 'Cruce automático de facturas por proveedor/fecha/concepto', recomendacion: 'Activar bloqueo automático de facturas duplicadas' },
     ],
   },

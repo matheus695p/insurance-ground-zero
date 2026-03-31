@@ -114,12 +114,12 @@ interface ClaimTypeConfig {
     };
     arbolDecision: string[];
     caseManagement: {
-      potencialAhorro: number;
-      probabilidadAhorro: number;
+      potencialContencion: number;
+      probabilidadContencion: number;
       cargaEquipo: number;
       recomendacion: string;
       palancas?: {
-        medicamentosBiocompatibles: { actual: string; alternativa: string; ahorroPotencial: string; aplica: boolean };
+        medicamentosBiocompatibles: { actual: string; alternativa: string; contencionPotencial: string; aplica: boolean };
         honorariosMedicos: { montoActual: string; promedioHistorico: string; desviacion: string; alerta: boolean };
         duracionEstancia: { diasProgramados: number; promedioHistorico: number; desviacion: string; alerta: boolean };
       };
@@ -161,7 +161,7 @@ interface ClaimTypeConfig {
     asistenciaFraudeManual: string;
   };
   pago: { validaciones: string[]; montoFinal: number; ajustes: string[]; estado: string };
-  analitica: { automatizacion: number; tiempoHumano: string; riesgoResidual: number; ahorro: number };
+  analitica: { automatizacion: number; tiempoHumano: string; riesgoResidual: number; contencion: number };
 }
 
 // ---------------------------------------------------------------------------
@@ -247,7 +247,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     segmento: 'case-management',
     stages: [
       {
-        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '7 de 8' }, { label: 'Confianza OCR', value: '92%' }], confidence: 92, duration: '3.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '90%' }, { label: 'Inconsistencias', value: '0' }], confidence: 95, duration: '2.0s' },
@@ -255,7 +255,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'manual', duration: 1.5,
+        id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '4%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Hospital verificado', value: 'Nivel 1,convenio activo' }], confidence: 98, duration: '2.4s' },
           { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium Plus' }, { label: 'Cirugía cardiovascular', value: 'Cubierta,$1.5M tope' }, { label: 'UCI', value: 'Cubierta,$800K' }, { label: 'Rehabilitación', value: 'Cubierta,$200K' }, { label: 'Prótesis', value: 'Cubierta por endoso' }], confidence: 96, duration: '2.2s' },
@@ -271,11 +271,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'dictamen-medico', label: 'Dictamen Médico', icon: <Users size={16} />, mode: 'manual', duration: 1.5,
+        id: 'dictamen-medico', label: 'Dictamen de Pertinencia Médica', icon: <Users size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [],
       },
       {
-        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$420,000' }, { label: 'Validaciones', value: '5/5 completadas' }, { label: 'Contención total', value: '-$100,000 vs reserva' }], confidence: 95, duration: '1.8s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '4%' }, { label: 'Resultado', value: 'Limpio' }], confidence: 98, duration: '0.7s' },
@@ -347,12 +347,12 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'RESULTADO: Complejidad máxima + Costo extremo + Multicobertura → Case Management',
       ],
       caseManagement: {
-        potencialAhorro: 60000,
-        probabilidadAhorro: 80,
+        potencialContencion: 60000,
+        probabilidadContencion: 80,
         cargaEquipo: 72,
         recomendacion: 'Se recomienda intervención activa de Case Management por alto potencial de contención',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Medicamentos UCI paquete premium', alternativa: 'Paquete estándar con genéricos equivalentes', ahorroPotencial: '$18,500 en estancia UCI', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Medicamentos UCI paquete premium', alternativa: 'Paquete estándar con genéricos equivalentes', contencionPotencial: '$18,500 en estancia UCI', aplica: true },
           honorariosMedicos: { montoActual: '$45,000', promedioHistorico: '$42,000', desviacion: '+7.1%', alerta: false },
           duracionEstancia: { diasProgramados: 8, promedioHistorico: 10, desviacion: '-20% (favorable)', alerta: false },
         },
@@ -455,8 +455,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: ['Verificar indicación de bypass vs angioplastía', 'Confirmar necesidad de 3 puentes', 'Revisar plan de rehabilitación cardíaca'],
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
-    pago: { validaciones: ['Cobertura multilinea vigente', 'Pertinencia medica 97%', 'Score fraude 4% (limpio)', 'Supervisor medico autorizo', 'Comite medico aprobo'], montoFinal: 420000, ajustes: ['Deducible: -$25,000', 'Coaseguro 10%: -$49,500', 'Contención hospitalaria: -$35,000 vs reserva', 'Paquete negociado: ahorro $25,500'], estado: 'Reclamo procesado bajo modelo inteligente' },
-    analitica: { automatizacion: 55, tiempoHumano: '320 min', riesgoResidual: 12, ahorro: 100000 },
+    pago: { validaciones: ['Cobertura multilinea vigente', 'Pertinencia medica 97%', 'Score fraude 4% (limpio)', 'Supervisor medico autorizo', 'Comite medico aprobo'], montoFinal: 420000, ajustes: ['Deducible: -$25,000', 'Coaseguro 10%: -$49,500', 'Contención hospitalaria: -$35,000 vs reserva', 'Paquete negociado: contención $25,500'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    analitica: { automatizacion: 55, tiempoHumano: '320 min', riesgoResidual: 12, contencion: 100000 },
   },
 
   // -- 2. Gestión Proactiva --
@@ -471,7 +471,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     segmento: 'proactiva',
     stages: [
       {
-        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '5 de 6' }, { label: 'Confianza OCR', value: '94%' }], confidence: 94, duration: '3.4s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '92%' }, { label: 'Inconsistencias', value: '0' }], confidence: 97, duration: '1.8s' },
@@ -479,7 +479,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '8%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }, { label: 'Incidencias previas', value: '0' }], confidence: 96, duration: '2.1s' },
           { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Versátil Premium' }, { label: 'Hospitalización', value: 'Activa,$2.5M tope' }, { label: 'Cardiovascular', value: 'Cubierta al 100%' }, { label: 'UCI', value: 'Incluida' }], confidence: 97, duration: '1.8s' },
@@ -495,11 +495,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'dictamen-medico', label: 'Dictamen Médico', icon: <Activity size={16} />, mode: 'manual', duration: 1.5,
+        id: 'dictamen-medico', label: 'Dictamen de Pertinencia Médica', icon: <Activity size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [],
       },
       {
-        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$153,000' }, { label: 'Validaciones', value: '4/4 completadas' }, { label: 'Contención hospitalaria', value: '-$7,000 vs reserva' }], confidence: 96, duration: '1.2s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '8%' }, { label: 'Resultado', value: 'Limpio' }], confidence: 97, duration: '0.6s' },
@@ -567,12 +567,12 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'RESULTADO: Perfil Crítico + Severidad Alta + Potencial de Contención → Gestión Proactiva',
       ],
       caseManagement: {
-        potencialAhorro: 32000,
-        probabilidadAhorro: 75,
+        potencialContencion: 32000,
+        probabilidadContencion: 75,
         cargaEquipo: 78,
-        recomendacion: 'Se recomienda monitoreo proactivo. El potencial de ahorro justifica seguimiento activo',
+        recomendacion: 'Se recomienda monitoreo proactivo. El potencial de contención justifica seguimiento activo',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic),biocompatible equivalente', ahorroPotencial: '$4,200 por unidad', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Stent coronario medicado Xience (Abbott)', alternativa: 'Stent Resolute Onyx (Medtronic),biocompatible equivalente', contencionPotencial: '$4,200 por unidad', aplica: true },
           honorariosMedicos: { montoActual: '$8,600', promedioHistorico: '$7,800', desviacion: '+10.3%', alerta: false },
           duracionEstancia: { diasProgramados: 5, promedioHistorico: 6, desviacion: '-16.7% (favorable)', alerta: false },
         },
@@ -668,7 +668,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
     pago: { validaciones: ['Cobertura hospitalaria vigente', 'Pertinencia medica 95%', 'Score fraude 8% (limpio)', 'Supervisor medico autorizo alta'], montoFinal: 153000, ajustes: ['Deducible: -$15,000', 'Coaseguro 10%: -$17,000', 'Contención hospitalaria: -$7,000 vs reserva'], estado: 'Reclamo procesado bajo modelo inteligente' },
-    analitica: { automatizacion: 65, tiempoHumano: '45 min', riesgoResidual: 8, ahorro: 32000 },
+    analitica: { automatizacion: 65, tiempoHumano: '45 min', riesgoResidual: 8, contencion: 32000 },
   },
 
   // -- 3. Gestión Reactiva --
@@ -683,7 +683,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     segmento: 'reactiva',
     stages: [
       {
-        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '4 de 4' }, { label: 'Confianza OCR', value: '93%' }], confidence: 93, duration: '2.0s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '95%' }, { label: 'Inconsistencias', value: '0' }], confidence: 96, duration: '1.2s' },
@@ -691,7 +691,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '5%' }, { label: 'Duplicidad documentos', value: 'No detectada' }, { label: 'Listas negras', value: 'Sin coincidencias' }], confidence: 97, duration: '1.2s' },
           { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Cirugía General', value: 'Activa,$800K tope' }, { label: 'Hospitalización', value: 'Activa,$1.5M tope' }], confidence: 96, duration: '1.0s' },
@@ -707,11 +707,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'dictamen-medico', label: 'Dictamen Médico', icon: <Stethoscope size={16} />, mode: 'manual', duration: 1.5,
+        id: 'dictamen-medico', label: 'Dictamen de Pertinencia Médica', icon: <Stethoscope size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [],
       },
       {
-        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$103,500' }, { label: 'Validaciones', value: '4/4 completadas' }], confidence: 95, duration: '0.8s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '5%' }, { label: 'Resultado', value: 'Limpio' }], confidence: 97, duration: '0.4s' },
@@ -771,12 +771,12 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'RESULTADO: Complejidad media + Cirugía electiva + Sin alertas → Gestión Reactiva',
       ],
       caseManagement: {
-        potencialAhorro: 8500,
-        probabilidadAhorro: 40,
+        potencialContencion: 8500,
+        probabilidadContencion: 40,
         cargaEquipo: 78,
-        recomendacion: 'No se considera necesaria una intervención activa de Case Management. Potencial de ahorro limitado',
+        recomendacion: 'No se considera necesaria una intervención activa de Case Management. Potencial de contención limitado',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'Malla Proceed (Ethicon)', alternativa: 'Malla Ultrapro genérica equivalente', ahorroPotencial: '$8,500', aplica: true },
+          medicamentosBiocompatibles: { actual: 'Malla Proceed (Ethicon)', alternativa: 'Malla Ultrapro genérica equivalente', contencionPotencial: '$8,500', aplica: true },
           honorariosMedicos: { montoActual: '$18,000', promedioHistorico: '$16,500', desviacion: '+9.1%', alerta: false },
           duracionEstancia: { diasProgramados: 1, promedioHistorico: 1, desviacion: '0% (dentro de rango)', alerta: false },
         },
@@ -865,8 +865,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       alertasMedico: ['Verificar indicación quirúrgica laparoscópica vs abierta', 'Confirmar tipo de malla utilizada'],
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
-    pago: { validaciones: ['Cobertura quirúrgica vigente', 'Pertinencia médica 93%', 'Score fraude 5%', 'Dictaminador validó'], montoFinal: 103500, ajustes: ['Deducible: -$10,000', 'Coaseguro 10%: -$11,500', 'Malla genérica: ahorro $8,500'], estado: 'Reclamo procesado bajo modelo inteligente' },
-    analitica: { automatizacion: 60, tiempoHumano: '25 min', riesgoResidual: 5, ahorro: 19000 },
+    pago: { validaciones: ['Cobertura quirúrgica vigente', 'Pertinencia médica 93%', 'Score fraude 5%', 'Dictaminador validó'], montoFinal: 103500, ajustes: ['Deducible: -$10,000', 'Coaseguro 10%: -$11,500', 'Malla genérica: contención $8,500'], estado: 'Reclamo procesado bajo modelo inteligente' },
+    analitica: { automatizacion: 60, tiempoHumano: '25 min', riesgoResidual: 5, contencion: 19000 },
   },
 
   // -- 4. Análisis Detallado --
@@ -881,7 +881,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
     segmento: 'detallado',
     stages: [
       {
-        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'ia-asistido', duration: 1.5,
+        id: 'validaciones', label: 'Validaciones', icon: <Upload size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Ingesta Documental', agentRole: 'Extracción', outputs: [{ label: 'Documentos procesados', value: '2 de 4' }, { label: 'Confianza OCR', value: '78%' }], confidence: 78, duration: '2.3s' },
           { agentName: 'Agente de Validación de Datos', agentRole: 'Validación', outputs: [{ label: 'Campos completos', value: '72%' }, { label: 'Inconsistencias', value: '2' }], confidence: 72, duration: '1.5s' },
@@ -889,7 +889,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'manual', duration: 1.5,
+        id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '72%' }, { label: 'Duplicidad documentos', value: '2 documentos sospechosos' }, { label: 'Proveedor en lista negra', value: 'ALERTA,proveedor marcado' }, { label: 'Patrón de reclamos', value: '3 reclamos similares en 6 meses' }], confidence: 78, duration: '3.2s' },
           { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Personaliza' }, { label: 'Rehabilitación', value: 'Activa,tope 12 sesiones' }, { label: 'Exceso sobre tope', value: '8 sesiones no cubiertas' }], confidence: 85, duration: '1.4s' },
@@ -905,11 +905,11 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'dictamen-medico', label: 'Dictamen Médico', icon: <Search size={16} />, mode: 'manual', duration: 1.5,
+        id: 'dictamen-medico', label: 'Dictamen de Pertinencia Médica', icon: <Search size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [],
       },
       {
-        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'manual', duration: 1.5,
+        id: 'pago', label: 'Pago', icon: <CreditCard size={16} />, mode: 'automatizado', duration: 1.5,
         agents: [
           { agentName: 'Agente de Liquidación', agentRole: 'Pagos', outputs: [{ label: 'Monto autorizado', value: '$0,retenido' }, { label: 'Validaciones', value: '2/4 pendientes' }], confidence: 40, duration: '1.0s' },
           { agentName: 'Agente Antifraude Final', agentRole: 'Control', outputs: [{ label: 'Score fraude final', value: '72%' }, { label: 'Resultado', value: 'Investigacion en curso' }, { label: 'Dictamen comite', value: 'Pendiente' }], confidence: 40, duration: '0.8s' },
@@ -969,12 +969,12 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'RESULTADO: Alertas de Fraude dominantes + Proveedor marcado → Análisis Detallado (Investigación)',
       ],
       caseManagement: {
-        potencialAhorro: 78000,
-        probabilidadAhorro: 90,
+        potencialContencion: 78000,
+        probabilidadContencion: 90,
         cargaEquipo: 78,
         recomendacion: 'Derivar a investigación de fraude. El potencial de recuperación justifica recursos dedicados',
         palancas: {
-          medicamentosBiocompatibles: { actual: 'N/A', alternativa: 'N/A', ahorroPotencial: 'N/A', aplica: false },
+          medicamentosBiocompatibles: { actual: 'N/A', alternativa: 'N/A', contencionPotencial: 'N/A', aplica: false },
           honorariosMedicos: { montoActual: '$3,900/sesión', promedioHistorico: '$1,800/sesión', desviacion: '+116.7%', alerta: true },
           duracionEstancia: { diasProgramados: 20, promedioHistorico: 10, desviacion: '+100% (ALERTA)', alerta: true },
         },
@@ -1044,7 +1044,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       asistenciaFraudeManual: 'ATENCIÓN: Se detectaron patrones consistentes con facturación duplicada y sobre-codificación. Verificar que los servicios facturados correspondan a tratamientos efectivamente realizados. El proveedor se encuentra en lista de vigilancia.',
     },
     pago: { validaciones: ['Investigacion de fraude completada', 'Dictamen de comite antifraude', 'Revision de pertinencia medica', 'Validacion juridica'], montoFinal: 0, ajustes: ['Pago retenido,investigacion en curso', 'Proveedor marcado para auditoria', 'Exceso sobre tope de 12 sesiones: -$39,000'], estado: 'Reclamo procesado bajo modelo inteligente' },
-    analitica: { automatizacion: 40, tiempoHumano: '180 min', riesgoResidual: 72, ahorro: 78000 },
+    analitica: { automatizacion: 40, tiempoHumano: '180 min', riesgoResidual: 72, contencion: 78000 },
   },
 
   // -- 5. Dictamen Automático --
@@ -1067,7 +1067,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'elegibilidad', label: 'Elegibilidad', icon: <CheckCircle size={16} />, mode: 'automatizado', duration: 1.5,
+        id: 'elegibilidad', label: 'Dictamen de Elegibilidad', icon: <CheckCircle size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [
           { agentName: 'Detección Temprana de Fraude', agentRole: 'Antifraude', outputs: [{ label: 'Score fraude', value: '<1%' }, { label: 'Verificación express', value: 'Sin anomalías' }], confidence: 100, duration: '0.3s' },
           { agentName: 'Motor de Coberturas', agentRole: 'Producto GNP', outputs: [{ label: 'Producto', value: 'Esencial Básico' }, { label: 'Consulta general', value: 'Cubierta al 100%' }], confidence: 100, duration: '0.2s' },
@@ -1083,7 +1083,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         ],
       },
       {
-        id: 'dictamen-medico', label: 'Dictamen Médico', icon: <Zap size={16} />, mode: 'manual', duration: 1.5,
+        id: 'dictamen-medico', label: 'Dictamen de Pertinencia Médica', icon: <Zap size={16} />, mode: 'ia-asistido', duration: 1.5,
         agents: [],
       },
       {
@@ -1136,8 +1136,8 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
         'RESULTADO: Caso trivial → Dictamen Automático instantáneo',
       ],
       caseManagement: {
-        potencialAhorro: 0,
-        probabilidadAhorro: 0,
+        potencialContencion: 0,
+        probabilidadContencion: 0,
         cargaEquipo: 78,
         recomendacion: 'No requiere Case Management. Caso trivial con dictamen automático',
       },
@@ -1185,7 +1185,7 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
       asistenciaFraudeManual: 'No se detectaron patrones de fraude que requieran atención del dictaminador médico',
     },
     pago: { validaciones: ['Cobertura vigente', 'Sin deducible', 'Score fraude < 1%'], montoFinal: 450, ajustes: ['Sin ajustes,cobertura total'], estado: 'Reclamo procesado bajo modelo inteligente' },
-    analitica: { automatizacion: 98, tiempoHumano: '0 min', riesgoResidual: 1, ahorro: 350 },
+    analitica: { automatizacion: 98, tiempoHumano: '0 min', riesgoResidual: 1, contencion: 350 },
   },
 ];
 
@@ -1195,14 +1195,14 @@ const CLAIM_TYPES: ClaimTypeConfig[] = [
 
 const MODE_COLORS: Record<ProcessMode, string> = {
   'manual': '#3b82f6',
-  'ia-asistido': '#d4a574',
-  'automatizado': '#0175D8',
+  'ia-asistido': '#F5A623',
+  'automatizado': '#22c55e',
 };
 
 const MODE_LABELS: Record<ProcessMode, string> = {
   'manual': 'Manual',
-  'ia-asistido': 'IA-Asistido',
-  'automatizado': 'Automatizado',
+  'ia-asistido': 'Asistido por IA',
+  'automatizado': 'Automático',
 };
 
 const SEGMENTO_LABELS: Record<SegmentoGestion, string> = {
@@ -1234,7 +1234,7 @@ const defaultStageStatuses = (): Record<StageId, StageStatus> => ({
 // Only information available at the moment of claim notification
 // ---------------------------------------------------------------------------
 
-const DICTAMINADOR_NAME = 'Dra. Alejandra Vázquez Moreno';
+// Removed individual dictaminador name to reflect team-based workflow
 
 interface ParrillaCase {
   id: string;
@@ -1242,9 +1242,9 @@ interface ParrillaCase {
   fechaAviso: string;
   asegurado: string;
   numPoliza: string;
-  canal: string;
+  modalidadEntrada: 'Programación de Cirugía' | 'Reporte Hospitalario' | 'Reembolso';
   tipoSiniestro: string;
-  montoReservado: number;
+  montoReclamado: number;
   claimTypeId: ClaimTypeId;
   deadlineMs: number; // absolute deadline timestamp in ms
 }
@@ -1252,18 +1252,18 @@ interface ParrillaCase {
 // Each case has an individual deadline: fechaAviso + random hours (1h to 4h from now for demo)
 const NOW_MS = Date.now();
 const PARRILLA_CASES: ParrillaCase[] = [
-  { id: 'c1', folioId: 'SIN-2026-00481', fechaAviso: '2026-03-28', asegurado: 'Roberto García Méndez', numPoliza: 'POL-4821093', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 520000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 0.4 * 3600000 },
-  { id: 'c2', folioId: 'SIN-2026-00483', fechaAviso: '2026-03-27', asegurado: 'María Elena Torres Vega', numPoliza: 'POL-3917254', canal: 'Hospital directo', tipoSiniestro: 'Cirugía mayor programada', montoReservado: 485000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 1.2 * 3600000 },
-  { id: 'c3', folioId: 'SIN-2026-00479', fechaAviso: '2026-03-29', asegurado: 'Javier Hernández López', numPoliza: 'POL-5528410', canal: 'Urgencias', tipoSiniestro: 'Intervención cardiovascular', montoReservado: 310000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 0.7 * 3600000 },
-  { id: 'c4', folioId: 'SIN-2026-00485', fechaAviso: '2026-03-30', asegurado: 'Ana Sofía Ramírez Cruz', numPoliza: 'POL-6104837', canal: 'Hospital directo', tipoSiniestro: 'Hospitalización', montoReservado: 195000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 2.5 * 3600000 },
-  { id: 'c5', folioId: 'SIN-2026-00472', fechaAviso: '2026-03-26', asegurado: 'Carlos Pérez Domínguez', numPoliza: 'POL-2293015', canal: 'Call center', tipoSiniestro: 'Hospitalización', montoReservado: 185000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 1.8 * 3600000 },
-  { id: 'c6', folioId: 'SIN-2026-00488', fechaAviso: '2026-03-28', asegurado: 'Laura Martínez Sánchez', numPoliza: 'POL-7741562', canal: 'App móvil', tipoSiniestro: 'Cirugía programada', montoReservado: 125000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 3.1 * 3600000 },
-  { id: 'c7', folioId: 'SIN-2026-00490', fechaAviso: '2026-03-29', asegurado: 'Fernando Ríos Gutiérrez', numPoliza: 'POL-8356201', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 98000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 0.3 * 3600000 },
-  { id: 'c8', folioId: 'SIN-2026-00493', fechaAviso: '2026-03-27', asegurado: 'Diana Flores Castillo', numPoliza: 'POL-1489320', canal: 'Reembolso', tipoSiniestro: 'Reembolso rehabilitación', montoReservado: 78000, claimTypeId: 'detallado', deadlineMs: NOW_MS + 0.9 * 3600000 },
-  { id: 'c9', folioId: 'SIN-2026-00495', fechaAviso: '2026-03-30', asegurado: 'Eduardo Vargas Núñez', numPoliza: 'POL-9072148', canal: 'Urgencias', tipoSiniestro: 'Cirugía de urgencia', montoReservado: 65000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 1.5 * 3600000 },
-  { id: 'c10', folioId: 'SIN-2026-00498', fechaAviso: '2026-03-29', asegurado: 'Patricia Morales Ruiz', numPoliza: 'POL-3350917', canal: 'App móvil', tipoSiniestro: 'Consulta médica', montoReservado: 450, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.8 * 3600000 },
-  { id: 'c11', folioId: 'SIN-2026-00500', fechaAviso: '2026-03-30', asegurado: 'Miguel Ángel Soto Reyes', numPoliza: 'POL-4467283', canal: 'App móvil', tipoSiniestro: 'Estudios de laboratorio', montoReservado: 1200, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.5 * 3600000 },
-  { id: 'c12', folioId: 'SIN-2026-00502', fechaAviso: '2026-03-28', asegurado: 'Gabriela Jiménez Ortiz', numPoliza: 'POL-5584619', canal: 'Call center', tipoSiniestro: 'Consulta especialista', montoReservado: 3500, claimTypeId: 'automatica', deadlineMs: NOW_MS + 2.2 * 3600000 },
+  { id: 'c6', folioId: 'SIN-2026-00488', fechaAviso: '2026-03-28', asegurado: 'Laura Martínez Sánchez', numPoliza: 'POL-7741562', modalidadEntrada: 'Programación de Cirugía', tipoSiniestro: 'Cirugía programada', montoReclamado: 125000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 0.2 * 3600000 },
+  { id: 'c1', folioId: 'SIN-2026-00481', fechaAviso: '2026-03-28', asegurado: 'Roberto García Méndez', numPoliza: 'POL-4821093', modalidadEntrada: 'Programación de Cirugía', tipoSiniestro: 'Cirugía mayor programada', montoReclamado: 520000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 0.4 * 3600000 },
+  { id: 'c7', folioId: 'SIN-2026-00490', fechaAviso: '2026-03-29', asegurado: 'Fernando Ríos Gutiérrez', numPoliza: 'POL-8356201', modalidadEntrada: 'Reporte Hospitalario', tipoSiniestro: 'Cirugía de urgencia', montoReclamado: 98000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 0.3 * 3600000 },
+  { id: 'c2', folioId: 'SIN-2026-00483', fechaAviso: '2026-03-27', asegurado: 'María Elena Torres Vega', numPoliza: 'POL-3917254', modalidadEntrada: 'Programación de Cirugía', tipoSiniestro: 'Cirugía mayor programada', montoReclamado: 485000, claimTypeId: 'case-management', deadlineMs: NOW_MS + 1.2 * 3600000 },
+  { id: 'c3', folioId: 'SIN-2026-00479', fechaAviso: '2026-03-29', asegurado: 'Javier Hernández López', numPoliza: 'POL-5528410', modalidadEntrada: 'Reporte Hospitalario', tipoSiniestro: 'Intervención cardiovascular', montoReclamado: 310000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 0.7 * 3600000 },
+  { id: 'c4', folioId: 'SIN-2026-00485', fechaAviso: '2026-03-30', asegurado: 'Ana Sofía Ramírez Cruz', numPoliza: 'POL-6104837', modalidadEntrada: 'Reporte Hospitalario', tipoSiniestro: 'Hospitalización', montoReclamado: 195000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 2.5 * 3600000 },
+  { id: 'c5', folioId: 'SIN-2026-00472', fechaAviso: '2026-03-26', asegurado: 'Carlos Pérez Domínguez', numPoliza: 'POL-2293015', modalidadEntrada: 'Reporte Hospitalario', tipoSiniestro: 'Hospitalización', montoReclamado: 185000, claimTypeId: 'proactiva', deadlineMs: NOW_MS + 1.8 * 3600000 },
+  { id: 'c8', folioId: 'SIN-2026-00493', fechaAviso: '2026-03-27', asegurado: 'Diana Flores Castillo', numPoliza: 'POL-1489320', modalidadEntrada: 'Reembolso', tipoSiniestro: 'Reembolso rehabilitación', montoReclamado: 78000, claimTypeId: 'detallado', deadlineMs: NOW_MS + 0.9 * 3600000 },
+  { id: 'c9', folioId: 'SIN-2026-00495', fechaAviso: '2026-03-30', asegurado: 'Eduardo Vargas Núñez', numPoliza: 'POL-9072148', modalidadEntrada: 'Reporte Hospitalario', tipoSiniestro: 'Cirugía de urgencia', montoReclamado: 65000, claimTypeId: 'reactiva', deadlineMs: NOW_MS + 1.5 * 3600000 },
+  { id: 'c10', folioId: 'SIN-2026-00498', fechaAviso: '2026-03-29', asegurado: 'Patricia Morales Ruiz', numPoliza: 'POL-3350917', modalidadEntrada: 'Reembolso', tipoSiniestro: 'Consulta médica', montoReclamado: 450, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.8 * 3600000 },
+  { id: 'c11', folioId: 'SIN-2026-00500', fechaAviso: '2026-03-30', asegurado: 'Miguel Ángel Soto Reyes', numPoliza: 'POL-4467283', modalidadEntrada: 'Reembolso', tipoSiniestro: 'Estudios de laboratorio', montoReclamado: 1200, claimTypeId: 'automatica', deadlineMs: NOW_MS + 3.5 * 3600000 },
+  { id: 'c12', folioId: 'SIN-2026-00502', fechaAviso: '2026-03-28', asegurado: 'Gabriela Jiménez Ortiz', numPoliza: 'POL-5584619', modalidadEntrada: 'Reembolso', tipoSiniestro: 'Consulta especialista', montoReclamado: 3500, claimTypeId: 'automatica', deadlineMs: NOW_MS + 2.2 * 3600000 },
 ];
 
 // Stage summary generator
@@ -1598,7 +1598,7 @@ const E2EClaimsWorkstation: React.FC = () => {
   <div class="row"><span class="row-label">Diagnóstico Principal</span><span class="row-value">${config.diagnostico}</span></div>
   <div class="row"><span class="row-label">Código CIE</span><span class="row-value">${g.expedienteMedico.codigoCIE}</span></div>
   <div class="row"><span class="row-label">Proveedor</span><span class="row-value">${config.proveedor}</span></div>
-  <div class="row"><span class="row-label">Canal de Ingreso</span><span class="row-value">${config.validaciones.canal}</span></div>
+  <div class="row"><span class="row-label">Modalidad de Entrada</span><span class="row-value">${config.validaciones.canal}</span></div>
   <div class="row"><span class="row-label">Segmento Asignado</span><span class="row-value">${SEGMENTO_LABELS[config.segmento]}</span></div>
 </div>
 
@@ -1680,7 +1680,7 @@ ${t.caseManagement.palancas.medicamentosBiocompatibles.aplica ? `
   <h3 style="margin-top:0">Medicamentos Bio-compatibles</h3>
   <div class="row"><span class="row-label">Actual</span><span class="row-value">${t.caseManagement.palancas.medicamentosBiocompatibles.actual}</span></div>
   <div class="row"><span class="row-label">Alternativa</span><span class="row-value" style="color:#22c55e">${t.caseManagement.palancas.medicamentosBiocompatibles.alternativa}</span></div>
-  <div class="row"><span class="row-label">Ahorro Potencial</span><span class="row-value" style="color:#22c55e;font-size:14px">${t.caseManagement.palancas.medicamentosBiocompatibles.ahorroPotencial}</span></div>
+  <div class="row"><span class="row-label">Contención Potencial</span><span class="row-value" style="color:#22c55e;font-size:14px">${t.caseManagement.palancas.medicamentosBiocompatibles.contencionPotencial}</span></div>
 </div>` : ''}
 <div class="section-card" style="border-left:3px solid ${t.caseManagement.palancas.honorariosMedicos.alerta ? '#ef4444' : '#1e293b'}">
   <h3 style="margin-top:0">Honorarios Médicos vs Distribución Histórica ${t.caseManagement.palancas.honorariosMedicos.alerta ? '<span class="badge badge-red">ALERTA</span>' : ''}</h3>
@@ -1701,7 +1701,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
   <div class="kpi"><div class="kpi-val">${config.analitica.automatizacion}%</div><div class="kpi-label">Automatización</div></div>
   <div class="kpi"><div class="kpi-val">${config.analitica.tiempoHumano}</div><div class="kpi-label">Intervención Humana</div></div>
   <div class="kpi"><div class="kpi-val" style="color:${config.analitica.riesgoResidual > 50 ? '#ef4444' : config.analitica.riesgoResidual > 20 ? '#F5A623' : '#22c55e'}">${config.analitica.riesgoResidual}%</div><div class="kpi-label">Riesgo Residual</div></div>
-  <div class="kpi"><div class="kpi-val" style="color:#22c55e">${fmtCurrency(config.analitica.ahorro)}</div><div class="kpi-label">Ahorro Generado</div></div>
+  <div class="kpi"><div class="kpi-val" style="color:#22c55e">${fmtCurrency(config.analitica.contencion)}</div><div class="kpi-label">Contención Generada</div></div>
 </div>
 
 <h2>${g.programacionCirugia ? (t.caseManagement.palancas ? '10' : '9') : (t.caseManagement.palancas ? '9' : '8')}. Dictamen de Elegibilidad</h2>
@@ -2547,25 +2547,25 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
               </h4>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 14 }}>
                 <div className={styles.pertinenciaCard}>
-                  <span className={styles.pertinenciaSubtitle}>Potencial de Ahorro</span>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#22c55e' }}>{fmtCurrency(data.caseManagement.potencialAhorro)}</div>
+                  <span className={styles.pertinenciaSubtitle}>Potencial de Contención</span>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#22c55e' }}>{fmtCurrency(data.caseManagement.potencialContencion)}</div>
                 </div>
                 <div className={styles.pertinenciaCard}>
-                  <span className={styles.pertinenciaSubtitle}>Probabilidad de Ahorro</span>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0175D8' }}>{data.caseManagement.probabilidadAhorro}%</div>
+                  <span className={styles.pertinenciaSubtitle}>Probabilidad de Contención</span>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0175D8' }}>{data.caseManagement.probabilidadContencion}%</div>
                 </div>
                 <div className={styles.pertinenciaCard}>
                   <span className={styles.pertinenciaSubtitle}>Carga del Equipo</span>
                   <div style={{ fontSize: '1.2rem', fontWeight: 800, color: data.caseManagement.cargaEquipo > 85 ? '#ef4444' : '#F5A623' }}>{data.caseManagement.cargaEquipo}%</div>
                 </div>
               </div>
-              <div style={{ padding: '12px 16px', background: data.caseManagement.potencialAhorro > 10000 ? 'rgba(34,197,94,0.06)' : 'rgba(148,163,184,0.06)', border: `1px solid ${data.caseManagement.potencialAhorro > 10000 ? 'rgba(34,197,94,0.15)' : 'rgba(148,163,184,0.12)'}`, borderRadius: 'var(--radius-md)' }}>
+              <div style={{ padding: '12px 16px', background: data.caseManagement.potencialContencion > 10000 ? 'rgba(34,197,94,0.06)' : 'rgba(148,163,184,0.06)', border: `1px solid ${data.caseManagement.potencialContencion > 10000 ? 'rgba(34,197,94,0.15)' : 'rgba(148,163,184,0.12)'}`, borderRadius: 'var(--radius-md)' }}>
                 <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{data.caseManagement.recomendacion}</span>
               </div>
             </div>
 
             {/* Palancas de Optimización (conditional) */}
-            {data.caseManagement.palancas && data.caseManagement.potencialAhorro > 10000 && (
+            {data.caseManagement.palancas && data.caseManagement.potencialContencion > 10000 && (
               <div className={styles.pertinenciaSection}>
                 <h4 className={styles.pertinenciaSectionTitle}>
                   <BarChart3 size={14} /> Palancas de Optimización: Oportunidades Detectadas
@@ -2583,8 +2583,8 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                       <span className={styles.pertinenciaValue} style={{ color: '#22c55e' }}>{data.caseManagement.palancas.medicamentosBiocompatibles.alternativa}</span>
                     </div>
                     <div className={styles.pertinenciaRow}>
-                      <span className={styles.pertinenciaLabel}>Ahorro Potencial</span>
-                      <span className={styles.pertinenciaValue} style={{ color: '#22c55e', fontWeight: 700 }}>{data.caseManagement.palancas.medicamentosBiocompatibles.ahorroPotencial}</span>
+                      <span className={styles.pertinenciaLabel}>Contención Potencial</span>
+                      <span className={styles.pertinenciaValue} style={{ color: '#22c55e', fontWeight: 700 }}>{data.caseManagement.palancas.medicamentosBiocompatibles.contencionPotencial}</span>
                     </div>
                   </div>
                 )}
@@ -2868,8 +2868,8 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                             <span className={styles.pertinenciaValue} style={{ color: '#22c55e' }}>{claimConfig.triaje.caseManagement.palancas.medicamentosBiocompatibles.alternativa}</span>
                           </div>
                           <div className={styles.pertinenciaRow}>
-                            <span className={styles.pertinenciaLabel}>Ahorro Potencial</span>
-                            <span className={styles.pertinenciaValue} style={{ color: '#22c55e', fontWeight: 700 }}>{claimConfig.triaje.caseManagement.palancas.medicamentosBiocompatibles.ahorroPotencial}</span>
+                            <span className={styles.pertinenciaLabel}>Contención Potencial</span>
+                            <span className={styles.pertinenciaValue} style={{ color: '#22c55e', fontWeight: 700 }}>{claimConfig.triaje.caseManagement.palancas.medicamentosBiocompatibles.contencionPotencial}</span>
                           </div>
                         </div>
                       )}
@@ -3111,7 +3111,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             {/* Hero + Timer Bar */}
             <div className={styles.heroBanner} style={{ marginBottom: 20 }}>
-              <h1 className={styles.heroTitle}>Casos Asignados a {DICTAMINADOR_NAME}</h1>
+              <h1 className={styles.heroTitle}>Parrilla de Trabajo — Gestión E2E de Siniestros</h1>
               <p className={styles.heroSubtitle}>
                 Seleccione un caso para iniciar el flujo de revisión. Los casos están ordenados por urgencia.
               </p>
@@ -3138,9 +3138,9 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                     <th>Fecha Aviso</th>
                     <th>Asegurado</th>
                     <th>No. Póliza</th>
-                    <th>Canal</th>
+                    <th>Modalidad de Entrada</th>
                     <th>Tipo de Siniestro</th>
-                    <th>Monto Reservado</th>
+                    <th>Monto Reclamado</th>
                     <th>Tiempo Restante</th>
                     <th>Acción</th>
                   </tr>
@@ -3154,9 +3154,9 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                         <td>{c.fechaAviso}</td>
                         <td>{c.asegurado}</td>
                         <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.74rem' }}>{c.numPoliza}</td>
-                        <td>{c.canal}</td>
+                        <td>{c.modalidadEntrada}</td>
                         <td>{c.tipoSiniestro}</td>
-                        <td className={styles.casesTableMonto}>{fmtCurrency(c.montoReservado)}</td>
+                        <td className={styles.casesTableMonto}>{fmtCurrency(c.montoReclamado)}</td>
                         <td>
                           {(() => {
                             const rem = getCaseRemaining(c);
@@ -3200,7 +3200,7 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                 <span className={styles.caseHeaderItem}><strong>Folio:</strong> {currentCase.folioId}</span>
                 <span className={styles.caseHeaderItem}><strong>Asegurado:</strong> {currentCase.asegurado}</span>
                 <span className={styles.caseHeaderItem}><strong>Póliza:</strong> {currentCase.numPoliza}</span>
-                <span className={styles.caseHeaderItem}><strong>Reservado:</strong> <span style={{ color: '#0175D8', fontWeight: 700 }}>{fmtCurrency(currentCase.montoReservado)}</span></span>
+                <span className={styles.caseHeaderItem}><strong>Reclamado:</strong> <span style={{ color: '#0175D8', fontWeight: 700 }}>{fmtCurrency(currentCase.montoReclamado)}</span></span>
               </div>
               {currentCase && (() => {
                 const rem = getCaseRemaining(currentCase);
@@ -3429,9 +3429,9 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                   {claimConfig.stages.find((s) => s.id === showStageDetail)?.icon}
                   <span style={{ marginLeft: 8 }}>
                     {showStageDetail === 'validaciones' && 'Validaciones Iniciales'}
-                    {showStageDetail === 'elegibilidad' && 'Evaluación de Elegibilidad'}
+                    {showStageDetail === 'elegibilidad' && 'Dictamen de Elegibilidad'}
                     {showStageDetail === 'triaje' && 'Triaje Inteligente'}
-                    {showStageDetail === 'dictamen-medico' && 'Dictamen Médico'}
+                    {showStageDetail === 'dictamen-medico' && 'Dictamen de Pertinencia Médica'}
                     {showStageDetail === 'pago' && 'Pago y Liquidación'}
                   </span>
                 </h3>
@@ -3520,8 +3520,8 @@ ${t.caseManagement.palancas.duracionEstancia.diasProgramados > 0 ? `
                     <DollarSign size={18} style={{ color: '#22c55e' }} />
                   </div>
                   <div>
-                    <span className={styles.analyticsMetricLabel}>Ahorro Generado</span>
-                    <span className={styles.analyticsMetricValue} style={{ color: '#22c55e' }}>{fmtCurrency(claimConfig.analitica.ahorro)}</span>
+                    <span className={styles.analyticsMetricLabel}>Contención Generada</span>
+                    <span className={styles.analyticsMetricValue} style={{ color: '#22c55e' }}>{fmtCurrency(claimConfig.analitica.contencion)}</span>
                   </div>
                 </div>
               </div>
